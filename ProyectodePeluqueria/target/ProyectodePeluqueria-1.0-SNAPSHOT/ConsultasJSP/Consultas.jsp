@@ -56,7 +56,7 @@
                 <img src="../imagenes/OIG1.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Ver por cliente los pagos realizados</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
