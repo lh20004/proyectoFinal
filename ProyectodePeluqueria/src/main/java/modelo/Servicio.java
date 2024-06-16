@@ -14,10 +14,7 @@ import lombok.Setter;
  *
  * @author guill
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 public class Servicio {
     private int idServicio;
     private String servicio;
@@ -25,5 +22,74 @@ public class Servicio {
     private double precio;
     private ArrayList<Reserva> listaReserva;
     private ArrayList<Pago> listaPago;
+
+    public Servicio() {
+    }
+
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
+        this.idServicio = idServicio;
+        this.servicio = servicio;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.listaReserva = listaReserva;
+        this.listaPago = listaPago;
+    }
+
+    public Servicio(int idServicio, String servicio, String descripcion, double precio) {
+        this.idServicio = idServicio;
+        this.servicio = servicio;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
+
+    public int getIdServicio() {
+        return idServicio;
+    }
+
+    public void setIdServicio(int idServicio) {
+        this.idServicio = idServicio;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public ArrayList<Reserva> getListaReserva() {
+        return listaReserva;
+    }
+
+    public void setListaReserva(ArrayList<Reserva> listaReserva) {
+        this.listaReserva = listaReserva;
+    }
+
+    public ArrayList<Pago> getListaPago() {
+        return listaPago;
+    }
+
+    public void setListaPago(ArrayList<Pago> listaPago) {
+        this.listaPago = listaPago;
+    }
+    
+    
     
 }
