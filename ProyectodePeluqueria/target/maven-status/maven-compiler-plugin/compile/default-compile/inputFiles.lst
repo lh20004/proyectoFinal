@@ -1,17 +1,9 @@
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Empleado.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Cargo.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\conexion\Conexion.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Reserva.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Servicio.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Cliente.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Cliente.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\ConsultasDao\test.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Cargo.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Detallereserva.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Pago.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\ConsultasDao\daoReserva.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Reserva.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Pago.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Detallepago.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Servicio.java
-C:\Users\guill\OneDrive - Universidad de El Salvador\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\entidades\Empleado.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\dao\ClienteDao.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Cliente.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Cargo.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\ControllersCrud\RegCliente.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Pago.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Empleado.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\conexion\Conexion.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Servicio.java
+C:\Users\flore\OneDrive\Documentos\GitHub\proyectoFinal\ProyectodePeluqueria\src\main\java\modelo\Reserva.java
