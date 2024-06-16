@@ -40,7 +40,7 @@
                 <img src="../imagenes/OIG1.jpg" />
                 <div class="card-body" style="">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Total ganancias del día</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <img src="../imagenes/OIG1.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Ganancias diarias, semanal y mensualmente</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                 <img src="../imagenes/OIG1.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
