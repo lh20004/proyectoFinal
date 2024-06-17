@@ -81,9 +81,9 @@ public class controladorInicioDeSecion extends HttpServlet {
 //        processRequest(request, response);
         
         String adminName = "admin";
-        String urlAdmin = "facebook.com";
-        String urlUsuario = "google.com";
-        String urlCliente = "youtube.com";
+        String urlAdmin = "../MenuAdmin.html";
+        String urlUsuario = "../Menu_Empleado.html";
+        String urlCliente = "../Menu_Cliente.html";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
