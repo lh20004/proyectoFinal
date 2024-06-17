@@ -66,8 +66,8 @@
                 <img src="../imagenes/OIG1.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <a href="../Menu.html" class="card-link">Ir a</a>
+                    <h6 class="card-subtitle mb-2 text-muted">Reservas</h6>
+                    <a href="Reservas.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
