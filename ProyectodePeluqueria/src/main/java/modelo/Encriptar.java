@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package modelo;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.KeyGenerator;
