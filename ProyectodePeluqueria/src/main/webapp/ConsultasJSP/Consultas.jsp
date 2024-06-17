@@ -29,7 +29,7 @@
         </div>
         <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/Servicios_Realizados.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicios Realizados en el día</h6>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/total_ganancias.jpg" />
                 <div class="card-body" style="">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Total ganancias del día</h6>
@@ -45,15 +45,15 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/ganancias_mensuales.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Ganancias diarias, semanal y mensualmente</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Ganancias semanal y mensualmente</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/cliente.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Ver por cliente los pagos realizados</h6>
@@ -63,26 +63,26 @@
         </div>
         <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/empleados.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Reservas</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Empleados que realizan más servicios</h6>
                     <a href="Reservas.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/reservaciones.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Reservaciones pagadas</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
+                <img src="../imagenes/servicios_solicitados2.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Servicios más solicitados</h6>
                     <a href="pagina.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
