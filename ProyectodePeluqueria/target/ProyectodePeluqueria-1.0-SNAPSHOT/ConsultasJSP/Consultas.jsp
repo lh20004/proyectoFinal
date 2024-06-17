@@ -21,7 +21,7 @@
     <center>
         <div class="colordiv">
             <h1 class="display-1">
-                <a href="../Menu.html" style="color: #0e2238">
+                <a href="../MenuAdmin.html" style="color: #0e2238">
                     CONSULTAS
                 </a>
             </h1>
@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicios Realizados en el día</h6>
-                    <a href="../Menu.html" class="card-link">Ir a</a>
+                    <a href="../MenuAdmin.html" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
@@ -67,7 +67,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Empleados que realizan más servicios</h6>
-                    <a href="Reservas.jsp" class="card-link">Ir a</a>
+                    <a href="../MenuAdmin.html" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
@@ -75,7 +75,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Reservaciones pagadas</h6>
-                    <a href="pagina.jsp" class="card-link">Ir a</a>
+                    <a href="Reservas.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
