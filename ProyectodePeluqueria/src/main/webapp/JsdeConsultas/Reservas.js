@@ -30,4 +30,5 @@ $(document).ready(function(){
             alert("404 espere hasta que se cargue el archivo");
         }
     });
+    
 });
