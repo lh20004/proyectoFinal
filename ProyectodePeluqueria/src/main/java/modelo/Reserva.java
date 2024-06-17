@@ -28,6 +28,9 @@ public class Reserva {
    private String estado;
    private Cliente cliente;
    private Empleado empleado;
+   private Servicio servicio;
    private ArrayList<Servicio> listaServicio;
+   
+   
    
 }

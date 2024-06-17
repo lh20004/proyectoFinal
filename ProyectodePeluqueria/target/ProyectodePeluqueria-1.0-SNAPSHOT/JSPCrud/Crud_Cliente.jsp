@@ -1,3 +1,9 @@
+<%-- 
+    Document   : Crud_Cliente
+    Created on : 12 mar. 2024, 20:30:06
+    Author     : Jonathan Flores
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,7 +33,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
- <style>
+           <link rel="stylesheet" href="css/style.css" type="text/css"/>
+<style>
         body {
             background-image: url('Imagenes/fondo.jpg'); /* Reemplaza 'ruta_de_la_imagen.jpg' con la ruta de tu imagen */
             background-size: cover; /* Esto asegura que la imagen se ajuste al tamaño de la ventana del navegador */
@@ -178,7 +185,7 @@
                 </div>
             </div>
     </body>
-    <script src="./JsCrud/Crud_Cliente.js"></script>
+    <script src="../JsCrud/Crud_Cliente.js"></script>
 </html>
 
 

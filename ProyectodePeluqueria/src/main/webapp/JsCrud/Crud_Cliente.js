@@ -18,7 +18,7 @@
     $.ajax({
         dataType: "json",
         method: "POST",
-        url: "RegCliente",
+        url: "../RegCliente",
         data: datos
     }).done(function (json){
         Swal.close();
@@ -56,7 +56,7 @@ $(document).on("click", ".btn_editar", function(e){
     $.ajax({
         dataType: "json",
             method: "POST",
-            url: "RegCliente",
+            url: "../RegCliente",
             data: datos
         }).done(function (json){
             if (json[0].resultado === "exito") {
@@ -77,25 +77,6 @@ $(document).on("click", ".btn_editar", function(e){
         });
     });
 
-
-$(document).on("click", ".btn_eliminar", function(e){
-    e.preventDefault();
-    Swal.fire({
-        title: '¿Desea eliminar el registro?',
-        text: 'Al continuar, no podra ser revertido y los datos seran borrados completamente',
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButton: 'si',
-        denyButton: 'NO'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            eliminar($(this).attr('data-id'));    
-        }else if (result.isDenied) {
-            Swal.fire("Opcion canceladada por el usuario", '', 'info');
-        }
-    });
-});
-
 function cargarTabla(estado = 1){
     mostrar_cargando("procesando solicitud", "Espere mientras se procesa la informacion");
     var datos = {"consultar_datos": "si_consulta", "estado": estado};
@@ -103,7 +84,7 @@ function cargarTabla(estado = 1){
     $.ajax({
         dataType: "json",
             method: "POST",
-            url: "RegCliente",
+            url: "../RegCliente",
             data: datos
         }).done(function (json){
             Swal.close();
@@ -143,39 +124,3 @@ function cargarTabla(estado = 1){
         }
     });
  }
-function eliminar(id){
-    mostrar_cargando("Procesando Solicitud", "Espere mientras se almacena los datos" + id);
-    var datos = {"consultar_datos": "si_eliminalo", "id" : id};
-    $.ajax({
-        dataType: "json",
-            method: "POST",
-            url: "RegCliente",
-            data: datos
-        }).done(function (json){
-            Swal.close();
-            if (json[0].resultado === "exito") {
-                Swal.fire(
-                    'Excelente',
-                    'El dato fue eliminado',
-                    'success'
-                );
-                cargarTabla();
-            }else{
-                Swal.fire(
-                'ERROR', 
-                "No se puede eliminar el dato intentelo mas tarde",
-                "ERROR"
-                );
-            }
-        }).fail(function () {
-            console.log("Error al eliminar");
-        }).always(function() {
-            console.log("Error al eliminar");
-        });
-        
-}
-
-
-   
-    
-

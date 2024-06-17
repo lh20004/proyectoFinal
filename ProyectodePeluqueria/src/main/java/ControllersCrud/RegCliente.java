@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import modelo.Cliente;
+import modelo.Encriptar;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -92,15 +93,14 @@ public class RegCliente extends HttpServlet {
                 Cliente cliente = new Cliente();
                 try {
                     ClienteDao oa = new ClienteDao();
-                  //  int id = oa.obtenerTotalClientes()+1;
-            
+
                     int id = Integer.parseInt(oa.generarId());
                     cliente .setIdCliente(id);
                     cliente .setNombre(request.getParameter("nombrecliente"));
                     cliente .setApellido(request.getParameter("apellidocliente"));
                     cliente .setTelefono(request.getParameter("telefono"));
                     cliente .setCorreo(request.getParameter("correo"));
-                    cliente .setClave(request.getParameter("contrasenia"));
+                    cliente .setClave( Encriptar.encriptar(request.getParameter("contrasenia")));
                     
                     System.out.println("cliente filtro entro" + cliente .getIdCliente());
                     resultado_insert = oa.insertar(cliente );
@@ -123,6 +123,7 @@ public class RegCliente extends HttpServlet {
                 array_clientes.put(json_clientes);
                 response.getWriter().write(array_clientes.toString());
                 break;
+
                 
             case "si_consulta":
                 JSONArray array_cliente = new JSONArray();
@@ -163,7 +164,6 @@ public class RegCliente extends HttpServlet {
                         html += "<button class='btn btn-secondary dropdown-toggle'" + "type='button' id ='dropdownMenuButton'"
                                 + "data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'> Seleccione</button>"; // Correct typo in 'button'
                         html += "<div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>";
-                        html += "<a class='dropdown-item btn_eliminar' data-id='" + obj.getIdCliente() + "' href='javascript:void(0)'>Eliminar</a>";
                         html += "<a class='dropdown-item btn_editar' data-id='" + obj.getIdCliente() + "' href='javascript:void(0)'>Editar</a>";
                         html += "</div>";
                         html += "</div>";
@@ -202,7 +202,7 @@ public class RegCliente extends HttpServlet {
                     cl.setApellido(request.getParameter("apellidocliente"));
                     cl.setTelefono(request.getParameter("telefono"));
                     cl.setCorreo(request.getParameter("correo"));
-                    cl.setClave(request.getParameter("contrasenia"));
+                    cl.setClave(Encriptar.encriptar(request.getParameter("contrasenia")));      
                     cl.setIdCliente(Integer.parseInt(request.getParameter("llave_persona")));
                     
                     result_actualizar = naut.actualizar(cl);
@@ -213,7 +213,7 @@ public class RegCliente extends HttpServlet {
                         json_actualizar.put("apellidocliente", cl.getApellido());
                         json_actualizar.put("telefono", cl.getTelefono());
                         json_actualizar.put("correo", cl.getCorreo());
-                        json_actualizar.put("contrasenia", cl.getClave());
+                        json_actualizar.put("contrasenia", cl.getClave()); ///VEr
                     } else {
                         json_actualizar.put("resultado", "error_sql");
                         json_actualizar.put("resultado_actualizar", result_actualizar);
@@ -247,7 +247,7 @@ public class RegCliente extends HttpServlet {
                         json_especifico.put("apellidocliente", res_indiv.getString("apellido"));
                         json_especifico.put("telefono", res_indiv.getString("telefono"));
                         json_especifico.put("correo", res_indiv.getString("correo"));
-                        json_especifico.put("contrasenia", res_indiv.getString("clave"));
+                        json_especifico.put("contrasenia", Encriptar.desencriptar(res_indiv.getString("clave")));
                         array_especifico.put(json_especifico);
                     }
                 } catch (SQLException e) {
@@ -267,34 +267,9 @@ public class RegCliente extends HttpServlet {
                 response.getWriter().write(array_especifico.toString());
                 break;
                 
-                
-                
-                
-            case "si_eliminalo":
-                JSONArray array_aElimina = new JSONArray();
-                JSONObject json_aElimina = new JSONObject();
-                String resultado = "";
-                ClienteDao obtA = null;
-                obtA = new ClienteDao();
-            {
-                try {
-                    resultado = obtA.deletecliente(Integer.parseInt(request.getParameter("id")));
-                } catch (SQLException ex) {
-                    Logger.getLogger(RegCliente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-                if (resultado == "exito") {
-                    json_aElimina.put("resultado", "exito");
-                } else {
-                    json_aElimina.put("resultado", "error_eliminar");
-                }
-                array_aElimina.put(json_aElimina);
-                response.getWriter().write(array_aElimina.toString());
-                break;
 
 
         }
     }
-
 
 }
