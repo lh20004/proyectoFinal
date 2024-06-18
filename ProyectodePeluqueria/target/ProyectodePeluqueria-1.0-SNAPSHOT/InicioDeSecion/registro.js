@@ -36,6 +36,7 @@ $(document).ready(function() {
                 console.log(response);
                 alert('Usuario registrado con exito.');
                 limpiarCampos();
+                window.location.href = '../Menu_Cliente.html';
             },
             error: function(xhr, status, error) {
                 // Manejar errores de la solicitud AJAX aquí

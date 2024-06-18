@@ -34,8 +34,6 @@ public class ClienteDao {
 
     public static final String UPDATE_CLIENTE = "UPDATE public.cliente SET nombre=?, apellido=?, telefono=?, correo=?, clave=? WHERE idcliente =?;";
 
-    public static final String DELETE_CLIENTE = "DELETE FROM public.cliente WHERE idcliente = ?;";
-
     public static final String SELECT_ALL = " SELECT idcliente, nombre, apellido, telefono, correo, clave FROM public.cliente;";
 
     public static final String SELECT_BYID = "SELECT idcliente, nombre, apellido, telefono, correo, clave FROM public.cliente Where idcliente= ?; ";
@@ -104,21 +102,6 @@ public class ClienteDao {
         return resultado;
     }
 
-    public String deletecliente(int id) throws SQLException {
-        String resultado;
-        try {
-            this.accesoDB = this.conexion.getConexion();
-            this.ps = this.accesoDB.prepareStatement(DELETE_CLIENTE);
-            this.ps.setInt(1, id);
-            this.ps.execute();
-            resultado = "exito";
-        } catch (SQLException e) {
-            resultado = "error";
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-        return resultado;
-    }
 
     public ArrayList<Cliente> getClientes() throws SQLException {
         this.clienteList = new ArrayList();

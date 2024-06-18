@@ -7,7 +7,6 @@ dao\ReservaDao.class
 ControllersCrud\RegCliente.class
 modelo\Empleado.class
 modelo\Encriptar.class
-ControllersCrud\RegistroCliente.class
 dao\ClienteDao.class
 ControllersConsultas\GananciasController.class
 dao\daoClienteSecion.class
