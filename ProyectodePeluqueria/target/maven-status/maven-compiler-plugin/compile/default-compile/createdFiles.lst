@@ -1,14 +1,14 @@
 modelo\Pago.class
-modelo\t.class
 modelo\Servicio.class
 dao\ReservaDao.class
 ControllersCrud\RegCliente.class
 modelo\Empleado.class
 modelo\Encriptar.class
 dao\ClienteDao.class
+ControllersConsultas\HistorialReservaServlet.class
 modelo\Cargo.class
+dao\HistorialReservaDAO.class
 modelo\Cliente.class
 ControllersConsultas\ReservasServlet.class
-dao\tst.class
 modelo\Reserva.class
 conexion\Conexion.class
