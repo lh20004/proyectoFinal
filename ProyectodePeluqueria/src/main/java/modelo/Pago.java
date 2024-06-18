@@ -24,6 +24,7 @@ public class Pago {
     private Cliente cliente;
     private Date fechaPago;
     private Double total;
+    private Servicio servicio;
     private ArrayList<Servicio> listaServicio;
     
 }
