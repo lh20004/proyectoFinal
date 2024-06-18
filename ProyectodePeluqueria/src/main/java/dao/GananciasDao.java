@@ -14,6 +14,10 @@ import modelo.Pago;
 import modelo.Servicio;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author Jonathan Flores
+ */
 public class GananciasDao {
     
     private final Conexion conexion;
@@ -24,7 +28,9 @@ public class GananciasDao {
     private Pago pago;
     
     public static final String Gananciaspordia = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE p.fechapago = ?;";
+   
     public static final String Gananciasporsemana = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE p.fechapago BETWEEN DATE_TRUNC('week', CAST(? AS DATE)) AND (DATE_TRUNC('week', CAST(? AS DATE)) + INTERVAL '6 days');";
+    
     public static final String Gananciaspormes = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE TO_CHAR(p.fechapago, 'YYYY-MM') = ?";
 
     public GananciasDao() {
