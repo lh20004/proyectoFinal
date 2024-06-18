@@ -125,7 +125,7 @@
             <button onclick="mostrarCampo('semana')">Por Semana</button>
             <button onclick="mostrarCampo('mes')">Por Mes</button>
         </div>
-        <form id="formulario_ganancias">
+        <form id="formulario_ganancias" action="GananciasController" method="post">
             <div id="campo_dia" class="form-group">
                 <label for="fecha">Fecha</label>
                 <input type="date" id="fecha" name="fecha" class="form-control">
@@ -165,24 +165,5 @@
     
     <!-- Custom JS -->
     <script src="../JsdeConsultas/Ganancias.js"></script>
-
-    <script>
-        function mostrarCampo(filtro) {
-            document.getElementById('campo_dia').classList.remove('active');
-            document.getElementById('campo_semana').classList.remove('active');
-            document.getElementById('campo_mes').classList.remove('active');
-
-            if (filtro === 'dia') {
-                document.getElementById('campo_dia').classList.add('active');
-                document.getElementById('consultar_datos').value = 'por_dia';
-            } else if (filtro === 'semana') {
-                document.getElementById('campo_semana').classList.add('active');
-                document.getElementById('consultar_datos').value = 'por_semana';
-            } else if (filtro === 'mes') {
-                document.getElementById('campo_mes').classList.add('active');
-                document.getElementById('consultar_datos').value = 'por_mes';
-            }
-        }
-    </script>
 </body>
 </html>

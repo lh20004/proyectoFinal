@@ -1,93 +1,45 @@
-$(function() {
-    // Inicialización de Parsley en el formulario
-    $('#formulario_ganancias').parsley();
+$(document).ready(function() {
+    $('#formulario_ganancias').on('submit', function(event) {
+        event.preventDefault(); // Evita que el formulario se envíe normalmente
 
-    // Cargar la tabla al cargar la página
-    cargarTabla();
+        var formData = $(this).serialize(); // Serializa los datos del formulario
 
-    // Manejar el evento de envío del formulario
-    $(document).on("submit", "#formulario_ganancias", function(e) {
-        e.preventDefault();
-        mostrar_cargando("Procesando Solicitud", "Espere mientras se obtienen los datos");
-
-        // Serializar los datos del formulario
-        var datos = $(this).serialize();
-
-        // Realizar la petición AJAX
         $.ajax({
-            dataType: "json",
-            method: "POST",
-            url: "../GananciasController",
-            data: datos
-        }).done(function(json) {
-            Swal.close();
-            if (json.resultado == "exito") {
-                Swal.fire('Éxito', 'Datos obtenidos', 'success');
-                actualizarTabla(json.data); // Actualiza la tabla con los datos obtenidos
-                $("#total_ganancias").text(json.totalGanancias); // Actualiza el total de ganancias
-            } else {
-                Swal.fire('Acción no completada', 'No se pudieron obtener los datos', 'error');
+            type: 'POST',
+            url: '../GananciasController', // Ruta relativa al servlet
+            data: formData,
+            dataType: 'json',
+            success: function(response) {
+                if (response.resultado === 'exito') {
+                    mostrarResultados(response.data, response.totalGanancias);
+                } else if (response.resultado === 'error') {
+                    mostrarError('Error: ' + response.mensaje);
+                } else if (response.resultado === 'error_sql') {
+                    mostrarError('Error SQL: ' + response.error_mostrado);
+                } else {
+                    mostrarError('Error desconocido');
+                }
+            },
+            error: function(xhr, status, error) {
+                mostrarError('Error en la solicitud: ' + error);
             }
-        }).fail(function(xhr, status, error) {
-            Swal.fire('Error', 'Hubo un error al procesar la solicitud', 'error');
         });
     });
 });
 
-function cargarTabla(estado = 1) {
-    mostrar_cargando("Procesando solicitud", "Espere mientras se procesan los datos");
+    function mostrarCampo(filtro) {
+    document.getElementById('campo_dia').classList.remove('active');
+    document.getElementById('campo_semana').classList.remove('active');
+    document.getElementById('campo_mes').classList.remove('active');
 
-    // Datos para la carga inicial de la tabla
-    var datos = {
-        "consultar_datos": "por_dia",
-        "estado": estado
-    };
-
-    // Realizar la petición AJAX
-    $.ajax({
-        dataType: "json",
-        method: "POST",
-        url: "../GananciasController",
-        data: datos
-    }).done(function(json) {
-        Swal.close();
-        if (json.resultado === "exito") {
-            actualizarTabla(json.data);
-            $("#total_ganancias").text(json.totalGanancias); // Actualiza el total de ganancias
-        } else {
-            Swal.fire('Acción no completada', "No se pueden obtener los datos", "error");
-        }
-    }).fail(function() {
-        // Manejar el fallo de la petición AJAX si es necesario
-        Swal.fire('Error', 'Hubo un error al procesar la solicitud', 'error');
-    });
-}
-
-function actualizarTabla(datos) {
-    var html = "";
-    datos.forEach(function(item) {
-        html += "<tr>";
-        html += "<td>" + item.cliente + "</td>";
-        html += "<td>" + item.fecha + "</td>";
-        html += "<td>" + item.servicio + "</td>";
-        html += "<td>" + item.total + "</td>";
-        html += "</tr>";
-    });
-    $("#tabla_ganancias tbody").html(html);
-}
-
-function mostrar_cargando(titulo, mensaje = "") {
-    Swal.fire({
-        title: titulo,
-        html: mensaje,
-        timer: 2000,
-        timerProgressBar: true,
-        didOpen: () => {
-            Swal.showLoading();
-        }
-    }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-            console.log('Cerrado por temporizador');
-        }
-    });
+    if (filtro === 'dia') {
+        document.getElementById('campo_dia').classList.add('active');
+        document.getElementById('consultar_datos').value = 'por_dia';
+    } else if (filtro === 'semana') {
+        document.getElementById('campo_semana').classList.add('active');
+        document.getElementById('consultar_datos').value = 'por_semana';
+    } else if (filtro === 'mes') {
+        document.getElementById('campo_mes').classList.add('active');
+        document.getElementById('consultar_datos').value = 'por_mes';
+    }
 }

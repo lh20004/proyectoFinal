@@ -36,12 +36,12 @@ public class GananciasDao {
         this.conexion = new Conexion();
     }
 
-    public ArrayList<Pago> getGananciasPorDia(String fecha) throws SQLException {
+    public ArrayList<Pago> getGananciasPorDia(Date fecha) throws SQLException {
         this.pagoList = new ArrayList<>();
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(Gananciaspordia);
-            ps.setString(1, fecha);
+            ps.setDate(1, fecha);
             this.rs = ps.executeQuery();
             while (this.rs.next()) {
                 this.pago = new Pago();
@@ -65,35 +65,42 @@ public class GananciasDao {
         return this.pagoList;
     }
 
-    public ArrayList<Pago> getGananciasPorSemana(String semana) throws SQLException {
-        this.pagoList = new ArrayList<>();
+   public ArrayList<Pago> getGananciasPorSemana(Date inicioSemana, Date finSemana) throws SQLException {
+        ArrayList<Pago> pagoList = new ArrayList<>();
+        
         try {
+            // Conexión y preparación del statement
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(Gananciasporsemana);
-            ps.setString(1, semana);
-            ps.setString(2, semana);
+            ps.setDate(1, inicioSemana); // Establece el primer parámetro como inicio de semana
+            ps.setDate(2, finSemana); // Establece el segundo parámetro como fin de semana
             this.rs = ps.executeQuery();
+
+            // Iterar sobre los resultados y construir objetos Pago
             while (this.rs.next()) {
-                this.pago = new Pago();
+                Pago pago = new Pago();
                 Cliente cliente = new Cliente();
                 cliente.setNombre(this.rs.getString("cliente"));
-                this.pago.setFechaPago(this.rs.getDate("fecha"));
+                pago.setFechaPago(this.rs.getDate("fecha"));
                 Servicio servicio = new Servicio();
                 servicio.setServicio(this.rs.getString("servicio"));
-                this.pago.setTotal(this.rs.getDouble("total"));
-                this.pago.setCliente(cliente);
-                this.pago.setServicio(servicio);
-                this.pagoList.add(this.pago);
+                pago.setTotal(this.rs.getDouble("total"));
+                pago.setCliente(cliente);
+                pago.setServicio(servicio);
+                pagoList.add(pago);
             }
         } catch (Exception e) {
+            // Manejo de excepciones
             JOptionPane.showMessageDialog(null, "ERROR" + e, "ERROR", JOptionPane.ERROR_MESSAGE);
         } finally {
+            // Cerrar recursos en el bloque finally
             if (rs != null) rs.close();
             if (ps != null) ps.close();
             if (accesoDB != null) accesoDB.close();
         }
-        return this.pagoList;
+        return pagoList;
     }
+
 
     public ArrayList<Pago> getGananciasPorMes(String mes) throws SQLException {
         this.pagoList = new ArrayList<>();
