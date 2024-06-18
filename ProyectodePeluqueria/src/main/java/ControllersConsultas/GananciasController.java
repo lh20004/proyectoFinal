@@ -22,6 +22,11 @@ import modelo.SemanaConverter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/**
+ *
+ * @author Jonathan Flores
+ */
+
 @WebServlet(name = "GananciasController", urlPatterns = {"/GananciasController"})
 public class GananciasController extends HttpServlet {
 

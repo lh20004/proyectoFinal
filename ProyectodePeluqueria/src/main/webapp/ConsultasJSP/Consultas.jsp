@@ -49,7 +49,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Ganancias semanal y mensualmente</h6>
-                    <a href="pagina.jsp" class="card-link">Ir a</a>
+                    <a href="../ConsultasJSP/Ganancias.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
