@@ -28,8 +28,8 @@ public class ClienteDao {
     private Cliente cliente;
 
     public static final String INSERTAR_CLIENTE = "INSERT INTO public.cliente(\n"
-            + "	idcliente, nombre, apellido, telefono, correo, clave)\n"
-            + "	VALUES (?, ?, ?, ?, ?, ?);";
+            + "	 nombre, apellido, telefono, correo, clave)\n"
+            + "	VALUES ( ?, ?, ?, ?, ?);";
     public static final String sql = "SELECT COUNT(*) AS total_clientes FROM cliente";
 
     public static final String UPDATE_CLIENTE = "UPDATE public.cliente SET nombre=?, apellido=?, telefono=?, correo=?, clave=? WHERE idcliente =?;";
@@ -54,12 +54,11 @@ public class ClienteDao {
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = accesoDB.prepareStatement(INSERTAR_CLIENTE);
-            this.ps.setInt(1, cliente.getIdCliente());
-            this.ps.setString(2, cliente.getNombre());
-            this.ps.setString(3, cliente.getApellido());
-            this.ps.setString(4, cliente.getTelefono());
-            this.ps.setString(5, cliente.getCorreo());
-            this.ps.setString(6, cliente.getClave());
+            this.ps.setString(1, cliente.getNombre());
+            this.ps.setString(2, cliente.getApellido());
+            this.ps.setString(3, cliente.getTelefono());
+            this.ps.setString(4, cliente.getCorreo());
+            this.ps.setString(5, cliente.getClave());
             System.out.println(this.ps);
             resultado_insertar = this.ps.executeUpdate();
             this.conexion.cerrarConexiones();
