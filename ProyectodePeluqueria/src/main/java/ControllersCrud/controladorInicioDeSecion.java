@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
 import modelo.Empleado;
+import modelo.Encriptar;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -126,10 +127,12 @@ public class controladorInicioDeSecion extends HttpServlet {
     }
     
     private String encriptar(String cadena){
+        cadena = Encriptar.encriptar(cadena);
         return cadena;
     }
     
     private String desencriptar(String cadena){
+        cadena = Encriptar.desencriptar(cadena);
         return cadena;
     }
 
