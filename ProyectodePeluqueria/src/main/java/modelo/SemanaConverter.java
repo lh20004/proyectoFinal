@@ -15,16 +15,6 @@ import java.util.Locale;
  */
 public class SemanaConverter {
 
-    public static void main(String[] args) {
-        String semana = "2024-W24";
-        try {
-            Date[] fechas = convertirSemanaAFechas(semana);
-            System.out.println("Fecha de inicio: " + fechas[0]);
-            System.out.println("Fecha de fin: " + fechas[1]);
-        } catch (Exception e) {
-            System.out.println("Error al convertir semana a fechas: " + e.getMessage());
-        }
-    }
 
     public static Date[] convertirSemanaAFechas(String semana) {
         // Obtener año y número de semana del formato "YYYY-WWW"
