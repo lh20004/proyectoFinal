@@ -5,18 +5,66 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
+        <link rel="stylesheet" href="../css/login.css" type="text/css"/>
+
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+              rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+              crossorigin="anonymous">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
         <script src="./ScriptSecion.js"></script>
+
+
     </head>
     <body>
-        <form id="fSecion">
+        <!--<form id="fSecion">
             <input type="email" id="eEmail" required="">
             <input type="password" id="pPassword" required="">
             <input type="submit" id="bSecion">
-        </form>
+        </form>-->
+
+        <div class="wrapper bg-white">
+            <div class="h2 text-center">Peluqueria y Barberia "El Pelón"</div>
+            <div class="h4 text-muted text-center pt-2">Ingrese Correo y Contraseña</div>
+
+            <form class="pt-3" id="fSecion">
+                <div class="form-group py-2">
+                    <div class="input-field"> 
+                        <span 
+                            class="far fa-user p-2">
+                        </span> 
+                        <input type="email" id="eEmail" placeholder="Correo Electronico" required class=""> 
+                    </div>
+                </div>
+                <div class="form-group py-1 pb-2">
+                    <div class="input-field"> 
+                        <span 
+                            class="fas fa-lock p-2">
+                        </span> 
+                        <input type="password" id="pPassword" placeholder="Clave" required class=""> 
+                        <button class="btn bg-white text-muted"> 
+                            <span class="far fa-eye-slash">
+                            </span> 
+                        </button> 
+                    </div>
+                </div>
+                <div class="d-flex align-items-start">
+                </div> 
+                <center>
+                    <button id="bSecion" class="btn btn-block text-center my-3">Iniciar Sesion
+                    </button>
+                </center>
+                <div class="text-center pt-3 text-muted">¿No tienes cuenta? 
+                    <a href="#">Registrate</a>
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
     </body>
 </html>
