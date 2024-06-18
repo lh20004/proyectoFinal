@@ -20,27 +20,55 @@ public class Servicio {
     private String servicio;
     private String descripcion;
     private double precio;
+    private String estado;
     private ArrayList<Reserva> listaReserva;
     private ArrayList<Pago> listaPago;
+    private int totalServicios;
 
     public Servicio() {
     }
 
-    public Servicio(int idServicio, String servicio, String descripcion, double precio, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.estado = estado;
         this.listaReserva = listaReserva;
         this.listaPago = listaPago;
     }
 
-    public Servicio(int idServicio, String servicio, String descripcion, double precio) {
+    public Servicio(String servicio, String descripcion, double precio, String estado) {
+        this.servicio = servicio;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.estado = estado;
+    }
+
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.estado = estado;
     }
+
+    public Servicio(String servicio, int totalServicios) {
+        this.servicio = servicio;
+        this.totalServicios = totalServicios;
+    }
+
+    public int getTotalServicios() {
+        return totalServicios;
+    }
+
+    public void setTotalServicios(int totalServicios) {
+        this.totalServicios = totalServicios;
+    }
+    
+    
+    
+    
 
     public int getIdServicio() {
         return idServicio;
@@ -74,6 +102,14 @@ public class Servicio {
         this.precio = precio;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public ArrayList<Reserva> getListaReserva() {
         return listaReserva;
     }
@@ -89,7 +125,8 @@ public class Servicio {
     public void setListaPago(ArrayList<Pago> listaPago) {
         this.listaPago = listaPago;
     }
-    
+
+   
     
     
 }
