@@ -22,7 +22,7 @@ import lombok.Setter;
 @Setter
 public class Reserva {
    private int idReserva;
-   private int idServicio;
+   private int idServicio;//No utilizar 
    private Date fechaReserva;
    private Time horaInicio;
    private Time horaFin;
