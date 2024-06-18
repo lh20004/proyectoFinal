@@ -4,7 +4,6 @@
  */
 package ControllersCrud;
 
-
 import dao.daoClienteSecion;
 import dao.daoEmpleadoSecion;
 import java.io.IOException;
@@ -38,12 +37,12 @@ public class controladorInicioDeSecion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet controladorInicioDeSecion</title>");            
+            out.println("<title>Servlet controladorInicioDeSecion</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet controladorInicioDeSecion at " + request.getContextPath() + "</h1>");
@@ -79,7 +78,7 @@ public class controladorInicioDeSecion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+
         String adminName = "admin";
         String urlAdmin = "../MenuAdmin.html";
         String urlUsuario = "../Menu_Empleado.html";
@@ -87,49 +86,50 @@ public class controladorInicioDeSecion extends HttpServlet {
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        
+
         JSONObject json = new JSONObject();
-        
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+
         Empleado em = daoEmpleadoSecion.getEmpleadoPorCorreo(email);
         Cliente cl = daoClienteSecion.getClientePorCorreo(email);
-        
-        
-        if(em!=null||cl!=null){
-            if(em!=null){
+
+        if (em != null || cl != null) {
+            if (em != null) {
                 em.setClave(desencriptar(em.getClave()));
-                if(em.getClave().equals(password)){
+                if (em.getClave().equals(password)) {
                     json.put("result", "succes");
-                    if(em.getCargo().getCargo().equals(adminName)){
+                    if (em.getCargo().getCargo().equals(adminName)) {
                         json.put("url", urlAdmin);
-                    }else{
+                    } else {
                         json.put("url", urlUsuario);
                     }
-                }else{
+                } else {
                     json.put("result", "claveError");
                 }
-            }else{
+            } else {
                 cl.setClave(desencriptar(cl.getClave()));
-                if(cl.getClave().equals(password)){
+                if (cl.getClave().equals(password)) {
+                    request.getSession().setAttribute("cliente", cl);  // Guardar cliente en sesión
+                     request.getSession().setAttribute("idCliente", cl.getIdCliente());
                     json.put("result", "succes");
                     json.put("url", urlCliente);
-                }else{
+                } else {
                     json.put("result", "claveError");
                 }
             }
-        }else{
+        } else {
             json.put("result", "correoError");
         }
         response.getWriter().write(json.toString());
     }
-    
-    private String encriptar(String cadena){
+
+    private String encriptar(String cadena) {
         return cadena;
     }
-    
-    private String desencriptar(String cadena){
+
+    private String desencriptar(String cadena) {
         return cadena;
     }
 
