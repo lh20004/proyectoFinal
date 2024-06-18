@@ -31,6 +31,7 @@ import org.json.JSONObject;
  *
  * @author Jonathan Flores
  */
+
 @WebServlet(name = "RegCliente", urlPatterns = {"/RegCliente"})
 public class RegCliente extends HttpServlet {
 
@@ -94,15 +95,12 @@ public class RegCliente extends HttpServlet {
                 try {
                     ClienteDao oa = new ClienteDao();
 
-                    int id = Integer.parseInt(oa.generarId());
-                    cliente .setIdCliente(id);
                     cliente .setNombre(request.getParameter("nombrecliente"));
                     cliente .setApellido(request.getParameter("apellidocliente"));
                     cliente .setTelefono(request.getParameter("telefono"));
                     cliente .setCorreo(request.getParameter("correo"));
                     cliente .setClave( Encriptar.encriptar(request.getParameter("contrasenia")));
                     
-                    System.out.println("cliente filtro entro" + cliente .getIdCliente());
                     resultado_insert = oa.insertar(cliente );
                     
                     if (resultado_insert == "exito") {

@@ -7,6 +7,7 @@ dao\ReservaDao.class
 ControllersCrud\RegCliente.class
 modelo\Empleado.class
 modelo\Encriptar.class
+ControllersCrud\RegistroCliente.class
 dao\ClienteDao.class
 ControllersConsultas\GananciasController.class
 dao\daoClienteSecion.class
@@ -15,5 +16,4 @@ modelo\Cliente.class
 ControllersConsultas\ReservasServlet.class
 modelo\Reserva.class
 conexion\Conexion.class
-dao\Main.class
 dao\daoEmpleadoSecion.class
