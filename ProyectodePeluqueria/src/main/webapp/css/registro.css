@@ -22,6 +22,7 @@ body {
     background-color: #81c784; /* Verde claro */
     border: none;
     color: white;
+    margin-top: 40px; /* Incrementamos el margen superior */
 }
 .btn-custom:hover {
     background-color: #66bb6a; /* Verde más oscuro al pasar el mouse */
