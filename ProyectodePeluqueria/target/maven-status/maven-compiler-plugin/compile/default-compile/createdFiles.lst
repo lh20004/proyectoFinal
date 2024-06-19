@@ -3,6 +3,7 @@ dao\GananciasDao.class
 modelo\Servicio.class
 ControllersCrud\ServiciosServlet.class
 ControllersConsultas\EmpleadosServiciosServlet.class
+ControllersCrud\RegistrarUsuario.class
 dao\ReservaDao_1.class
 modelo\Encriptar.class
 dao\ClienteDao.class
