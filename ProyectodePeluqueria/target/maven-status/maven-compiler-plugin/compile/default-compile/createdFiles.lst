@@ -2,15 +2,19 @@ modelo\Pago.class
 dao\GananciasDao.class
 modelo\Servicio.class
 ControllersCrud\ServiciosServlet.class
+dao\CargosRegistradosDao.class
 ControllersConsultas\EmpleadosServiciosServlet.class
 ControllersCrud\RegistrarUsuario.class
 dao\ReservaDao_1.class
 modelo\Encriptar.class
+ControllersCrud\CargoServlet.class
 dao\ClienteDao.class
+ControllersCrud\RegEmpleado.class
 ControllersConsultas\HistorialReservaServlet.class
 dao\HistorialReservaDAO.class
 ControllersConsultas\GananciasDia.class
 dao\ServicioComboDao.class
+dao\EmpleadoRegistradosDao.class
 ControllersConsultas\ServiciosTotales.class
 dao\ServiciosDAO.class
 conexion\Conexion.class
@@ -33,4 +37,5 @@ ControllersConsultas\ServicioMasSolicitadoServlet.class
 modelo\Cliente.class
 ControllersConsultas\ReservasServlet.class
 modelo\Reserva.class
+dao\CargoDao.class
 dao\ReservacionesPagadasDAO.class

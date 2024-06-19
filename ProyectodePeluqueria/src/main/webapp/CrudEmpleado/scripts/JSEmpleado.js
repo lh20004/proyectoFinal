@@ -143,8 +143,7 @@ function cargarDatos() {
             var e = new Empleado();
             e.setIdempleado(datos.idempleado);
             e.setNombre(datos.nombre);
-//            e.setApellido(datos.apellido);
-            e.setApellido('none');
+            e.setApellido(datos.apellido);
             e.setTelefono(datos.telefono);
             e.setDui(datos.dui);
             e.setEstado(datos.estado);

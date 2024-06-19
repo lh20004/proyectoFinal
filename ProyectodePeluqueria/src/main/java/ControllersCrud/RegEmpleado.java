@@ -104,7 +104,7 @@ public class RegEmpleado extends HttpServlet {
                     json = new JSONObject();
                     json.put("idempleado", e.getIdEmpleado());
                     json.put("nombre", e.getNombre());
-//                    json.put("apellido", e.getApellido());
+                    json.put("apellido", e.getApellido());
                     json.put("telefono", e.getTelefono());
                     json.put("dui", e.getDui());
                     json.put("estado", e.getEstado());
@@ -133,7 +133,7 @@ public class RegEmpleado extends HttpServlet {
                 //crear un nuevo empleado
                 empleado = new Empleado();
                 empleado.setNombre(request.getParameter("nombre"));
-                //empleado.setApellido(request.getParameter("apellido"));
+                empleado.setApellido(request.getParameter("apellido"));
                 empleado.setTelefono(request.getParameter("telefono"));
                 empleado.setDui(request.getParameter("dui"));
                 empleado.setEstado(request.getParameter("estado"));
@@ -154,7 +154,7 @@ public class RegEmpleado extends HttpServlet {
                 empleado = new Empleado();
                 empleado.setIdEmpleado(Integer.parseInt(request.getParameter("idempleado")));
                 empleado.setNombre(request.getParameter("nombre"));
-                //empleado.setApellido(request.getParameter("apellido"));
+                empleado.setApellido(request.getParameter("apellido"));
                 empleado.setTelefono(request.getParameter("telefono"));
                 empleado.setDui(request.getParameter("dui"));
                 empleado.setEstado(request.getParameter("estado"));

@@ -27,7 +27,7 @@ public class EmpleadoRegistradosDao {
                 Empleado em = new Empleado();
                 em.setIdEmpleado(rs.getInt("idempleado"));
                 em.setNombre(rs.getString("nombre"));
-//                em.setApellido(rs.getString("apellido"));
+                em.setApellido(rs.getString("apellido"));
                 em.setTelefono(rs.getString("telefono"));
                 em.setDui(rs.getString("dui"));
                 em.setEstado(rs.getString("estado"));
@@ -52,8 +52,7 @@ public class EmpleadoRegistradosDao {
             Conexion con = new Conexion();
             PreparedStatement ps = con.getConexion().prepareStatement("insert into empleado (nombre, apellido, telefono, dui, estado, correo, clave, idcargo) values (?,?,?,?,?,?,?,?);");
             ps.setString(1, em.getNombre());
-            //ps.setString(2, em.getApellido());
-            ps.setString(2, "none");
+            ps.setString(2, em.getApellido());
             ps.setString(3, em.getTelefono());
             ps.setString(4, em.getDui());
             ps.setString(5, em.getEstado());
@@ -73,8 +72,7 @@ public class EmpleadoRegistradosDao {
             Conexion con = new Conexion();
             PreparedStatement ps = con.getConexion().prepareStatement("update empleado set nombre = ?, apellido = ?, telefono = ?, dui=?, estado=?, correo = ?, clave=?, idcargo = ? where idempleado = ?;");
             ps.setString(1, em.getNombre());
-            //ps.setString(2, em.getApellido());
-            ps.setString(2, "none");
+            ps.setString(2, em.getApellido());
             ps.setString(3, em.getTelefono());
             ps.setString(4, em.getDui());
             ps.setString(5, em.getEstado());
