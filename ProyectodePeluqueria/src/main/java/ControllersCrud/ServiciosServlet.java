@@ -133,7 +133,7 @@ public class ServiciosServlet extends HttpServlet {
                                 + "data-toggle= 'dropdown' aria-haspopup='true' aria-expanded='false'> Seleccione </button>";
                         html += "<ul class=\"dropdown-menu\">";
 
-                        html += "<li><a class='dropdown-item btn_eliminar' data-id='" + objAutor.getIdServicio() + "' href='javascrip:void(0)'>Eliminar</a></li>";
+//                        html += "<li><a class='dropdown-item btn_eliminar' data-id='" + objAutor.getIdServicio() + "' href='javascrip:void(0)'>Eliminar</a></li>";
 
                         html += "<li><a class='dropdown-item btn_editar' data-id='" + objAutor.getIdServicio() + "' href = 'javascrip:void(0)'>Editar</a></li>";
 
