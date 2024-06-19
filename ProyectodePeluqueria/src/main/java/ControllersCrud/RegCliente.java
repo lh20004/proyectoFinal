@@ -225,6 +225,7 @@ public class RegCliente extends HttpServlet {
                 }
                 array_actualizar.put(json_actualizar);
                 response.getWriter().write(array_actualizar.toString());
+                filtro=null;
                 break;
                 
                 

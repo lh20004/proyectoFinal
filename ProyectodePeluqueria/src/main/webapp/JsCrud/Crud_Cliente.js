@@ -26,11 +26,12 @@
             Swal.fire('Éxito', 'Cliente Registrado', 'success');
             $("#md_registrar_cliente").modal("hide");
             cargarTabla(); // Actualiza la tabla después de registrar el cliente
+            location.reload();
         } else {
             Swal.fire('Acción no completada', 'No se pudo registrar el cliente', 'error');
         }
-    }).fail(function (xhr, status, error) {
-        Swal.fire('Error', 'Hubo un error al procesar la solicitud', 'error');
+    }).fail(function () {
+    }).always(function(){
     });
   });
 });
