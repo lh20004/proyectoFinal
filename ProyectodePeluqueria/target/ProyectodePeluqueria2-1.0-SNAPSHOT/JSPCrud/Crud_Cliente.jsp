@@ -40,8 +40,13 @@
                 background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
+                height: 100vh;
+                margin: 0;
                 font-family: Arial, sans-serif;
-                
+            }
+
+            html, body {
+                height: 100%; /* Evita scroll si no es necesario */
             }
 
             .container-fluid {
@@ -55,6 +60,7 @@
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 display: flex;
                 align-items: center;
+                background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
             }
 
             .mini-stat-icon {
@@ -96,7 +102,7 @@
             }
 
             .modal-header {
-                background-color: wheat; /* Color azul para el encabezado del modal */
+                background-color: #b2d8d8; /* Color azul para el encabezado del modal */
                 color: white;
                 border-bottom: none;
                 border-radius: 8px 8px 0 0;
@@ -126,8 +132,8 @@
             }
 
             .table thead {
-                background-color: #007BFF; /* Color azul para el encabezado de la tabla */
-                color: white;
+                background-color: #b2d8d8; /* Color azul para el encabezado de la tabla */
+                color: black;
             }
 
             .table tbody tr:nth-child(odd) {
@@ -162,6 +168,7 @@
                 background-color: #5a6268; /* Color gris más oscuro al pasar el mouse */
             }
 
+
         </style>
 
 
@@ -184,6 +191,11 @@
                     ================== -->
                     <div class="page-content-wrapper">
                         <div class="container-fluid">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <a href="../Menu.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-6">
                                     <div class="mini-stat clearfix bg-white">
@@ -236,12 +248,6 @@
                         <div class="modal-header">
 
                             <sub>Campos marcados con * son obligatorios</sub>
-
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-
                         </div>
                         <div class="modal-body">
                             <form name="formulario_registro" id="formulario_registro">
