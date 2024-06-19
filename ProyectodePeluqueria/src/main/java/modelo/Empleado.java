@@ -21,6 +21,7 @@ import lombok.Setter;
 public class Empleado {
     private int idEmpleado;
     private String nombre;
+    private String apellido;
     private String telefono;
     private String dui;
     private String estado;
