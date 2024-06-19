@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Cliente;
+import modelo.Encriptar;
 
 @WebServlet("/RegistrarUsuarioServlet")
 public class RegistrarUsuario extends HttpServlet {
@@ -25,7 +26,7 @@ public class RegistrarUsuario extends HttpServlet {
         String apellido = request.getParameter("apellido");
         String telefono = request.getParameter("telefono");
         String correo = request.getParameter("correo");
-        String clave = request.getParameter("clave");
+        String clave = Encriptar.encriptar(request.getParameter("clave"));
 
         // Crear un objeto Cliente con los datos recibidos
         Cliente cliente = new Cliente();
