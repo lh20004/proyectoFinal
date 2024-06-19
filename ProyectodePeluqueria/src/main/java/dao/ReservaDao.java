@@ -34,7 +34,9 @@ public class ReservaDao {
             + "WHERE re.estado = 'Confirmada';";
     
       private static final String SELECT_ALL = "SELECT r.fechareserva As Fecha,r.horainicio,r.horafin,r.estado,CONCAT(c.nombre, ' ', c.apellido) AS Cliente, CONCAT(e.nombre, ' ', e.apellido) AS Empleado,s.servicio AS Servicio FROM detallereserva dr  JOIN reserva r ON dr.idreserva = r.idreserva JOIN cliente c ON r.idcliente = c.idcliente JOIN empleado e ON r.idempleado = e.idempleado JOIN servicio s ON dr.idservicio = s.idservicio";
-    
+     
+      private static final String Reservaporempleado = "SELECT r.fechareserva As Fecha,r.horainicio,r.horafin,r.estado,CONCAT(c.nombre, ' ', c.apellido) AS Cliente, CONCAT(e.nombre, ' ', e.apellido) AS Empleado,s.servicio AS Servicio FROM detallereserva dr  JOIN reserva r ON dr.idreserva = r.idreserva JOIN cliente c ON r.idcliente = c.idcliente JOIN empleado e ON r.idempleado = e.idempleado JOIN servicio s ON dr.idservicio = s.idservicio WHERE  r.estado='pendiente' AND e.idempleado= ?";
+      
       public  ReservaDao () throws SQLException, ClassNotFoundException{
         this.conexion = new Conexion();
     }
@@ -101,5 +103,43 @@ public class ReservaDao {
 
         return this.reservaList;
     }
+    
+     public ArrayList<Reserva> obtenerReservasempleados(int id) {
+       this.reservaList = new ArrayList<>();
+
+        try {            
+            this.accesoDB = this.conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(SELECT_ALL);
+              ps.setInt(1, id);
+            this.rs = ps.executeQuery();
+                
+            while (rs.next()) {
+                Reserva reserva = new Reserva();
+           
+                reserva.setFechaReserva(rs.getDate("Fecha"));
+                reserva.setHoraInicio(rs.getTime("horainicio"));
+                reserva.setHoraFin(rs.getTime("horafin"));
+                reserva.setEstado(rs.getString("estado"));
+
+                Cliente cliente = new Cliente();
+                cliente.setNombre(rs.getString("Cliente"));
+                Empleado empleado = new Empleado();
+                
+                empleado.setNombre(rs.getString("Empleado"));
+                Servicio corte = new Servicio();
+                corte.setServicio(rs.getString("Servicio"));
+
+                reserva.setCliente(cliente);
+                reserva.setEmpleado(empleado);
+                reserva.setServicio(corte);
+                this.reservaList.add(reserva);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return this.reservaList;
+    }
+
 
 }
