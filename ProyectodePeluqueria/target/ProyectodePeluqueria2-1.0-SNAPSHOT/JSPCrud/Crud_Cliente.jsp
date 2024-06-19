@@ -244,6 +244,8 @@
                         <div class="modal-header">
 
                             <sub>Campos marcados con * son obligatorios</sub>
+                            
+                            
                         </div>
                         <div class="modal-body">
                             <form name="formulario_registro" id="formulario_registro">
