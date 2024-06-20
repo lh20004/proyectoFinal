@@ -25,7 +25,7 @@ public class ReservaDao_1 {
     private PreparedStatement ps;
     private Connection accesoDB;
 
-    private static final String SELECT_FECHA_HORAS = "SELECT fechareserva, horainicio, horafin FROM reserva";
+    private static final String SELECT_FECHA_HORAS = "SELECT fechareserva, horainicio, horafin FROM reserva ORDER BY fechareserva ASC;";
     
     public ReservaDao_1() {
         this.conexion = new Conexion();
