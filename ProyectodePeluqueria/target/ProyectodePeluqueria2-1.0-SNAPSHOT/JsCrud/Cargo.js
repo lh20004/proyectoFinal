@@ -85,6 +85,10 @@ $(document).on("click", ".btn_eliminar", function (e) {
         }
     });
 });
+$(document).on("click", "#btn_cerrar, #close", function(e) {
+        e.preventDefault();
+        $("#md_registrar_cargo").modal("hide"); 
+    });
 
 function cargarTabla(estado = 1) {
     mostrar_cargando("procesando solicitud", "Espere mientas se procesa la información");
