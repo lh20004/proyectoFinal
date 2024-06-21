@@ -16,7 +16,7 @@ public class Conexion {
     private Connection conexion = null;
     private String url = "jdbc:postgresql://localhost:5432/peluqueriabarberia";
     private String usuario = "postgres";
-    private String password = "admin";//root
+    private String password = "root";//root
 
     public Connection getConexion() {
         
