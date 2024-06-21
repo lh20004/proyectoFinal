@@ -139,7 +139,8 @@ function evetListaFormulario(evt) {
 }
 
 function evtBtnQuitar(evt) {
-    Swal.fire({
+    if(objectSelecList != null){
+        Swal.fire({
         title: "Quitar Seleccion?",
         showCancelButton: true,
         confirmButtonText: "Quitar"
@@ -151,9 +152,7 @@ function evtBtnQuitar(evt) {
             var html = '';
 
             //quita cualquiel seleccion para evitar errores
-            if (objectSelecList != null) {
-                objectSelecList.style.removeProperty('background');
-            }
+            objectSelecList.style.removeProperty('background');
 
             //filtrado de datos
             serviciosReservados.forEach(function (data) {
@@ -180,4 +179,5 @@ function evtBtnQuitar(evt) {
             }
         }
     });
+    }
 }
