@@ -85,8 +85,7 @@ public class ReservaServlet extends HttpServlet {
                 arrayCombos.put(jsonCombos);
                 response.getWriter().write(arrayCombos.toString());
                 break;
-                
-                
+
             case "si_consulta":
                 JSONArray array_reserva = new JSONArray();
                 try {
@@ -123,117 +122,115 @@ public class ReservaServlet extends HttpServlet {
                 array_reserva.put(json_reserva);
                 response.getWriter().write(array_reserva.toString());
                 break;
-                
-                case "insertar":
-    JSONObject jsonResponse = new JSONObject();
-    System.out.println("llego al case:");
-    try {
-        // Obtener el idCliente de la sesión
-        Integer clienteId = (Integer) request.getSession().getAttribute("idCliente");
 
-        if (clienteId == null) {
-            jsonResponse.put("resultado", "error");
-            jsonResponse.put("mensaje", "ID de cliente no encontrado en la sesión.");
-            response.getWriter().write(jsonResponse.toString());
-            break;
-        }
+            case "insertar":
+                JSONObject jsonResponse = new JSONObject();
+                System.out.println("llego al case:");
+                try {
+                    // Obtener el idCliente de la sesión
+                    Integer clienteId = (Integer) request.getSession().getAttribute("idCliente");
 
-        String empleadoParam = request.getParameter("empleado");
-        String servicioParam = request.getParameter("servicio");
-        String fechaStr = request.getParameter("fecha_reservacion");
-        String horaInicioStr = request.getParameter("hora_inicio");
-        String horaFinStr = request.getParameter("hora_fin");
+                    if (clienteId == null) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "ID de cliente no encontrado en la sesión.");
+                        response.getWriter().write(jsonResponse.toString());
+                        break;
+                    }
 
-        // Depuración de parámetros recibidos
-        System.out.println("Parámetros recibidos:");
-        System.out.println("Cliente ID (de sesión): " + clienteId);
-        System.out.println("Empleado: " + empleadoParam);
-        System.out.println("Servicio: " + servicioParam);
-        System.out.println("Fecha de Reservación: " + fechaStr);
-        System.out.println("Hora de Inicio: " + horaInicioStr);
-        System.out.println("Hora de Fin: " + horaFinStr);
+                    String empleadoParam = request.getParameter("empleado");
+                    String servicioParam = request.getParameter("servicio");
+                    String fechaStr = request.getParameter("fecha_reservacion");
+                    String horaInicioStr = request.getParameter("hora_inicio");
+                    String horaFinStr = request.getParameter("hora_fin");
 
-        // Conversión de parámetros a tipos correctos
-        int empleadoId = Integer.parseInt(empleadoParam);
-        int servicioId = Integer.parseInt(servicioParam);
+                    // Depuración de parámetros recibidos
+                    System.out.println("Parámetros recibidos:");
+                    System.out.println("Cliente ID (de sesión): " + clienteId);
+                    System.out.println("Empleado: " + empleadoParam);
+                    System.out.println("Servicio: " + servicioParam);
+                    System.out.println("Fecha de Reservación: " + fechaStr);
+                    System.out.println("Hora de Inicio: " + horaInicioStr);
+                    System.out.println("Hora de Fin: " + horaFinStr);
 
-        // Conversión de String a Date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date fechaReserva = new Date(dateFormat.parse(fechaStr).getTime());
+                    // Conversión de parámetros a tipos correctos
+                    int empleadoId = Integer.parseInt(empleadoParam);
+                    int servicioId = Integer.parseInt(servicioParam);
 
-        // Obtener la fecha actual
-        Date fechaActual = new Date(System.currentTimeMillis());
+                    // Conversión de String a Date
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fechaReserva = new Date(dateFormat.parse(fechaStr).getTime());
 
-        // Comprobar que la fecha de la reserva no sea anterior a la fecha actual
-        if (fechaReserva.before(fechaActual)) {
-            jsonResponse.put("resultado", "error");
-            jsonResponse.put("mensaje", "La fecha de la reserva no puede ser anterior a la fecha actual.");
-            response.getWriter().write(jsonResponse.toString());
-            System.out.println("Error: La fecha de la reserva no puede ser anterior a la fecha actual.");
-            break;
-        }
+                    // Obtener la fecha actual
+                    Date fechaActual = new Date(System.currentTimeMillis());
 
-        // Conversión de String a Time
-        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-        Time horaInicio = new Time(timeFormat.parse(horaInicioStr).getTime());
-        Time horaFin = new Time(timeFormat.parse(horaFinStr).getTime());
+                    // Comprobar que la fecha de la reserva no sea anterior a la fecha actual
+                    if (fechaReserva.before(fechaActual)) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "La fecha de la reserva no puede ser anterior a la fecha actual.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: La fecha de la reserva no puede ser anterior a la fecha actual.");
+                        break;
+                    }
 
-        // Comprobar que la hora de fin no sea anterior a la hora de inicio
-        if (horaFin.before(horaInicio)) {
-            jsonResponse.put("resultado", "error");
-            jsonResponse.put("mensaje", "La hora de fin no puede ser menor que la hora de inicio.");
-            response.getWriter().write(jsonResponse.toString());
-            System.out.println("Error: La hora de fin no puede ser menor que la hora de inicio.");
-            break;
-        }
+                    // Conversión de String a Time
+                    SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                    Time horaInicio = new Time(timeFormat.parse(horaInicioStr).getTime());
+                    Time horaFin = new Time(timeFormat.parse(horaFinStr).getTime());
 
-        // Crear objetos y establecer valores para la reserva
-        Cliente cliente = new Cliente();
-        cliente.setIdCliente(clienteId);
-        Empleado empleado = new Empleado();
-        empleado.setIdEmpleado(empleadoId);
-        Servicio servicio = new Servicio();
-        servicio.setIdServicio(servicioId);
+                    // Comprobar que la hora de fin no sea anterior a la hora de inicio
+                    if (horaFin.before(horaInicio)) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "La hora de fin no puede ser menor que la hora de inicio.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: La hora de fin no puede ser menor que la hora de inicio.");
+                        break;
+                    }
 
-        Reserva reserva = new Reserva();
-        reserva.setCliente(cliente);
-        reserva.setEmpleado(empleado);
-        reserva.setIdServicio(servicio.getIdServicio());
-        reserva.setFechaReserva(fechaReserva);
-        reserva.setHoraInicio(horaInicio);
-        reserva.setHoraFin(horaFin);
-        reserva.setEstado("Confirmada");
+                    // Crear objetos y establecer valores para la reserva
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(clienteId);
+                    Empleado empleado = new Empleado();
+                    empleado.setIdEmpleado(empleadoId);
+                    Servicio servicio = new Servicio();
+                    servicio.setIdServicio(servicioId);
 
-        System.out.println("Datos de la reserva a insertar: " + reserva);
+                    Reserva reserva = new Reserva();
+                    reserva.setCliente(cliente);
+                    reserva.setEmpleado(empleado);
+                    reserva.setIdServicio(servicio.getIdServicio());
+                    reserva.setFechaReserva(fechaReserva);
+                    reserva.setHoraInicio(horaInicio);
+                    reserva.setHoraFin(horaFin);
+                    reserva.setEstado("Confirmada");
 
-        ReservaDao_1 dao = new ReservaDao_1();
-        // Insertar la reserva en la base de datos
-        boolean resultado = dao.insertarReserva(reserva);
-        // Verificar el resultado de la inserción
-        if (resultado) {
-            jsonResponse.put("resultado", "exito");
-            System.out.println("Reserva insertada correctamente.");
-        } else {
-            jsonResponse.put("resultado", "error de inserción");
-            System.out.println("Error: No se pudo insertar la reserva.");
-        }
-    } catch (NumberFormatException e) {
-        jsonResponse.put("resultado", "error");
-        jsonResponse.put("mensaje", "Error de formato de número: " + e.getMessage());
-        System.err.println("Error de formato de número: " + e.getMessage());
-    } catch (SQLException e) {
-        jsonResponse.put("resultado", "error sql");
-        jsonResponse.put("mensaje", "Error SQL: " + e.getMessage());
-        System.err.println("Error SQL: " + e.getMessage());
-    } catch (Exception e) {
-        jsonResponse.put("resultado", "error");
-        jsonResponse.put("mensaje", "Error general: " + e.getMessage());
-        System.err.println("Error general: " + e.getMessage());
-    }
-    response.getWriter().write(jsonResponse.toString());
-    break;
+                    System.out.println("Datos de la reserva a insertar: " + reserva);
 
-
+                    ReservaDao_1 dao = new ReservaDao_1();
+                    // Insertar la reserva en la base de datos
+                    boolean resultado = dao.insertarReserva(reserva);
+                    // Verificar el resultado de la inserción
+                    if (resultado) {
+                        jsonResponse.put("resultado", "exito");
+                        System.out.println("Reserva insertada correctamente.");
+                    } else {
+                        jsonResponse.put("resultado", "error de inserción");
+                        System.out.println("Error: No se pudo insertar la reserva.");
+                    }
+                } catch (NumberFormatException e) {
+                    jsonResponse.put("resultado", "error");
+                    jsonResponse.put("mensaje", "Error de formato de número: " + e.getMessage());
+                    System.err.println("Error de formato de número: " + e.getMessage());
+                } catch (SQLException e) {
+                    jsonResponse.put("resultado", "error sql");
+                    jsonResponse.put("mensaje", "Error SQL: " + e.getMessage());
+                    System.err.println("Error SQL: " + e.getMessage());
+                } catch (Exception e) {
+                    jsonResponse.put("resultado", "error");
+                    jsonResponse.put("mensaje", "Error general: " + e.getMessage());
+                    System.err.println("Error general: " + e.getMessage());
+                }
+                response.getWriter().write(jsonResponse.toString());
+                break;
 
             // Otros casos si es necesario...
         }

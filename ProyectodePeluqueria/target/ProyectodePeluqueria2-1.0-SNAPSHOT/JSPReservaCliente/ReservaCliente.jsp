@@ -7,8 +7,7 @@
         <!-- Incluye los estilos de DataTables y SweetAlert2 -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link rel="stylesheet" href="css/style.css" type="text/css"/>
-        <link rel="stylesheet" href="../css/mantenimiento.css" type="text/css"/>
+        <link href="./css/cssReservasCliente.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -60,15 +59,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Tipo de Servicio *</label>
-                                            <select id="servicio" name="servicio" class="form-control bg-light" required>
-                                                <option value="" disabled selected>Seleccione un servicio</option>
-                                                <!-- Las opciones se deben llenar dinámicamente con los datos de los servicios disponibles -->
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
                                             <label>Fecha de reservación *</label>
                                             <input type="date" id="fecha_reservacion" name="fecha_reservacion" class="form-control" required>
                                         </div>
@@ -83,6 +73,25 @@
                                         <div class="form-group">
                                             <label>Hora de fin *</label>
                                             <input type="time" id="hora_fin" name="hora_fin" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tipo de Servicio *</label>
+                                            <select id="servicio" name="servicio" class="form-control bg-light" required>
+                                                <option value="" disabled selected>Seleccione un servicio</option>
+                                                <!-- Las opciones se deben llenar dinámicamente con los datos de los servicios disponibles -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Servicios seleccionados</label>
+                                            <div class="form-control bg-light listaServicios">
+                                                <ul id="listaForm">
+                                                    
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +114,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
-
+        
         <!-- Archivo JavaScript externo -->
         <script src="../JSReservaCliente/Reservas.js" type="text/javascript"></script>
 
