@@ -1,4 +1,5 @@
 var serviciosReservados = [];
+var objectSelecList;
 
 $(document).ready(function () {
     // Cargar combos al cargar la página
@@ -15,6 +16,7 @@ $(document).ready(function () {
 
     //agregacion de eventos
     document.querySelector('#servicio').addEventListener('change', eventListaServicioForm, false);
+    document.querySelector('#btnQuitar').addEventListener('click', evtBtnQuitar, false);
 });
 
 function cargarTabla() {
@@ -100,6 +102,11 @@ function eventListaServicioForm(evt) {
     var object = document.querySelector('#servicio').item(index);
     var valor = document.querySelector('#servicio').value;
 
+    //quita cualquiel seleccion para evitar errores
+    if (objectSelecList != null) {
+        objectSelecList.style.removeProperty('background');
+    }
+
     //buscar coincidencia
     serviciosReservados.forEach(function (datos) {
         if (datos == valor) {
@@ -116,7 +123,7 @@ function eventListaServicioForm(evt) {
 
         //implementacion de eventos doble click
         for (var i = 0; i < document.querySelector('#listaForm').children.length; i++) {
-            document.querySelector('#listaForm').children[i].addEventListener('dblclick', evetListaFormulario, false);
+            document.querySelector('#listaForm').children[i].addEventListener('click', evetListaFormulario, false);
             ;
         }
     }
@@ -124,15 +131,29 @@ function eventListaServicioForm(evt) {
 }
 
 function evetListaFormulario(evt) {
+    if (objectSelecList != null) {
+        objectSelecList.style.removeProperty('background');
+    }
+    objectSelecList = evt.target;
+    objectSelecList.style.setProperty('background', '#57EFFF');
+}
+
+function evtBtnQuitar(evt) {
     Swal.fire({
-        title: "Quitar Serivicio?",
+        title: "Quitar Seleccion?",
         showCancelButton: true,
         confirmButtonText: "Quitar"
     }).then((result) => {
         if (result.isConfirmed) {
-            var value = evt.target.value;
+            //var value = evt.target.value;
+            var value = objectSelecList.value;
             var tmp = [];
             var html = '';
+
+            //quita cualquiel seleccion para evitar errores
+            if (objectSelecList != null) {
+                objectSelecList.style.removeProperty('background');
+            }
 
             //filtrado de datos
             serviciosReservados.forEach(function (data) {
@@ -154,7 +175,7 @@ function evetListaFormulario(evt) {
 
             //volver a implementacion de eventos doble click
             for (var i = 0; i < document.querySelector('#listaForm').children.length; i++) {
-                document.querySelector('#listaForm').children[i].addEventListener('dblclick', evetListaFormulario, false);
+                document.querySelector('#listaForm').children[i].addEventListener('click', evetListaFormulario, false);
                 ;
             }
         }
