@@ -62,7 +62,7 @@ function insertarReserva() {
         "consultar_datos": "insertar",
         "cliente": $("#cliente").val(),
         "empleado": $("#empleado").val(),
-        "servicio": $("#servicio").val(),
+        "servicio": JSON.stringify(serviciosReservados),
         "fecha_reservacion": $("#fecha_reservacion").val(),
         "hora_inicio": $("#hora_inicio").val(),
         "hora_fin": $("#hora_fin").val()
@@ -84,6 +84,8 @@ function insertarReserva() {
         } else {
             Swal.fire('Error', json.mensaje, 'error');
         }
+        serviciosReservados = [];
+        document.querySelector('#listaForm').innerHTML = '';
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
         Swal.fire('Error', "Ha ocurrido un error al procesar la solicitud", "error");

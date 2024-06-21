@@ -154,7 +154,7 @@ public class ReservaServlet extends HttpServlet {
 
                     // Conversión de parámetros a tipos correctos
                     int empleadoId = Integer.parseInt(empleadoParam);
-                    int servicioId = Integer.parseInt(servicioParam);
+                    //int servicioId = Integer.parseInt(servicioParam);
 
                     // Conversión de String a Date
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -192,12 +192,12 @@ public class ReservaServlet extends HttpServlet {
                     Empleado empleado = new Empleado();
                     empleado.setIdEmpleado(empleadoId);
                     Servicio servicio = new Servicio();
-                    servicio.setIdServicio(servicioId);
+                    //servicio.setIdServicio(servicioId);
 
                     Reserva reserva = new Reserva();
                     reserva.setCliente(cliente);
                     reserva.setEmpleado(empleado);
-                    reserva.setIdServicio(servicio.getIdServicio());
+                    //reserva.setIdServicio(servicio.getIdServicio());
                     reserva.setFechaReserva(fechaReserva);
                     reserva.setHoraInicio(horaInicio);
                     reserva.setHoraFin(horaFin);
@@ -208,6 +208,14 @@ public class ReservaServlet extends HttpServlet {
                     ReservaDao_1 dao = new ReservaDao_1();
                     // Insertar la reserva en la base de datos
                     boolean resultado = dao.insertarReserva(reserva);
+                    
+                    //insercion de relaciones
+                    JSONArray listaIdServicio = new JSONArray(servicioParam);
+                    Reserva utimaReserva = dao.getUltimaReserva();
+                    for(int i = 0;i<listaIdServicio.length();i++){
+                        dao.insertarDetalleReserva(utimaReserva.getIdReserva(), Integer.parseInt(listaIdServicio.getString(i)));
+                    }
+                    
                     // Verificar el resultado de la inserción
                     if (resultado) {
                         jsonResponse.put("resultado", "exito");
