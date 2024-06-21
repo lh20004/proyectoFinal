@@ -20,7 +20,7 @@ function evtSecion(evt){
     if(fValidacion){
         evt.preventDefault();
         $.ajax({
-            url:"controladorInicioDeSecion",
+            url:"../controladorInicioDeSecion",
             dataType: "json",
             type: "POST",
             data: datos

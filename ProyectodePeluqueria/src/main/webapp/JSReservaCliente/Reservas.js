@@ -1,15 +1,20 @@
+var serviciosReservados = [];
+
 $(document).ready(function () {
     // Cargar combos al cargar la página
     cargarCombos();
-    
+
     // Cargar tabla al cargar la página
     cargarTabla();
-    
+
     // Manejar el envío del formulario
     $('#formulario_reservacion').on('submit', function (e) {
         e.preventDefault();
         insertarReserva();
     });
+
+    //agregacion de eventos
+    document.querySelector('#servicio').addEventListener('change', eventListaServicioForm, false);
 });
 
 function cargarTabla() {
@@ -82,5 +87,74 @@ function insertarReserva() {
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
         Swal.fire('Error', "Ha ocurrido un error al procesar la solicitud", "error");
+    });
+}
+
+function eventListaServicioForm(evt) {
+    var enLista = false;
+
+    //extraccion de datos
+    var index = document.querySelector('#servicio').selectedIndex;
+    var object = document.querySelector('#servicio').item(index);
+    var valor = document.querySelector('#servicio').value;
+
+    //buscar coincidencia
+    serviciosReservados.forEach(function (datos) {
+        if (datos == valor) {
+            enLista = true;
+        }
+    });
+
+    //insercion de datos a la lista
+    if (!enLista) {
+        var html = document.querySelector('#listaForm').innerHTML;
+        html += `<li value='${valor}'>${object.label}</li>`;
+        document.querySelector('#listaForm').innerHTML = html;
+        serviciosReservados.push(document.querySelector('#servicio').value);
+
+        //implementacion de eventos doble click
+        for (var i = 0; i < document.querySelector('#listaForm').children.length; i++) {
+            document.querySelector('#listaForm').children[i].addEventListener('dblclick', evetListaFormulario, false);
+            ;
+        }
+    }
+
+}
+
+function evetListaFormulario(evt) {
+    Swal.fire({
+        title: "Quitar Serivicio?",
+        showCancelButton: true,
+        confirmButtonText: "Quitar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var value = evt.target.value;
+            var tmp = [];
+            var html = '';
+
+            //filtrado de datos
+            serviciosReservados.forEach(function (data) {
+                if (data != value) {
+                    tmp.push(data);
+                }
+            });
+
+            //cargar a lista oculta
+            serviciosReservados = tmp;
+
+            //recargar lista
+            for (var i = 0; i < document.querySelector('#listaForm').children.length; i++) {
+                if (document.querySelector('#listaForm').children[i].value != value) {
+                    html += `<li value='${document.querySelector('#listaForm').children[i].value}'>${document.querySelector('#listaForm').children[i].innerHTML}</li>`;
+                }
+            }
+            document.querySelector('#listaForm').innerHTML = html;
+
+            //volver a implementacion de eventos doble click
+            for (var i = 0; i < document.querySelector('#listaForm').children.length; i++) {
+                document.querySelector('#listaForm').children[i].addEventListener('dblclick', evetListaFormulario, false);
+                ;
+            }
+        }
     });
 }
