@@ -5,7 +5,6 @@ ControllersCrud\ServiciosServlet.class
 dao\CargosRegistradosDao.class
 ControllersConsultas\EmpleadosServiciosServlet.class
 ControllersCrud\RegistrarUsuario.class
-ControllerReservaCliente\test.class
 dao\ReservaDao_1.class
 modelo\Encriptar.class
 ControllersCrud\CargoServlet.class
