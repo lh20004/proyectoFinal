@@ -92,6 +92,7 @@
                                                     
                                                 </ul>
                                             </div>
+                                            <input type="button" value="Quitar" id="btnQuitar" class="btn btn-primary">
                                         </div>
                                     </div>
                                 </div>
