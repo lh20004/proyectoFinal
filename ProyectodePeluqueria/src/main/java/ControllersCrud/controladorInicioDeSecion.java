@@ -104,8 +104,12 @@ public class controladorInicioDeSecion extends HttpServlet {
                 if(em.getClave().equals(password)){
                     json.put("result", "succes");
                     if(em.getCargo().getCargo().equals(adminName)){
+                        request.getSession().setAttribute("Empleado", em);  // Guardar cliente en sesión
+                        request.getSession().setAttribute("idEmpleado", em.getIdEmpleado());
                         json.put("url", urlAdmin);
                     }else{
+                        request.getSession().setAttribute("Empleado", em);  // Guardar cliente en sesión
+                        request.getSession().setAttribute("idEmpleado", em.getIdEmpleado());
                         json.put("url", urlUsuario);
                     }
                 }else{

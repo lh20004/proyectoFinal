@@ -109,7 +109,7 @@ public class ReservaDao {
 
         try {            
             this.accesoDB = this.conexion.getConexion();
-            this.ps = this.accesoDB.prepareStatement(SELECT_ALL);
+            this.ps = this.accesoDB.prepareStatement(Reservaporempleado);
               ps.setInt(1, id);
             this.rs = ps.executeQuery();
                 
