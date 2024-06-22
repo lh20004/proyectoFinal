@@ -33,17 +33,20 @@ public class ReservasEmpleados extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             daoReserva = new ReservaDao();
-            int id = Integer.parseInt(request.getParameter("idempleado"));
+            String idEmpleadoStr = request.getParameter("idempleado");
+         
+            int id = Integer.parseInt(idEmpleadoStr);
             ArrayList<Reserva> listReserva = daoReserva.obtenerReservasempleados(id);
 
-            JSONArray json = new JSONArray();
+         
 
+            JSONArray json = new JSONArray();
             for (Reserva res : listReserva) {
                 JSONObject jsinto = new JSONObject();
 
-                jsinto.put("Fecha",res.getFechaReserva());
-                jsinto.put("horainicio",res.getHoraInicio());
-                jsinto.put("horafin",res.getHoraFin());
+                jsinto.put("Fecha", res.getFechaReserva());
+                jsinto.put("horainicio", res.getHoraInicio());
+                jsinto.put("horafin", res.getHoraFin());
                 jsinto.put("estado", res.getEstado());
                 jsinto.put("nombrecliente", res.getCliente().getNombre());
                 jsinto.put("nombreempleado", res.getEmpleado().getNombre());
@@ -60,7 +63,7 @@ public class ReservasEmpleados extends HttpServlet {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(ReservasServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservasEmpleados.class.getName()).log(Level.SEVERE, null, ex);
 
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().println("Error en el servidor.");

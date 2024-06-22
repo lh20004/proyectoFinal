@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    // Función para cargar los datos de reservas
     function cargarReservas(idEmpleado) {
         $.ajax({
             url: "../ReservasEmpleados",
@@ -24,8 +23,13 @@ $(document).ready(function(){
                         event_data += '</tr>';
                     }
                     $("#list_table_json").html(event_data);
+                    $("#no_reservas").hide();  // Oculta el mensaje de "No hay reservas" si hay datos
+                    $("#miTablaPrincipal").show();  // Muestra la tabla
                 } else {
                     console.error("Error al procesar los datos: La respuesta no es un array válido o está vacía.");
+                    $("#list_table_json").html('');  // Limpiar cualquier dato previo
+                    $("#no_reservas").show();  // Muestra el mensaje de "No hay reservas"
+                    $("#miTablaPrincipal").hide();  // Oculta la tabla
                 }
             },
             error: function(){

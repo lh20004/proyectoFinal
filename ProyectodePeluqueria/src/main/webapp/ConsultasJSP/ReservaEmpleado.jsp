@@ -17,9 +17,14 @@
 <body>
     <h1 class="alert alert-success text-center">Reservaciones</h1>
     <div class="container">
+        <!-- Panel para mostrar cuando no hay reservas -->
+        <div id="no_reservas" class="alert alert-warning text-center" style="display: none;">
+            Este empleado no tiene ninguna reserva pendiente.
+        </div>
+        <!-- Tabla de reservas -->
         <table id="miTablaPrincipal" class="table table-bordered table-striped">
             <thead style="background: cadetblue; color: white">
-              <input type="hidden" id="idEmpleado" name="idEmpleado" value="${sessionScope.idEmpleado}">
+                <input type="hidden" id="idEmpleado" name="idEmpleado" value="${sessionScope.idEmpleado}">
                 <th>Fecha</th>
                 <th>Hora Inicio</th>
                 <th>Hora Fin</th>
@@ -27,7 +32,6 @@
                 <th>Cliente</th>
                 <th>Empleado</th>
                 <th>Servicio</th>
-             
             </thead>
             <tbody id="list_table_json"></tbody>
         </table>
