@@ -1,7 +1,7 @@
 
 
 $(document).ready(function() {
-  cargarTabla(); 
+  cargarTabla(); // Call cargarTabla function on page load
 
   function cargarTabla(estado = 1) {
     mostrar_cargando("procesando solicitud", "Espere mientas se procesa la información");
@@ -13,7 +13,7 @@ $(document).ready(function() {
     $.ajax({
       dataType: "json",
       method: "POST",
-      url: "../ServletConsultaGanancias",
+      url: "../GananciasDiaServlet",
       data: datos
     }).done(function(json) {
       Swal.close();
