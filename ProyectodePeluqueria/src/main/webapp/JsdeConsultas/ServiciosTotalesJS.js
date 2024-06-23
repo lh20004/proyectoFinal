@@ -13,7 +13,7 @@ $(document).ready(function() {
     $.ajax({
       dataType: "json",
       method: "POST",
-      url: "ServiciosTotales",
+      url: "../ServiciosTotales",
       data: datos
     }).done(function(json) {
       Swal.close();
