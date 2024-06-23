@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
  */
 
-
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Other/javascript.js to edit this template
- */
 $(function () {
     $('#formulario_registro').parsley();
     cargarTabla();
@@ -23,9 +18,9 @@ $(function () {
         var datos = $("#formulario_registro").serialize();
         console.log(datos);
         $.ajax({
+            url: "ServiciosServlet",
             dataType: "json",
             method: "POST",
-            url: "ServiciosServlet",
             data: datos
         }).done(function (json) {
             Swal.close();
@@ -48,14 +43,14 @@ $(function () {
     });
 });
 
-$(document).on("click",".btn_editar", function (e) {
+$(document).on("click", ".btn_editar", function (e) {
     e.preventDefault();
     mostrar_cargando("Espere", "Obteniendo datos");
     var id = $(this).attr("data-id");
-     console.log("data-id" + id);
+    console.log("data-id" + id);
     var datos = {"consultar_datos": "si_servicio_especifico", "id": id};
-    
-     console.log("data-id" + id);
+
+    console.log("data-id" + id);
     console.log('llegaste aqui');
     $.ajax({
         dataType: "json",
@@ -63,18 +58,18 @@ $(document).on("click",".btn_editar", function (e) {
         url: "ServiciosServlet",
         data: datos
     }).done(function (json) {
-         
+
         if (json[0].resultado === "exito") {
             $("#formulario_registro").trigger("reset");
             $("#consultar_datos").val("si_actualizalo");
             //$('#llave_persona').val(json[0].idservicio);
             //$('#codigoautor').val(json[0].codigoautor);
             //$('#servicio').val(json[0].servicio);
-             $('#idservicio').val(json[0].idservicio);
+            $('#idservicio').val(json[0].idservicio);
             $('#descripcion').val(json[0].descripcion);
             $('#precio').val(json[0].precio);
-             $('#estado').val(json[0].estado);
-            
+            $('#estado').val(json[0].estado);
+
             document.querySelector('#idservicio').readOnly = true;
             $("#md_registrar_servicio").modal("show");
 
@@ -138,36 +133,36 @@ function mostrar_cargando(titulo, mensaje = "") {
             }
 
         });
-}    
+}
 
-function eliminar(id){
-    mostrar_cargando("Preocesando solicitud","Espere mientras se eliminan los datos " +id);
+function eliminar(id) {
+    mostrar_cargando("Preocesando solicitud", "Espere mientras se eliminan los datos " + id);
     var datos = {"consultar_datos": "si_eliminalo", "id": id};
     $.ajax({
         dataType: "json",
         method: "POST",
         url: "RegAutor",
         data: datos
- }).done(function (json){
-     Swal.close();
-        if (json[0].resultado === "exito"){
+    }).done(function (json) {
+        Swal.close();
+        if (json[0].resultado === "exito") {
             Swal.fire(
                     'Excelente',
                     'El dato fue eliminado',
                     'success'
                     );
             cargarTabla();
-        }else{
+        } else {
             Swal.fire(
                     'Error',
                     'No se puedo eliminar el dato intentelo más tarde',
                     'error'
-                    ); 
+                    );
         }
-       }).fail(function (){
-        
+    }).fail(function () {
+
         console.log("Error al eliminar");
-       }).always(function() {
-           console.log("Error al eliminar");
-       });
-       }
+    }).always(function () {
+        console.log("Error al eliminar");
+    });
+}

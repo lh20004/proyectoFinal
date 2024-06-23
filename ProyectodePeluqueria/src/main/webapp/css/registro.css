@@ -15,34 +15,41 @@ body {
 .container {
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px #b2d8d8;
     position: relative;
 }
 .btn-custom {
-    background-color: #81c784;
+    background-color: #81c784; /* Verde claro */
     border: none;
     color: white;
+    margin-top: 40px; /* Incrementamos el margen superior */
 }
 .btn-custom:hover {
-    background-color: #66bb6a;
+    background-color: #66bb6a; /* Verde más oscuro al pasar el mouse */
+}
+.bg-custom {
+    background-color: #81c784; /* Verde claro */
+    color: white;
 }
 h4 {
-    color: #7b1fa2;
+    color: #b2d8d8;
 }
 .form-group label {
-    color: #7b1fa2;
+    color: #b2d8d8;
 }
 .back-button {
+    width: 80px;
+    height: 50px;
     display: inline-block;
     margin-bottom: 10px;
-    background-color: #ffccbc;
+    background-color: #ffab91;
     padding: 10px;
     border-radius: 5px;
     color: #bf360c;
     text-decoration: none;
 }
 .back-button:hover {
-    background-color: #ffab91;
+    background-color: #f8bbd0;
 }
 .tools-left {
     position: absolute;
