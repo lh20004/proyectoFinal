@@ -38,7 +38,7 @@ public class ServiciosDAO {
 
     private static final String SELECT_ALL_SERVICIOS = "SELECT * FROM servicio";
     
-   private static final String SERVICIOS_REALIZADOS = 
+    private static final String SERVICIOS_REALIZADOS = 
          "SELECT s.servicio AS nombre_servicio, " +
              "COUNT(*) AS cantidad_realizaciones " +
              "FROM servicio s " +
@@ -48,12 +48,8 @@ public class ServiciosDAO {
              "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
              "WHERE r.fechareserva = CURRENT_DATE " + 
              "GROUP BY s.servicio;";
+    
    
-   private static final String GANANCIAS_DEL_DIA = "SELECT SUM(s.precio) AS total_ganancias " +
-             "FROM servicio s " +
-             "JOIN detallepago dp ON s.idservicio = dp.idservicio " +
-             "JOIN pago p ON dp.idpago = p.idpago " +
-             "WHERE p.fechapago = '2024-06-01';";
 
     public ServiciosDAO() {
         this.conexion = new Conexion();
@@ -222,31 +218,7 @@ public class ServiciosDAO {
     
         
     
-    public ArrayList<Servicio> obtenerGananciasDia(Integer estado, String quien) throws SQLException {
-     this.resultados=new ArrayList();
-     
-
-        try {
-            this.accesoDB = this.conexion.getConexion();
-            this.ps = this.accesoDB.prepareStatement(GANANCIAS_DEL_DIA);
-            this.rs = ps.executeQuery();
-
-            
-            while (rs.next()) {
-                
-                double total = rs.getDouble("total_ganancias");
-                resultados.add(new Servicio( total));
-                }
-             
-            this.conexion.cerrarConexiones();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return this.resultados;
-        
-       
-    }
+   
     }
     
     

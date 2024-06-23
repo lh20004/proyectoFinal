@@ -4,6 +4,7 @@
  */
 package ControllersConsultas;
 
+import cosasdeP.RealizadosGanaciasDiaDAO;
 import dao.ServiciosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Pago;
 import modelo.Servicio;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,14 +27,15 @@ import org.json.JSONObject;
  *
  * @author MINEDUCYT
  */
-@WebServlet(name = "GananciasDiaServlet", urlPatterns = {"/GananciasDiaServlet"})
-public class GananciasDia extends HttpServlet{
-    ArrayList<Servicio> listaServicio;
-    Servicio au=null;
+@WebServlet(name = "", urlPatterns = {"/"})
+public class GananciasDia extends HttpServlet {
+
+    ArrayList<Pago> listaServicio;
+    Pago au = null;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         resp.setContentType("aplication/json;charset=utf-8");
+        resp.setContentType("aplication/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
         String filtro = req.getParameter("consultar_datos");
 
@@ -42,7 +45,6 @@ public class GananciasDia extends HttpServlet{
         }
 
         switch (filtro) {
-            
 
             case "si_consulta":
                 JSONArray array_autor = new JSONArray();
@@ -51,7 +53,7 @@ public class GananciasDia extends HttpServlet{
                 String el_estado = req.getParameter("estado");
 
                 try {
-                    ServiciosDAO obaut = new ServiciosDAO();
+                    RealizadosGanaciasDiaDAO obaut = new RealizadosGanaciasDiaDAO();
                     this.listaServicio = new ArrayList();
 
                     this.listaServicio = obaut.obtenerGananciasDia(Integer.valueOf(el_estado), "todo");
@@ -63,25 +65,23 @@ public class GananciasDia extends HttpServlet{
                             + "cellspacing=\"0\" width=\"100%\">\n"
                             + "<thead>\n"
                             + "<tr>\n"
-                            
-                           
-                            + "<th>Ganancias </th>\n"
-                           
+                            + "<th>Fecha </th>\n"
+                            + "<th>Servicio </th>\n"
+                            + "<th>Ganancia </th>\n"
                             + "</tr>\n"
                             + "</thead>\n"
                             + "</tbody>";
 
                     int cont = 0;
-                    for (Servicio objAutor : this.listaServicio) {
+                    for (Pago objAutor : this.listaServicio) {
                         cont++;
                         html += "<tr>";
-                        
-                        html += "<td>" + objAutor.getTotalganancias() + "</td>";
-                       
 
-                        html += "<td>";
-                        
-                        html += "</td>";
+                        html += "<td>" + objAutor.getFechaPago() + "</td>";
+
+                        html += "<td>" + objAutor.getTotal() + "</td>";
+                        html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
+
                         html += "</tr>";
                     }
                     html += "</tbody\n>"
@@ -103,16 +103,12 @@ public class GananciasDia extends HttpServlet{
                 resp.getWriter().write(array_autor.toString());
                 break;
 
-            
-
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
     }
-    
-    
-    
+
 }

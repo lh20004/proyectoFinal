@@ -15,10 +15,7 @@ import lombok.Setter;
  *
  * @author guill
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+
 public class Pago {
     private int idPago;
     private Cliente cliente;
@@ -26,5 +23,85 @@ public class Pago {
     private Double total;
     private Servicio servicio;
     private ArrayList<Servicio> listaServicio;
+
+    public Pago() {
+    }
+
+    public Pago(int idPago, Cliente cliente, Date fechaPago, Double total, Servicio servicio, ArrayList<Servicio> listaServicio) {
+        this.idPago = idPago;
+        this.cliente = cliente;
+        this.fechaPago = fechaPago;
+        this.total = total;
+        this.servicio = servicio;
+        this.listaServicio = listaServicio;
+    }
+    
+    
+
+    public Pago(Date fechaPago, Double total, Servicio servicio) {
+        this.fechaPago = fechaPago;
+        this.total = total;
+        this.servicio = servicio;
+    }
+
+    public Pago(Double total) {
+        this.total = total;
+    }
+
+    public int getIdPago() {
+        return idPago;
+    }
+
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Date getFechaPago() {
+        return fechaPago;
+    }
+
+    public void setFechaPago(Date fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    public ArrayList<Servicio> getListaServicio() {
+        return listaServicio;
+    }
+
+    public void setListaServicio(ArrayList<Servicio> listaServicio) {
+        this.listaServicio = listaServicio;
+    }
+    
+    
+    
+    
+
+   
+    
+    
     
 }
