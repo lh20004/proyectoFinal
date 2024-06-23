@@ -62,7 +62,7 @@
                                         <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
                                         <div class="mini-stat-info">
                                             <span id="Servicios_registrados" class="counter text-blue-grey">0</span>
-                                          
+                                            <h3>Servicios Realizados hoy</h3>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
