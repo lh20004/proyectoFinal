@@ -46,7 +46,7 @@ public class ServiciosDAO {
              "JOIN reserva r ON dr.idreserva = r.idreserva " +
              "JOIN pago p ON r.idcliente = p.idcliente " +
              "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
-             "WHERE r.fechareserva = CURRENT_DATE " + 
+             "WHERE r.fechareserva = '2024-06-01' " + 
              "GROUP BY s.servicio;";
    
    private static final String GANANCIAS_DEL_DIA = "SELECT SUM(s.precio) AS total_ganancias " +
@@ -195,17 +195,18 @@ public class ServiciosDAO {
     public ArrayList<Servicio> obtenerTotalServiciosHoy(Integer estado, String quien) throws SQLException {
      this.resultados=new ArrayList();
      
-
+        
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(SERVICIOS_REALIZADOS);
             this.rs = ps.executeQuery();
 
-            
+            Servicio obj= null;
             while (rs.next()) {
-                String servicio = rs.getString("servicio");
-                int total = rs.getInt("total_servicios");
-                resultados.add(new Servicio(servicio, total));
+                obj= new Servicio();
+                obj.setServicio(rs.getString("nombre_servicio"));
+                obj.setTotalServicios(rs.getInt("cantidad_realizaciones"));
+                resultados.add(obj);
                 }
              
             this.conexion.cerrarConexiones();

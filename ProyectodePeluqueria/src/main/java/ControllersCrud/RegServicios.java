@@ -1,14 +1,13 @@
+    /*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package ControllersCrud;
 
-import com.sun.net.httpserver.HttpServer;
 import dao.ServiciosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +22,28 @@ import org.json.JSONObject;
  *
  * @author MINEDUCYT
  */
-@WebServlet(name = "ServiciosServlet", urlPatterns = {"/ServiciosServlet"})
-public class ServiciosServlet extends HttpServlet {
-
-    private ArrayList<Servicio> listaServicio;
+@WebServlet(name = "RegServicios", urlPatterns = {"/RegServicios"})
+public class RegServicios extends HttpServlet{
+    
+        private ArrayList<Servicio> listaServicio;
     private Servicio au = null;
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Crud Servicios</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet RegServicios at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -133,7 +149,7 @@ public class ServiciosServlet extends HttpServlet {
                                 + "data-toggle= 'dropdown' aria-haspopup='true' aria-expanded='false'> Seleccione </button>";
                         html += "<ul class=\"dropdown-menu\">";
 
-                        html += "<li><a class='dropdown-item btn_eliminar' data-id='" + objAutor.getIdServicio() + "' href='javascrip:void(0)'>Eliminar</a></li>";
+                      
 
                         html += "<li><a class='dropdown-item btn_editar' data-id='" + objAutor.getIdServicio() + "' href = 'javascrip:void(0)'>Editar</a></li>";
 
@@ -220,7 +236,7 @@ public class ServiciosServlet extends HttpServlet {
 
                     json_especifico.put("resultado", "exito");
                     json_especifico.put("idservicio", res_indiv.getIdServicio());
-                    json_especifico.put("servicio", res_indiv.getServicio());
+                    //json_especifico.put("servicio", res_indiv.getServicio());
                     json_especifico.put("descripcion", res_indiv.getDescripcion());
                     json_especifico.put("precio", res_indiv.getPrecio());
                     json_especifico.put("estado", res_indiv.getEstado());
@@ -241,4 +257,5 @@ public class ServiciosServlet extends HttpServlet {
 
     }
 
+    
 }

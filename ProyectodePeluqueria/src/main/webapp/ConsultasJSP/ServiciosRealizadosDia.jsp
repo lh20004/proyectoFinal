@@ -1,9 +1,16 @@
+<%-- 
+    Document   : ServiciosRealizadosDia
+    Created on : 22 jun 2024, 21:48:04
+    Author     : MINEDUCYT
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!-- Inicio para que funcione class='dropdown m-b-10' -->
+   <!-- Inicio para que funcione class='dropdown m-b-10' -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
         crossorigin="anonymous"></script>
@@ -144,6 +151,6 @@
         </div> <!-- wrapper -->
        
     </body>
-      <script src="../JsdeConsultas/GanaciasDiaJS.js"></script>
+      <script src="../JsdeConsultas/ServiciosTotalesJS.js" type="text/javascript"></script>
    
 </html>

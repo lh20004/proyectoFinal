@@ -1,9 +1,16 @@
+<%-- 
+    Document   : GananciasDia
+    Created on : 22 jun 2024, 21:44:04
+    Author     : MINEDUCYT
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!-- Inicio para que funcione class='dropdown m-b-10' -->
+    <!-- Inicio para que funcione class='dropdown m-b-10' -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
         crossorigin="anonymous"></script>
@@ -30,6 +37,7 @@
             integrity="sha384-
             kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
         crossorigin="anonymous"></script>
+
     </head>
     <body class="fixed-left">
 
@@ -54,7 +62,7 @@
                                         <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
                                         <div class="mini-stat-info">
                                             <span id="Servicios_registrados" class="counter text-blue-grey">0</span>
-                                            Servicios Registrados
+                                          
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -64,7 +72,7 @@
                                     <div class="mini-stat clearfix bg-white">
                                         <span class="mini-stat-icon bg-teal mr-0 float-right"><i class="mdi mdi-account"></i></span>
                                         <div class="mini-stat-info">                                            
-                                            <H3>Registrar servicio</H3>
+                                           
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -141,6 +149,8 @@
                 </div>
             </div>
         </div> <!-- wrapper -->
+       
     </body>
-    <script src="JsdeConsultas/ServiciosTotalesJS.js"></script>
+      <script src="../JsdeConsultas/GanaciasDiaJS.js" type="text/javascript"></script>
+   
 </html>

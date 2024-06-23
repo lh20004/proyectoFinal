@@ -13,7 +13,7 @@ $(document).ready(function() {
     $.ajax({
       dataType: "json",
       method: "POST",
-      url: "GananciasDiaServlet",
+      url: "../GananciasDiaServlet",
       data: datos
     }).done(function(json) {
       Swal.close();

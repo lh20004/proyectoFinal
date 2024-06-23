@@ -1,9 +1,16 @@
+<%-- 
+    Document   : ServiciosCrud
+    Created on : 22 jun 2024, 20:51:28
+    Author     : MINEDUCYT
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <!-- Inicio para que funcione class='dropdown m-b-10' -->
+        
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
         crossorigin="anonymous"></script>
@@ -30,7 +37,6 @@
             integrity="sha384-
             kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
         crossorigin="anonymous"></script>
-
     </head>
     <body class="fixed-left">
 
@@ -55,7 +61,7 @@
                                         <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
                                         <div class="mini-stat-info">
                                             <span id="Servicios_registrados" class="counter text-blue-grey">0</span>
-                                          
+                                            Servicios Registrados
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -65,7 +71,7 @@
                                     <div class="mini-stat clearfix bg-white">
                                         <span class="mini-stat-icon bg-teal mr-0 float-right"><i class="mdi mdi-account"></i></span>
                                         <div class="mini-stat-info">                                            
-                                           
+                                            <H3>Registrar servicio</H3>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
@@ -101,21 +107,17 @@
                                 <input type="hidden" id="llave_persona" name="llave_persona" value="">
                                 <input type="hidden" id="consultar_datos" name="consultar_datos" value="si_registro">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group" hidden>
-                                            <input type="text" autocomplete="off" name="idservicio" maxlength="100" id="idservicio" class="form-control" placeholder="Ingrese el servicio"/>
-                                        </div>
-                                    </div>
+                                 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Servicio *</label>
+                                            <label id="serviciolbl">Servicio *</label>
                                             <input type="text" autocomplete="off" name="servicio" maxlength="100" data-parsley-error-message="Campo requerido" id="servicio" class="form-control" required placeholder="Ingrese el servicio"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Descripción</label>
-                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripción"/>
+                                            <label>Descripcion *</label>
+                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripciÃ³n"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -131,6 +133,12 @@
 
                                         </div>
                                     </div>
+                                    
+                                       <div class="col-md-6">
+                                        <div class="form-group" hidden>
+                                            <input type="text" autocomplete="off" name="idservicio" maxlength="100" id="idservicio" class="form-control" placeholder="Ingrese el servicio"/>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" id="btn_cerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -142,8 +150,6 @@
                 </div>
             </div>
         </div> <!-- wrapper -->
-       
     </body>
-      <script src="../JsdeConsultas/GanaciasDiaJS.js"></script>
-   
+    <script src="../JsdeConsultas/ServiciosJS.js"></script>
 </html>
