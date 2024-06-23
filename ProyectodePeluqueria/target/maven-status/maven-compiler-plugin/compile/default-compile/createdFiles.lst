@@ -39,4 +39,3 @@ ControllersConsultas\ReservasServlet.class
 modelo\Reserva.class
 dao\CargoDao.class
 dao\ReservacionesPagadasDAO.class
-ControllersConsultas\ReservasEmpleados.class
