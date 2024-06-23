@@ -20,6 +20,7 @@ dao\ServiciosDAO.class
 conexion\Conexion.class
 dao\ServicioMasSolicitadoDAO.class
 dao\daoEmpleadoSecion.class
+ControllersCrud\RegServicios.class
 ControllerReservaCliente\ReservaServlet.class
 ControllersCrud\controladorInicioDeSecion.class
 dao\EmpleadosServiciosDAO.class
@@ -39,3 +40,4 @@ ControllersConsultas\ReservasServlet.class
 modelo\Reserva.class
 dao\CargoDao.class
 dao\ReservacionesPagadasDAO.class
+ControllersConsultas\ReservasEmpleados.class

@@ -18,7 +18,7 @@ $(function () {
         var datos = $("#formulario_registro").serialize();
         console.log(datos);
         $.ajax({
-            url: "ServiciosServlet",
+            url: "../RegServicios",
             dataType: "json",
             method: "POST",
             data: datos
@@ -55,7 +55,7 @@ $(document).on("click", ".btn_editar", function (e) {
     $.ajax({
         dataType: "json",
         method: "POST",
-        url: "ServiciosServlet",
+        url: "../RegServicios",
         data: datos
     }).done(function (json) {
 
@@ -88,7 +88,7 @@ function cargarTabla(estado = 1) {
     $.ajax({
         dataType: "json",
         method: "POST",
-        url: "ServiciosServlet",
+        url: "../RegServicios",
         data: datos
     }).done(function (json) {
         Swal.close();
