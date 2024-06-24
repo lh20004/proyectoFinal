@@ -30,6 +30,7 @@ import org.json.JSONObject;
 public class GananciasDia extends HttpServlet{
     ArrayList<Pago> listaServicio;
     Servicio au=null;
+    Pago ae=null;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -58,7 +59,10 @@ public class GananciasDia extends HttpServlet{
                     this.listaServicio = obaut.obtenerGananciasDia(Integer.valueOf(el_estado), "todo");
 
                     System.out.println("Esta en resultado en RegAutor");
-
+                    this.ae=new Pago();
+                    this.ae=obaut.obtenerTotalDia(Integer.valueOf(el_estado), "todo");
+                    
+                   html += "<label>"+"Total de Ganancias:"+this.ae.getTotal()+"</label>";
                     html += "<table id=\"tabla_ganancias\""
                             + "class=\"table table-bordered dt-resposive nowrap\""
                             + "cellspacing=\"0\" width=\"100%\">\n"
@@ -67,7 +71,7 @@ public class GananciasDia extends HttpServlet{
                             
                             + "<th>Fecha </th>\n"
                              + "<th>Servicio</th>\n"
-                            + "<th>Ganancias </th>\n"
+                            + "<th>Precio </th>\n"
                            
                             + "</tr>\n"
                             + "</thead>\n"
@@ -80,7 +84,7 @@ public class GananciasDia extends HttpServlet{
                         
                         html += "<td>" + objAutor.getFechaPago() + "</td>";
                          html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
-                          html += "<td>" + objAutor.getTotal() + "</td>";
+                          html += "<td>" + objAutor.getServicio().getPrecio() + "</td>";
                         
                        
 

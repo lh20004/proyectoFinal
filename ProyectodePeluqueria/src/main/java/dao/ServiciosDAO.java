@@ -27,6 +27,7 @@ public class ServiciosDAO {
     private Connection accesoDB;
      private  ArrayList<Servicio> resultados;
       private  ArrayList<Pago> resultadosp;
+      private Pago pag;
 
     private static final String INSERT_SERVICIO = "INSERT INTO servicio(servicio,"
             + " descripcion, precio, estado) VALUES (?,?,?,?)";
@@ -54,7 +55,8 @@ public class ServiciosDAO {
    private static final String GANANCIAS_DEL_DIA = "SELECT "
                 + "p.fechapago AS fecha, "
                 + "s.servicio AS servicio, "
-                + "SUM(s.precio) AS ganancia_generada "
+                + "s.precio AS precio_servicio "
+               
                 + "FROM "
                 + "servicio s "
                 + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
@@ -62,7 +64,19 @@ public class ServiciosDAO {
                 + "WHERE "
                 + "p.fechapago = '2024-06-01' "
                 + "GROUP BY "
-                + "p.fechapago, s.servicio;";
+                + "p.fechapago,s.precio, s.servicio;";
+   
+   private static final String TOTAL="SELECT "
+                
+                + "SUM(s.precio) AS total_ganancias "
+                + "FROM "
+                + "servicio s "
+                + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
+                + "JOIN pago p ON dp.idpago = p.idpago "
+                + "WHERE "
+                + "p.fechapago = '2024-06-01' "
+                + "GROUP BY "
+                + "p.fechapago;";
     public ServiciosDAO() {
         this.conexion = new Conexion();
     }
@@ -248,8 +262,9 @@ public class ServiciosDAO {
                 
                 obj.setFechaPago(rs.getDate("fecha"));
                 obj2.setServicio(rs.getString("servicio"));
+                obj2.setPrecio(rs.getDouble("precio_servicio"));
                 obj.setServicio(obj2);
-                obj.setTotal(rs.getDouble("ganancia_generada"));
+                //obj.setTotal(rs.getDouble("ganancia_generada"));
                 resultadosp.add(obj);
                 }
              
@@ -262,6 +277,40 @@ public class ServiciosDAO {
         
        
     }
+    
+    public Pago obtenerTotalDia(Integer estado, String quien) throws SQLException {
+     this.pag=new Pago();
+     
+
+        try {
+            this.accesoDB = this.conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(TOTAL);
+            this.rs = ps.executeQuery();
+
+           
+            
+            while (rs.next()) {
+               
+               
+                
+                
+               
+                
+               Double tot=rs.getDouble("total_ganancias");
+                pag.setTotal(tot);
+                }
+             
+            this.conexion.cerrarConexiones();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pag;
+        
+       
+    }
+    
+    
     }
     
     
