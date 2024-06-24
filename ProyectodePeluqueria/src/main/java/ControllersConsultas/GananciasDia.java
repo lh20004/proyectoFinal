@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Pago;
 import modelo.Servicio;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,7 +28,7 @@ import org.json.JSONObject;
  */
 @WebServlet(name = "GananciasDiaServlet", urlPatterns = {"/GananciasDiaServlet"})
 public class GananciasDia extends HttpServlet{
-    ArrayList<Servicio> listaServicio;
+    ArrayList<Pago> listaServicio;
     Servicio au=null;
 
     @Override
@@ -64,7 +65,8 @@ public class GananciasDia extends HttpServlet{
                             + "<thead>\n"
                             + "<tr>\n"
                             
-                           
+                            + "<th>Fecha </th>\n"
+                             + "<th>Servicio</th>\n"
                             + "<th>Ganancias </th>\n"
                            
                             + "</tr>\n"
@@ -72,11 +74,14 @@ public class GananciasDia extends HttpServlet{
                             + "</tbody>";
 
                     int cont = 0;
-                    for (Servicio objAutor : this.listaServicio) {
+                    for (Pago objAutor : this.listaServicio) {
                         cont++;
                         html += "<tr>";
                         
-                        html += "<td>" + objAutor.getTotalganancias() + "</td>";
+                        html += "<td>" + objAutor.getFechaPago() + "</td>";
+                         html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
+                          html += "<td>" + objAutor.getTotal() + "</td>";
+                        
                        
 
                         html += "<td>";
