@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
+import modelo.Pago;
 import modelo.Servicio;
 public class ServiciosDAO {
 
@@ -25,6 +26,7 @@ public class ServiciosDAO {
     private PreparedStatement ps;
     private Connection accesoDB;
      private  ArrayList<Servicio> resultados;
+      private  ArrayList<Pago> resultadosp;
 
     private static final String INSERT_SERVICIO = "INSERT INTO servicio(servicio,"
             + " descripcion, precio, estado) VALUES (?,?,?,?)";
@@ -49,12 +51,18 @@ public class ServiciosDAO {
              "WHERE r.fechareserva = '2024-06-01' " + 
              "GROUP BY s.servicio;";
    
-   private static final String GANANCIAS_DEL_DIA = "SELECT SUM(s.precio) AS total_ganancias " +
-             "FROM servicio s " +
-             "JOIN detallepago dp ON s.idservicio = dp.idservicio " +
-             "JOIN pago p ON dp.idpago = p.idpago " +
-             "WHERE p.fechapago = '2024-06-01';";
-
+   private static final String GANANCIAS_DEL_DIA = "SELECT "
+                + "p.fechapago AS fecha, "
+                + "s.servicio AS servicio, "
+                + "SUM(s.precio) AS ganancia_generada "
+                + "FROM "
+                + "servicio s "
+                + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
+                + "JOIN pago p ON dp.idpago = p.idpago "
+                + "WHERE "
+                + "p.fechapago = '2024-06-01' "
+                + "GROUP BY "
+                + "p.fechapago, s.servicio;";
     public ServiciosDAO() {
         this.conexion = new Conexion();
     }
@@ -223,8 +231,8 @@ public class ServiciosDAO {
     
         
     
-    public ArrayList<Servicio> obtenerGananciasDia(Integer estado, String quien) throws SQLException {
-     this.resultados=new ArrayList();
+    public ArrayList<Pago> obtenerGananciasDia(Integer estado, String quien) throws SQLException {
+     this.resultadosp=new ArrayList();
      
 
         try {
@@ -232,11 +240,17 @@ public class ServiciosDAO {
             this.ps = this.accesoDB.prepareStatement(GANANCIAS_DEL_DIA);
             this.rs = ps.executeQuery();
 
-            
+            Servicio obj2= null;
+            Pago obj=null;
             while (rs.next()) {
+                obj=new Pago();
+                obj2=new Servicio();
                 
-                double total = rs.getDouble("total_ganancias");
-                resultados.add(new Servicio( total));
+                obj.setFechaPago(rs.getDate("fecha"));
+                obj2.setServicio(rs.getString("servicio"));
+                obj.setServicio(obj2);
+                obj.setTotal(rs.getDouble("ganancia_generada"));
+                resultadosp.add(obj);
                 }
              
             this.conexion.cerrarConexiones();
@@ -244,7 +258,7 @@ public class ServiciosDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return this.resultados;
+        return this.resultadosp;
         
        
     }
