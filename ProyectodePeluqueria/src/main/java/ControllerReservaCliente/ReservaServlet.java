@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -186,6 +185,26 @@ public class ReservaServlet extends HttpServlet {
                         break;
                     }
 
+                    Time horaInicioLimite = Time.valueOf("08:00:00");
+                    Time horaFinLimite = Time.valueOf("17:00:00");
+
+                    if (horaInicio.before(horaInicioLimite) || horaFin.after(horaFinLimite)) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "La hora de inicio y fin debe estar dentro del intervalo de 08:00 a 17:00.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: La hora de inicio y fin debe estar dentro del intervalo de 08:00 a 17:00.");
+                        break;
+                    }
+
+                    long diferenciaTiempo = horaFin.getTime() - horaInicio.getTime();
+                    if (diferenciaTiempo < 1800000) { // 1800000 milisegundos = 30 minutos
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "El intervalo de tiempo debe ser de al menos 30 minutos.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: El intervalo de tiempo debe ser de al menos 30 minutos.");
+                        break;
+                    }
+
                     // Crear objetos y establecer valores para la reserva
                     Cliente cliente = new Cliente();
                     cliente.setIdCliente(clienteId);
@@ -206,24 +225,34 @@ public class ReservaServlet extends HttpServlet {
                     System.out.println("Datos de la reserva a insertar: " + reserva);
 
                     ReservaDao_1 dao = new ReservaDao_1();
-                    // Insertar la reserva en la base de datos
-                    boolean resultado = dao.insertarReserva(reserva);
-                    
-                    //insercion de relaciones
-                    JSONArray listaIdServicio = new JSONArray(servicioParam);
-                    Reserva utimaReserva = dao.getUltimaReserva();
-                    for(int i = 0;i<listaIdServicio.length();i++){
-                        dao.insertarDetalleReserva(utimaReserva.getIdReserva(), Integer.parseInt(listaIdServicio.getString(i)));
-                    }
-                    
-                    // Verificar el resultado de la inserción
-                    if (resultado) {
-                        jsonResponse.put("resultado", "exito");
-                        System.out.println("Reserva insertada correctamente.");
+
+                    if (dao.existeReservaDuplicada(empleadoId, fechaReserva, horaInicio, horaFin)) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "Ya existe una reserva para este empleado en el mismo intervalo de tiempo.");
                     } else {
-                        jsonResponse.put("resultado", "error de inserción");
-                        System.out.println("Error: No se pudo insertar la reserva.");
+
+                        // Insertar la reserva en la base de datos
+                        boolean resultado = dao.insertarReserva(reserva);
+
+                        //insercion de relaciones
+                        JSONArray listaIdServicio = new JSONArray(servicioParam);
+                        Reserva utimaReserva = dao.getUltimaReserva();
+                        for (int i = 0; i < listaIdServicio.length(); i++) {
+                            dao.insertarDetalleReserva(utimaReserva.getIdReserva(), Integer.parseInt(listaIdServicio.getString(i)));
+                        }
+
+                        // Verificar el resultado de la inserción
+                        if (resultado) {
+                            jsonResponse.put("resultado", "exito");
+                            System.out.println("Reserva insertada correctamente.");
+                        } else {
+                            jsonResponse.put("resultado", "error de inserción");
+                            System.out.println("Error: No se pudo insertar la reserva.");
+                        }
+
+                        // Continuar con la inserción de la reserva
                     }
+
                 } catch (NumberFormatException e) {
                     jsonResponse.put("resultado", "error");
                     jsonResponse.put("mensaje", "Error de formato de número: " + e.getMessage());
@@ -240,7 +269,7 @@ public class ReservaServlet extends HttpServlet {
                 response.getWriter().write(jsonResponse.toString());
                 break;
 
-            // Otros casos si es necesario...
+          
         }
     }
 }

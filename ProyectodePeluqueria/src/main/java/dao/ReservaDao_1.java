@@ -6,11 +6,12 @@ package dao;
 
 import conexion.Conexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
-import modelo.Cliente;
 import modelo.Reserva;
 
 /**
@@ -115,5 +116,27 @@ public class ReservaDao_1 {
             return false;
         }
     }
+    
+    
+    public boolean existeReservaDuplicada(int empleadoId, Date fecha, Time horaInicio, Time horaFin) throws SQLException {
+    String sql = "SELECT COUNT(*) FROM reserva WHERE idempleado = ? AND fechareserva = ? AND ((? BETWEEN horainicio AND horafin) OR (? BETWEEN horainicio AND horafin) OR (horainicio BETWEEN ? AND ?) OR (horafin BETWEEN ? AND ?))";
+    try (Connection conn = conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, empleadoId);
+        ps.setDate(2, fecha);
+        ps.setTime(3, horaInicio);
+        ps.setTime(4, horaFin);
+        ps.setTime(5, horaInicio);
+        ps.setTime(6, horaFin);
+        ps.setTime(7, horaInicio);
+        ps.setTime(8, horaFin);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    }
+    return false;
+}
+
 
 }
