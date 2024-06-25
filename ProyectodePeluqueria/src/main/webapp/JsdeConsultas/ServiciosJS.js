@@ -71,6 +71,10 @@ $(document).on("click", ".btn_editar", function (e) {
             $('#estado').val(json[0].estado);
 
             document.querySelector('#idservicio').readOnly = true;
+            document.getElementById('servicio').disabled = true;
+           document.getElementById('servicio').removeAttribute('required');
+            
+            
             $("#md_registrar_servicio").modal("show");
 
         }
