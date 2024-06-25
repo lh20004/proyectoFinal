@@ -14,7 +14,29 @@ $(function () {
     document.querySelector('#bCerrar').addEventListener('click', evetCerrarFormulario, false);
     document.querySelector('#bEditar').addEventListener('click', evtActualizarEmpleado, false);
     document.querySelector('#bGuardar').addEventListener('click', eventGuardar, false);
+    document.querySelector('#tTelefono').addEventListener('keyup', eventTelKeyup, false);
+    document.querySelector('#tDui').addEventListener('keyup', eventDuiKeyup, false);
 });
+
+function eventTelKeyup(evt) {
+    var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', 'Backspace'];
+    //a.find(a=>a=='4');
+    if (numeros.find(numeros => numeros == evt.key) == null) {
+        var lenght = evt.target.value.length;
+        var value = evt.target.value;
+        evt.target.value = value.substr(0, lenght - 1);
+    }
+}
+
+function eventDuiKeyup(evt) {
+    var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'Backspace'];
+    //a.find(a=>a=='4');
+    if (numeros.find(numeros => numeros == evt.key) == null) {
+        var lenght = evt.target.value.length;
+        var value = evt.target.value;
+        evt.target.value = value.substr(0, lenght - 1);
+    }
+}
 
 tabla.on('click', 'tbody tr', (e) => {
     let classList = e.currentTarget.classList;
