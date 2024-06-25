@@ -29,6 +29,7 @@ import org.json.JSONObject;
 public class ServiciosTotales extends HttpServlet{
     ArrayList<Servicio> listaServicio;
     Servicio au=null;
+    Servicio ae=null;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -53,11 +54,12 @@ public class ServiciosTotales extends HttpServlet{
                 try {
                     ServiciosDAO obaut = new ServiciosDAO();
                     this.listaServicio = new ArrayList();
-
+                    this.ae=new Servicio();
+                    this.ae=obaut.TotalServiciosHoy(Integer.valueOf(el_estado), "todo");
                     this.listaServicio = obaut.obtenerTotalServiciosHoy(Integer.valueOf(el_estado), "todo");
 
                     System.out.println("Esta en resultado en RegAutor");
-
+                    html += "<label>"+"Total Realizados:"+this.ae.getTotalServicios()+"</label>";
                     html += "<table id=\"tabla_totales\""
                             + "class=\"table table-bordered dt-resposive nowrap\""
                             + "cellspacing=\"0\" width=\"100%\">\n"
