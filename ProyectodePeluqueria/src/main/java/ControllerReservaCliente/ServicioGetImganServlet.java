@@ -23,7 +23,12 @@ import modelo.Servicio;
 @WebServlet(name = "ServicioGetImganServlet", urlPatterns = {"/ServicioGetImganServlet"})
 public class ServicioGetImganServlet extends HttpServlet {
 
-    ServicioImagenDao dao = new ServicioImagenDao();
+    private ServicioImagenDao dao;
+    
+    @Override
+    public void init() throws ServletException {
+        dao = new ServicioImagenDao();
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -49,21 +54,23 @@ public class ServicioGetImganServlet extends HttpServlet {
         Servicio serv = dao.getServiciosById(id);
 
         if (serv != null && serv.getImagen() != null) {
-            byte[] imgData = serv.getImagen();
+            InputStream imgData = serv.getImagen();
             response.setContentType("image/jpeg");
 
             OutputStream os = response.getOutputStream();
-            os.write(imgData);
+            byte [] buffer = new byte[4096];
+            int bytesRead = -1;
+            
+            while ((bytesRead = imgData.read(buffer)) !=-1) {                
+                os.write(buffer, 0, bytesRead);
+            }
+            
+            imgData.close();
             os.flush();
             os.close();
         } else {
             response.getWriter().write("No se encontro la imagen por ID" + id);
         }
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

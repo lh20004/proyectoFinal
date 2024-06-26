@@ -55,30 +55,12 @@ public class ServicioServlet extends HttpServlet {
         }
 
         InputStream inputStream = filePart.getInputStream();
-        byte[] imagen = null;
-        try {
-            ByteArrayOutputStream prueba = new ByteArrayOutputStream();
-            byte[] buffertemporal = new byte[1024];
-            int leerbytes;
 
-            while ((leerbytes = inputStream.read(buffertemporal)) != -1) {
-                prueba.write(buffertemporal, 0, leerbytes);
-
-            }
-            imagen = prueba.toByteArray();
-        } catch (Exception e) {
-        }
-
-        Servicio ser = new Servicio(servicio, descripcion, precio, estado, imagen);
+        Servicio ser = new Servicio(servicio, descripcion, precio, estado, inputStream);
         String message = servDao.insertarImagen(ser);
 
         out.println(message);
         out.close();
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -18,7 +18,7 @@ function cargarInformacion() {
                 element.id = "img" + datos.id;
                 element.style = "width: 150px; height: 150px;";
                 a.row.add([datos.id, datos.servicio, datos.descripcion, datos.precio, datos.estado, element]).draw();
-                extraerImagen(datos.id, element.id);
+                extraerImagen(datos.id, element);
             });
         }
     }).fail(function () {
@@ -26,7 +26,7 @@ function cargarInformacion() {
     });
 }
 
-function extraerImagen(idImg, idObject) {
+function extraerImagen(idImg, object) {
     $.ajax({
         url: "../ServicioGetImganServlet",
         type: "post",
@@ -35,16 +35,17 @@ function extraerImagen(idImg, idObject) {
             responseType: 'blob'
         }
     }).done(function (data) {
-        var object = document.querySelector('#' + idObject);
-        console.log(data);  
-        //var blob = new Blob([data], {type: 'image/jpeg'});
-        
+//        var object = document.querySelector('#' + idObject);
+//        console.log(data);
+//        var blob = new Blob([data], { type: 'image/jpeg' });
         if (data.size > 100) {
             object.src = URL.createObjectURL(data);
         }
+        
+
         //console.log(blob);
 
     }).fail(function () {
         console.log('Error al extraer la imagen');
-    })
+    });
 }

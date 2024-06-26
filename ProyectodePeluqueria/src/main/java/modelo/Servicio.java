@@ -22,7 +22,7 @@ public class Servicio {
     private String descripcion;
     private double precio;
     private String estado;
-    private byte[] imagen;
+    private InputStream imagen;
     private int totalServicios;
     private double totalganancias;
     
@@ -37,7 +37,7 @@ public class Servicio {
         this.totalganancias = totalganancias;
     }
 
-    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, byte[] imagen, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, InputStream  imagen, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
@@ -48,7 +48,7 @@ public class Servicio {
         this.listaPago = listaPago;
     }
 
-    public Servicio(String servicio, String descripcion, double precio, String estado, byte[] imagen) {
+    public Servicio(String servicio, String descripcion, double precio, String estado, InputStream  imagen) {
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -56,7 +56,7 @@ public class Servicio {
         this.imagen = imagen;
     }
 
-    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, byte[] imagen) {
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, InputStream  imagen) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
@@ -110,11 +110,11 @@ public class Servicio {
         this.estado = estado;
     }
 
-    public byte[] getImagen() {
+    public InputStream  getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(InputStream  imagen) {
         this.imagen = imagen;
     }
 

@@ -37,7 +37,7 @@ public class ServicioImagenDao {
             coon = DriverManager.getConnection(dbURL, dbUser, dbPass);
             coon.setAutoCommit(false);
 
-            String sql = "INSERT INTO servicio(servicio, descripcion, precio, estado, imagen) VALUES (?,?,?,?,?)";
+            String sql = "INSERT INTO servicio (servicio, descripcion, precio, estado, imagen) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement statement = coon.prepareStatement(sql);
             statement.setString(1, servicio.getServicio());
             statement.setString(2, servicio.getDescripcion());
@@ -45,7 +45,7 @@ public class ServicioImagenDao {
             statement.setString(4, servicio.getEstado());
 
             if (servicio.getImagen() != null) {
-                statement.setBytes(5, servicio.getImagen());
+                statement.setBinaryStream(5, servicio.getImagen());
             } else {
                 System.out.println("Input stream es null");
             }
@@ -84,7 +84,9 @@ public class ServicioImagenDao {
         List<Servicio> servi = new ArrayList<>();
         String sql = "SELECT idservicio, servicio, descripcion, precio, estado FROM servicio";
 
-        try ( Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);  PreparedStatement ps = con.prepareStatement(sql);  ResultSet rs = ps.executeQuery()) {
+        try ( Connection con = DriverManager.getConnection(dbURL, dbUser, dbPass);  
+                PreparedStatement ps = con.prepareStatement(sql); 
+                ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Servicio ser = new Servicio();
@@ -117,7 +119,7 @@ public class ServicioImagenDao {
                     String descripcion = rs.getString("descripcion");
                     Double precio = rs.getDouble("precio");
                     String estado = rs.getString("estado");
-                    byte[] imgData = rs.getBytes("imagen");
+                    InputStream imgData = rs.getBinaryStream("imagen");
                     
                     deServ = new Servicio(idServicio, servicio, descripcion, precio, estado, imgData);
                 }
