@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Reservas
-    Created on : 12 mar. 2024, 19:47:06
-    Author     : Jonathan Flores
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

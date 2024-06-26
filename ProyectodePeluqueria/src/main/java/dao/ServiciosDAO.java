@@ -137,6 +137,33 @@ public class ServiciosDAO {
         }
         return this.serviciosList;
     }
+    
+    public ArrayList<Servicio> selecttodosServicios() throws SQLException, ClassNotFoundException {
+
+        this.serviciosList = new ArrayList();
+
+        try {
+            this.accesoDB = this.conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(SELECT_ALL_SERVICIOS);
+            this.rs = ps.executeQuery();
+
+            Servicio obj = null;
+            while (this.rs.next()) {
+                obj = new Servicio();
+               obj.setIdServicio(rs.getInt("idservicio"));
+                obj.setServicio(rs.getString("servicio"));
+                obj.setDescripcion(rs.getString("descripcion"));
+                obj.setPrecio(rs.getDouble("precio"));
+                obj.setEstado(rs.getString("estado"));
+                this.serviciosList.add(obj);
+            }
+            this.conexion.cerrarConexiones();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this.serviciosList;
+    }
 
     public String updateServicio(Servicio servicio) throws SQLException {
         System.out.println(servicio.getIdServicio());
