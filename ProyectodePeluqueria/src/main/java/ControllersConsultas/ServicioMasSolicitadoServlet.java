@@ -71,7 +71,7 @@ public class ServicioMasSolicitadoServlet extends HttpServlet {
                         html += "<tr>";
                         html += "<td>" + objReservacion.getServicio().getServicio()+ "</td>";
                         html += "<td>" + objReservacion.getServicio().getDescripcion()+ "</td>";                   
-                        html += "<td>" + objReservacion.getServicio().getPrecio()+ "</td>";                   
+                        html += "<td>" + "$" + objReservacion.getServicio().getPrecio()+ "</td>";                   
                         html += "<td>" + objReservacion.getIdDetalle()+ "</td>";                   
                        
                        
