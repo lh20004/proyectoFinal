@@ -60,21 +60,15 @@
                                     <div class="mini-stat clearfix bg-white">
                                         <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
                                         <div class="mini-stat-info">
-                                            <span id="Servicios_registrados" class="counter text-blue-grey">0</span>
+                                            <span  id="Servicios_registrados" class="counter text-blue-grey">0</span>
                                             Servicios Registrados
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-xl-6" id="registrar_servicio" style="cursor: pointer;">
-                                    <div class="mini-stat clearfix bg-white">
-                                        <span class="mini-stat-icon bg-teal mr-0 float-right"><i class="mdi mdi-account"></i></span>
-                                        <div class="mini-stat-info">                                            
-                                            <H3>Registrar servicio</H3>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                <div>
+                                    <a href="../JSPCrud/Servicios.jsp"> REGISTRAR SERVICIOS</a>
                                 </div>
                             </div>
                             <div class="row">

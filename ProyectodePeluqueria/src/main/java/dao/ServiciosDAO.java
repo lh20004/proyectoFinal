@@ -39,7 +39,7 @@ public class ServiciosDAO {
 
     private static final String SELECT_SERVICIO_BY_ID = "SELECT * FROM servicio WHERE idservicio =?";
 
-    private static final String SELECT_ALL_SERVICIOS = "SELECT * FROM servicio";
+    private static final String SELECT_ALL_SERVICIOS = "SELECT idservicio, servicio, descripcion, precio, estado FROM servicio ORDER BY idservicio ASC;";
     
    private static final String SERVICIOS_REALIZADOS = 
          "SELECT s.servicio AS nombre_servicio, " +
