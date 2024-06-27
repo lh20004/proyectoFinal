@@ -6,6 +6,7 @@ dao\CargosRegistradosDao.class
 ControllersCrud\RegistrarUsuario.class
 dao\ClienteDao.class
 ControllersCrud\RegEmpleado.class
+dao\PagosDao.class
 dao\ServicioComboDao.class
 ControllersConsultas\ServiciosTotales.class
 dao\daoEmpleadoSecion.class
@@ -18,6 +19,7 @@ modelo\Empleado.class
 ControllersConsultas\GananciasController.class
 ControllersConsultas\ServicioMasSolicitadoServlet.class
 ControllersConsultas\ReservasServlet.class
+ControllersCrud\ControladorPagos.class
 modelo\Reserva.class
 ControllerReservaCliente\ServicioServlet.class
 ControllersConsultas\EmpleadosServiciosServlet.class

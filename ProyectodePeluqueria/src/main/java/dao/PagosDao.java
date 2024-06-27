@@ -22,7 +22,6 @@ public class PagosDao {
     private Pago pago;
     private ArrayList<Servicio> listservi;
     private ArrayList<Cliente> listCliente;
-    private ArrayList<Reserva> listReserva;
     private ArrayList<DetalleReserva> listDetalle;
 
     private static final String MOSTRAR_CLIENTES = "SELECT c.idcliente, concat(c.nombre, ' ', c.apellido) AS Cliente\n"
@@ -79,7 +78,6 @@ public class PagosDao {
     }
 
     public String insertExtras(DetalleReserva detalle) throws SQLException, ClassNotFoundException {
-
         String resultado;
         int resultado_insertar;
         try {
@@ -88,8 +86,8 @@ public class PagosDao {
             this.accesoDB = conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(INSERTAR_EXTRAS);
 
-            this.ps.setObject(1, detalle.getReserva());
-            this.ps.setObject(2, detalle.getServicio());
+            this.ps.setInt(1, detalle.getReserva().getIdReserva());
+            this.ps.setInt(2, detalle.getServicio().getIdServicio());
 
             resultado_insertar = this.ps.executeUpdate();
             this.conexion.cerrarConexiones();
@@ -129,19 +127,21 @@ public class PagosDao {
         return this.listCliente;
     }
 
-    public ArrayList<DetalleReserva> selectReservasConfirmadas() throws SQLException, ClassNotFoundException {
+    public ArrayList<DetalleReserva> selectReservasConfirmadas(int idCliente) throws SQLException, ClassNotFoundException {
         this.listDetalle = new ArrayList<>();
 
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(MOSTRAR_RESERVAS_CONFIRMADAS);
+            this.ps.setInt(1, idCliente);
             this.rs = ps.executeQuery();
-            
-            Cliente cliente = new Cliente();
-            Reserva resev = new Reserva();
-            Servicio servi = new Servicio();
-            DetalleReserva detalle = new DetalleReserva();
+
             while (this.rs.next()) {
+                Reserva resev = new Reserva();
+                Cliente cliente = new Cliente();
+                Servicio servi = new Servicio();
+                DetalleReserva detalle = new DetalleReserva();
+
                 resev.setIdReserva(rs.getInt("idreserva"));
                 cliente.setNombre(rs.getString("Cliente"));
                 resev.setCliente(cliente);
@@ -181,5 +181,5 @@ public class PagosDao {
         }
         return this.listservi;
     }
-    
+
 }
