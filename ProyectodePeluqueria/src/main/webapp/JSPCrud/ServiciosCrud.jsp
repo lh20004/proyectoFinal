@@ -37,6 +37,7 @@
             integrity="sha384-
             kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
         crossorigin="anonymous"></script>
+        <link href="../css/mantenimiento.css" rel="stylesheet">
     </head>
     <body class="fixed-left">
 
@@ -66,14 +67,22 @@
                                         <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
                                         <div class="mini-stat-info">
                                             <span  id="Servicios_registrados" class="counter text-blue-grey">0</span>
-                                            Servicios Registrados
+                                            <h3>Servicios Registrados</h3>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <a href="../JSPCrud/Servicios.jsp"> REGISTRAR SERVICIOS</a>
+                                <div class="col-md-6 col-xl-6" id="registrar_servicios" style="cursor: pointer;" onclick="window.location.href = '../JSPCrud/Servicios.jsp'">
+                                    <div class="mini-stat clearfix bg-white">
+                                        <span class="mini-stat-icon bg-teal mr-0 float-right">
+                                            <i class="mdi mdi-account"></i>
+                                        </span>
+                                        <div class="mini-stat-info">
+                                            <h3>Registrar Servicios</h3>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
