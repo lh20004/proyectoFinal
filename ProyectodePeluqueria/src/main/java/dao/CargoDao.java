@@ -121,6 +121,28 @@ public class CargoDao {
         return resultado;
     }
   
+public boolean existeCargo(String cargo) throws SQLException, ClassNotFoundException {
+    String sql = "SELECT COUNT(*) FROM cargo WHERE LOWER(cargo) = LOWER(?)";
+    boolean existe = false;
+    try {
+        this.accesoDB = this.conexion.getConexion();
+        try (PreparedStatement ps = accesoDB.prepareStatement(sql)) {
+            ps.setString(1, cargo);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    existe = rs.getInt(1) > 0;
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new SQLException("Error verificando existencia del cargo", e);
+    } finally {
+        this.conexion.cerrarConexiones();
+    }
+    return existe;
+}
+
 
     
     public ResultSet findById(int quien) throws SQLException, ClassNotFoundException{
@@ -159,4 +181,6 @@ public class CargoDao {
         }
         return resultado;
     } 
+
+    
 }

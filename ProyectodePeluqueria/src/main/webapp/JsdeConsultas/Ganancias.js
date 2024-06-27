@@ -31,14 +31,15 @@ function mostrarResultados(data, totalGanancias) {
     var tablaBody = $('#tabla_ganancias tbody');
     tablaBody.empty(); // Limpia cualquier fila existente en la tabla
 
-    $('#total_ganancias').text(totalGanancias.toFixed(2)); // Actualiza el total de ganancias
+$('#total_ganancias').text('$' + totalGanancias.toFixed(2));// Actualiza el total de ganancias
 
     data.forEach(function(item) {
         var fila = $('<tr>');
         fila.append('<td>' + item.cliente + '</td>');
         fila.append('<td>' + item.fecha + '</td>');
         fila.append('<td>' + item.servicio + '</td>');
-        fila.append('<td>' +"$" + item.total.toFixed(2) + '</td>');
+        fila.append('<td>$' + item.total.toFixed(2) + '</td>');
+
         tablaBody.append(fila);
     });
 }
@@ -65,3 +66,12 @@ function mostrarError(mensaje) {
         document.getElementById('consultar_datos').value = 'por_mes';
     }
 }
+
+$(document).ready(function() {
+    $('#regresar').click(function(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+        // Regresa a la página anterior en el historial del navegador
+        window.history.back();
+    });
+});
