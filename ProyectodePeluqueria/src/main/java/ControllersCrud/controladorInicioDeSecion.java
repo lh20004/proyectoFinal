@@ -4,7 +4,6 @@
  */
 package ControllersCrud;
 
-
 import dao.daoClienteSecion;
 import dao.daoEmpleadoSecion;
 import java.io.IOException;
@@ -44,7 +43,7 @@ public class controladorInicioDeSecion extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet controladorInicioDeSecion</title>");            
+            out.println("<title>Servlet controladorInicioDeSecion</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet controladorInicioDeSecion at " + request.getContextPath() + "</h1>");
@@ -80,64 +79,60 @@ public class controladorInicioDeSecion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
-        String adminName = "admin";
-        String urlAdmin = "../MenuAdmin.html";
-        String urlUsuario = "../Menu_Empleado.html";
+
+        String empleado[] = {"Admin","Gerente","Empleado","Cajero"};
+        String url[] = {"../MenuAdmin.html","../Menu_Gerente.html","../Menu_Empleado.html","../MenuCajero.html"};
         String urlCliente = "../Menu_Cliente.html";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-        
+
         JSONObject json = new JSONObject();
-        
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+
         Empleado em = daoEmpleadoSecion.getEmpleadoPorCorreo(email);
         Cliente cl = daoClienteSecion.getClientePorCorreo(email);
-        
-        
-        if(em!=null||cl!=null){
-            if(em!=null){
+
+        if (em != null || cl != null) {
+            if (em != null) {
                 em.setClave(desencriptar(em.getClave()));
-                if(em.getClave().equals(password)){
+                if (em.getClave().equals(password)) {
                     json.put("result", "succes");
-                    if(em.getCargo().getCargo().equals(adminName)){
-                        request.getSession().setAttribute("Empleado", em);  // Guardar cliente en sesión
-                        request.getSession().setAttribute("idEmpleado", em.getIdEmpleado());
-                        json.put("url", urlAdmin);
-                    }else{
-                        request.getSession().setAttribute("Empleado", em);  // Guardar cliente en sesión
-                        request.getSession().setAttribute("idEmpleado", em.getIdEmpleado());
-                        json.put("url", urlUsuario);
+                    request.getSession().setAttribute("Empleado", em);  // Guardar cliente en sesión
+                    request.getSession().setAttribute("idEmpleado", em.getIdEmpleado());
+                    for(int i=0;i<empleado.length;i++){
+                        if(empleado[i].equals(em.getCargo().getCargo())){
+                            json.put("url", url[i]);
+                        }
                     }
-                }else{
+                } else {
                     json.put("result", "claveError");
                 }
-            }else{
+            } else {
                 cl.setClave(desencriptar(cl.getClave()));
-                if(cl.getClave().equals(password)){
-                     request.getSession().setAttribute("cliente", cl);  // Guardar cliente en sesión
-                     request.getSession().setAttribute("idCliente", cl.getIdCliente());
+                if (cl.getClave().equals(password)) {
+                    request.getSession().setAttribute("cliente", cl);  // Guardar cliente en sesión
+                    request.getSession().setAttribute("idCliente", cl.getIdCliente());
                     json.put("result", "succes");
                     json.put("url", urlCliente);
-                }else{
+                } else {
                     json.put("result", "claveError");
                 }
             }
-        }else{
+        } else {
             json.put("result", "correoError");
         }
         response.getWriter().write(json.toString());
     }
-    
-    private String encriptar(String cadena){
+
+    private String encriptar(String cadena) {
         cadena = Encriptar.encriptar(cadena);
         return cadena;
     }
-    
-    private String desencriptar(String cadena){
+
+    private String desencriptar(String cadena) {
         cadena = Encriptar.desencriptar(cadena);
         return cadena;
     }
