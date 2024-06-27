@@ -203,6 +203,12 @@ public class ReservaServlet extends HttpServlet {
                         response.getWriter().write(jsonResponse.toString());
                         System.out.println("Error: El intervalo de tiempo debe ser de al menos 30 minutos.");
                         break;
+                    }else if (diferenciaTiempo > 7200000) { // 7200000 milisegundos = 2 horas
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "El intervalo de tiempo no debe exceder las 2 horas.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: El intervalo de tiempo no debe exceder las 2 horas.");
+                        break;
                     }
 
                     // Crear objetos y establecer valores para la reserva
