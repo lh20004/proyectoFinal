@@ -162,7 +162,18 @@
                     </div>
                 </div>
             </div>
+            <!-- Botón de regreso -->
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
     </body>
+     <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+        </script>
     <script src="../JsCrud/Crud_Cliente.js"></script>
 </html>
 

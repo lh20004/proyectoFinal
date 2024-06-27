@@ -17,11 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <div class="a1_1">
             <h1>EMPLEADOS</h1>
             <div class="a1_4">
-                <div class="row mb-3">
-                                <div class="col-12">
-                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
-                                </div>
-                            </div>
+                
                 <input type="button" class="a1_6" value="Editar" id="bEditar">
                 <input type="button" class="a1_3" value="Agregar Empleado" id="bAgregar">
                 <div class="a1_2">
@@ -43,6 +39,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
                         </tbody>
                     </table>
+                </div>
+            </div>
+              <!-- Botón de regreso -->
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
                 </div>
             </div>
         </div>
@@ -86,5 +88,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <script src="./scripts/JSEmpleado.js"></script>
         <script src="./scripts/Cargo.js"></script>
         <script src="./scripts/Empleado.js"></script>
+        <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+        </script>
     </body>
 </html>
