@@ -79,11 +79,7 @@ public class ServiciosTotales extends HttpServlet{
                         html += "<tr>";
                          html += "<td>" + objAutor.getServicio() + "</td>";
                         html += "<td>" + objAutor.getTotalServicios() + "</td>";
-                       
-
-                        html += "<td>";
-                        
-                        html += "</td>";
+                     
                         html += "</tr>";
                     }
                     html += "</tbody\n>"
