@@ -11,11 +11,11 @@ $(document).ready(function() {
         }
 
         // Obtener los datos del formulario
-        var nombre = $('#nombre').val();
-        var apellido = $('#apellido').val();
-        var telefono = $('#telefono').val();
-        var correo = $('#correo').val();
-        var clave = $('#clave').val();
+        var nombre = $('#nombre').val().trim();
+        var apellido = $('#apellido').val().trim();
+        var telefono = $('#telefono').val().trim();
+        var correo = $('#correo').val().trim();
+        var clave = $('#clave').val().trim();
 
         // Crear un objeto con los datos del usuario
         var usuario = {
@@ -34,14 +34,14 @@ $(document).ready(function() {
             success: function(response) {
                 // Manejar la respuesta del servidor aquí
                 console.log(response);
-                alert('Usuario registrado con exito.');
+                alert('Usuario registrado con éxito.');
                 limpiarCampos();
                 window.location.href = '../Menu_Cliente.html';
             },
             error: function(xhr, status, error) {
                 // Manejar errores de la solicitud AJAX aquí
                 console.error(xhr.responseText);
-                alert('Error al registrar el usuario. Por favor, intentalo de nuevo.');
+                alert('Error al registrar el usuario. Por favor, inténtalo de nuevo.');
             }
         });
     });
@@ -54,14 +54,35 @@ $(document).ready(function() {
         var correo = $('#correo').val().trim();
         var clave = $('#clave').val().trim();
 
-        // Validación para asegurarse de que todos los campos no estén vacíos
+        // Validar que todos los campos estén completos
         if (nombre === '' || apellido === '' || telefono === '' || correo === '' || clave === '') {
             alert('Todos los campos son obligatorios');
             return false; // Evita que el formulario se envíe
         }
+
+        // Validar formato de correo electrónico
+        var correoPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!correoPattern.test(correo)) {
+            alert('Ingrese un correo electrónico válido');
+            return false;
+        }
+
+        // Validar longitud del teléfono (exactamente 8 dígitos)
+        if (telefono.length !== 8 || isNaN(telefono)) {
+            alert('El teléfono debe tener exactamente 8 dígitos numéricos');
+            return false;
+        }
+
+        // Validar longitud mínima de la clave (mínimo 4 caracteres)
+        if (clave.length < 4) {
+            alert('La clave debe tener al menos 4 caracteres');
+            return false;
+        }
+
         return true; // Permite que el formulario se envíe
     }
 
+    // Función para limpiar los campos del formulario después de enviarlo
     function limpiarCampos() {
         $('#nombre').val('');
         $('#apellido').val('');
@@ -71,4 +92,3 @@ $(document).ready(function() {
     }
 
 });
-
