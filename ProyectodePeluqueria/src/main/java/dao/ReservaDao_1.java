@@ -80,7 +80,19 @@ public class ReservaDao_1 {
             return false;
         }
     }
-    
+    public boolean existeReservaClienteEnFecha(int clienteId, Date fechaReserva) throws SQLException {
+    String sql = "SELECT COUNT(*) FROM reserva WHERE idcliente = ? AND fechareserva = ?";
+    try (Connection conn = conexion.getConexion(); PreparedStatement ps = conn.prepareStatement(sql)) {
+        ps.setInt(1, clienteId);
+        ps.setDate(2, fechaReserva);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        }
+    }
+    return false;
+}
     public Reserva getUltimaReserva(){
         try{
             Reserva reserva = null;
