@@ -36,15 +36,17 @@ Author : Jonathan Flores
                             <form id="form1" onsubmit="return validarFormulario()" style="background-color: #b2d8d8">
                                 <div class="form-group">
                                     <label for="nombre" style="color: black">Nombre:</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                   <input type="text" class="form-control" id="nombre" name="nombre" required ="true" pattern="[A-Za-z]{3,50}" maxlength="50">
+
                                 </div>
                                 <div class="form-group">
                                     <label for="apellido" style="color: black">Apellido:</label>
-                                    <input type="text" class="form-control" id="apellido" name="apellido" required>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" required ="true" pattern="[A-Za-z]{3,50}" maxlength="50">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefono" style="color: black">Teléfono:</label>
-                                    <input type="text" class="form-control" id="telefono" name="telefono" maxlength="8" required>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono" maxlength="8" required pattern="\d{1,8}" inputmode="numeric" >
+
                                 </div>
                                 <div class="form-group">
                                     <label for="correo" style="color: black">Correo electrónico:</label>
@@ -52,7 +54,8 @@ Author : Jonathan Flores
                                 </div>
                                 <div class="form-group">
                                     <label for="clave" style="color: black">Clave:</label>
-                                    <input type="password" class="form-control" id="clave" name="clave" required>
+                                    <input type="password" class="form-control" id="clave" name="clave" required="true" pattern=".{4,50}" maxlength="50" >
+
                                 </div>
                                 <div>
                                     <center>
