@@ -131,19 +131,24 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Precio *</label>
-                                            <input type="text" autocomplete="off" name="precio" id="precio" class="form-control"
+                                            <input type="number" autocomplete="off" name="precio" id="precio" class="form-control"
+                                                   min="5" step="0.01"
                                                    pattern="^\d+(\.\d{1,2})?$"
-                                                   title="Ingrese un número válido (puede incluir hasta dos decimales)" 
-                                                   data-parsley-error-message="Ingrese un número válido (puede incluir hasta dos decimales)"
+                                                   title="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)" 
+                                                   data-parsley-error-message="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)"
                                                    required 
                                                    placeholder="Ingrese el precio"/>
                                         </div>
                                     </div>
 
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Estado *</label>
-                                            <input type="text" autocomplete="off" name="estado" maxlength="255" id="estado" class="form-control" required placeholder="Ingrese el estado del servicio:disponible/inactivo" pattern="disponible|inactivo" title="Por favor ingrese 'activo' o 'inactivo'"/>
+                                            <select name="estado" id="estado" class="form-control" required>
+                                                <option value="disponible">Disponible</option>
+                                                <option value="inactivo">Inactivo</option>
+                                            </select>
                                         </div>
                                     </div>
 
