@@ -114,13 +114,16 @@
         .form-group.active {
             display: block;
         }
+        .image{
+            background-image: url("../imagenes/Fondo.jpg");
+        }
     </style>
 </head>
-<body>
+<body class="image">
     <div class="container">
         <h1 class="text-center">Ganancias</h1>
         <div class="tools-left">
-            <a href="../Menu.html" class="back-button">←</a>
+            <a href="../MenuAdmin.html" class="back-button">←</a>
         </div>
        
         <div class="tools-right">
