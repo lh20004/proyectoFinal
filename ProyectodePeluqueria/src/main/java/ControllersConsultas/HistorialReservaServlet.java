@@ -76,7 +76,7 @@ public class HistorialReservaServlet extends HttpServlet {
                         html += "<td>" + objReservacion.getCliente().getNombre()+ "</td>";
                         html += "<td>" + objReservacion.getCliente().getCorreo()+ "</td>";
                         html += "<td>" + objReservacion.getServicio().getServicio()+ "</td>";
-                        html += "<td>" + objReservacion.getServicio().getPrecio() + "</td>";
+                        html += "<td>" + "$" + objReservacion.getServicio().getPrecio() + "</td>";
                         html += "</tr>";
                     }
 
