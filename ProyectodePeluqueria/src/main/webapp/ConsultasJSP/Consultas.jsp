@@ -21,7 +21,7 @@
     <center>
         <div class="colordiv">
             <h1 class="display-1">
-                <a href="../MenuAdmin.html" style="color: #0e2238">
+                <a href="#" style="color: #0e2238">
                     CONSULTAS
                 </a>
             </h1>
@@ -81,7 +81,7 @@
         </div>
         <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/Reservas.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Reservaciones</h6>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/servicios.png" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicio Mas Solicitado</h6>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/servicos_realizados.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicios Realizados al Dia</h6>
@@ -105,9 +105,20 @@
                 </div>
             </div>
         </div>
+         <!-- Botón de regreso -->
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
     </center>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
+    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+        </script>
 </body>
 </html>
