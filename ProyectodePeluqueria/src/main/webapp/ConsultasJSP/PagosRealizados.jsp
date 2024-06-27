@@ -17,9 +17,43 @@
         <script src="https://parsleyjs.org/dist/parsley.min.js"></script>
     </head>
 </head>
-<body>
+<style>
+    body {
+        background-color: #eaf6f6;
+        color: black; /* Texto en color negro */
+    }
+    header {
+        background-color: #b2d8d8;
+        color: black;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+    }
+    header h1 {
+        margin: 0;
+    }
+    table thead {
+        background-color: #b2d8d8;
+        color: black;
+    }
+    table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table tbody tr:hover {
+        background-color: #d9f2f2;
+    }
+    .table-responsive {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .imagen{
+        background-image: url("../imagenes/Fondo.jpg");
+    }
+</style>
+<body class="imagen">
     <div class="container" >
-        <h2>PAGOS REALIZADOS POR CLIENTES</h2>
+        <center><h2>PAGOS REALIZADOS POR CLIENTES</h2></center>
         <div class="row pt-2">
             <div class="col-12">
                 <div class="card m-b-20">
@@ -40,10 +74,10 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <script src="../JsdeConsultas/PagosRealizados.js" type="text/javascript"></script>
- <script>
-            function goBack() {
-                window.history.back();
-            }
+        <script>
+                               function goBack() {
+                                   window.history.back();
+                               }
         </script>
 </body>
 </html>

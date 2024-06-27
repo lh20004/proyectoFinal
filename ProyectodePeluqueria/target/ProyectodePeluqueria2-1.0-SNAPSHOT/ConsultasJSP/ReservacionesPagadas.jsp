@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Reservaciones Pagadas</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <!-- Agrega aquí el CSS de DataTables -->
@@ -17,9 +17,43 @@
         <script src="https://parsleyjs.org/dist/parsley.min.js"></script>
     </head>
 </head>
-<body>
+<style>
+    body {
+        background-color: #eaf6f6;
+        color: black; /* Texto en color negro */
+    }
+    header {
+        background-color: #b2d8d8;
+        color: black;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+    }
+    header h1 {
+        margin: 0;
+    }
+    table thead {
+        background-color: #b2d8d8;
+        color: black;
+    }
+    table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    table tbody tr:hover {
+        background-color: #d9f2f2;
+    }
+    .table-responsive {
+        background-color: #fff;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .imagen{
+        background-image: url("../imagenes/Fondo.jpg");
+    }
+</style>
+<body class="imagen">
     <div class="container" >
-        <h2>Reservaciones</h2>
+        <center><h2>RESERVACIONES PAGADAS POR LOS CLIENTES</h2></center>
         <div class="row pt-2">
             <div class="col-12">
                 <div class="card m-b-20">

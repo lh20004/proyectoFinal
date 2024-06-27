@@ -48,40 +48,36 @@ public class ServiciosDAO {
             + "             FROM servicio s\n"
             + "             JOIN detallereserva dr ON s.idservicio = dr.idservicio\n"
             + "             JOIN reserva r ON dr.idreserva = r.idreserva\n"
-            + "             WHERE r.fechareserva = '2024-06-01' AND r.estado = 'cancelado'\n"
+            + "             WHERE r.fechareserva = CURRENT_DATE AND r.estado = 'pagado'\n"
             + "             GROUP BY s.servicio;";
 
-    private static final String TOTAL_REALIZADOS = "SELECT COUNT(*) AS total_realizaciones "
-            + "FROM servicio s "
-            + "JOIN detallereserva dr ON s.idservicio = dr.idservicio "
-            + "JOIN reserva r ON dr.idreserva = r.idreserva "
-            + "JOIN pago p ON r.idcliente = p.idcliente "
-            + "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio "
-            + "WHERE r.fechareserva = '2024-06-01';";
+    private static final String TOTAL_REALIZADOS = "SELECT COUNT(*) AS total_realizaciones \n"
+            + "							FROM servicio s \n"
+            + "            JOIN detallereserva dr ON s.idservicio = dr.idservicio \n"
+            + "            JOIN reserva r ON dr.idreserva = r.idreserva \n"
+            + "            WHERE r.fechareserva = CURRENT_DATE AND r.estado = 'pagado';";
 
-    private static final String GANANCIAS_DEL_DIA = "SELECT "
-            + "p.fechapago AS fecha, "
-            + "s.servicio AS servicio, "
-            + "s.precio AS precio_servicio "
-            + "FROM "
-            + "servicio s "
-            + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
-            + "JOIN pago p ON dp.idpago = p.idpago "
-            + "WHERE "
-            + "p.fechapago = '2024-06-01' "
-            + "GROUP BY "
-            + "p.fechapago,s.precio, s.servicio;";
+    private static final String GANANCIAS_DEL_DIA = "SELECT \n"
+            + "            r.fechareserva AS fecha, \n"
+            + "            s.servicio AS servicio, \n"
+            + "            s.precio AS precio_servicio \n"
+            + "            FROM \n"
+            + "            servicio s \n"
+            + "            INNER JOIN detallereserva d ON d.idservicio = s.idservicio\n"
+            + "            INNER JOIN reserva r ON r.idreserva = d.idreserva\n"
+            + "            WHERE \n"
+            + "            r.fechareserva = CURRENT_DATE AND r.estado = 'pagado';";
 
-    private static final String TOTAL = "SELECT "
-            + "SUM(s.precio) AS total_ganancias "
-            + "FROM "
-            + "servicio s "
-            + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
-            + "JOIN pago p ON dp.idpago = p.idpago "
-            + "WHERE "
-            + "p.fechapago = '2024-06-01' "
-            + "GROUP BY "
-            + "p.fechapago;";
+    private static final String TOTAL = "SELECT \n"
+            + "            SUM(s.precio) AS total_ganancias \n"
+            + "            FROM \n"
+            + "            servicio s\n"
+            + "            INNER JOIN detallereserva d ON d.idservicio = s.idservicio\n"
+            + "            INNER JOIN reserva r ON r.idreserva = d.idreserva\n"
+            + "            WHERE \n"
+            + "            r.fechareserva = CURRENT_DATE\n"
+            + "            GROUP BY \n"
+            + "            r.fechareserva;";
 
     public ServiciosDAO() {
         this.conexion = new Conexion();
