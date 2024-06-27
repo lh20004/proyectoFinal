@@ -27,5 +27,13 @@ public class PagosDao {
             + "INNER JOIN reserva AS r ON c.idcliente = r.idcliente\n"
             + "WHERE r.estado = 'confirmada' AND r.fechareserva = CURRENT_DATE;";
 
-    private static final String MOSTRAR_RESERVAS_CONFIRMADAS = "";
+    private static final String MOSTRAR_RESERVAS_CONFIRMADAS = "SELECT CONCAT(c.nombre, ' ', c.apellido) AS Cliente,r.fechareserva AS fecha, s.servicio\n"
+            + "FROM detallereserva dr \n"
+            + "JOIN reserva r ON dr.idreserva = r.idreserva\n"
+            + "JOIN cliente c ON r.idcliente = c.idcliente\n"
+            + "JOIN servicio s ON dr.idservicio = s.idservicio\n"
+            + "WHERE r.estado = 'confirmada' AND c.idcliente = '1'and r.fechareserva = CURRENT_DATE;";
+    
+    private static final String hola = ";";
+
 }
