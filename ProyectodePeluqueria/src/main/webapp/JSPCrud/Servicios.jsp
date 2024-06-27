@@ -24,6 +24,45 @@
                 $("#ServicioServlet").on('submit', function (event) {
                     event.preventDefault(); // Evita la recarga de la página
 
+                    var isValid = true;
+                    var errorMessage = "";
+
+                    // Validación del nombre
+                    var nombre = $("#servicio").val();
+                    if (nombre.length < 10) {
+                        isValid = false;
+                        errorMessage += "El nombre debe tener al menos 10 caracteres.<br>";
+                    }
+
+                    // Validación de la descripción
+                    var descripcion = $("#descripcion").val();
+                    if (descripcion.length < 25) {
+                        isValid = false;
+                        errorMessage += "La descripción debe tener al menos 25 caracteres.<br>";
+                    }
+
+                    // Validación del precio
+                    var precio = $("#precio").val();
+                    if (precio < 5) {
+                        isValid = false;
+                        errorMessage += "El precio no puede ser menor de 5.<br>";
+                    }
+
+                    // Validación del estado
+                    var estado = $("#estado").val();
+                    if (estado.toLowerCase() !== "disponible") {
+                        isValid = false;
+                        errorMessage += "El estado debe ser 'disponible'.<br>";
+                    }
+
+                    // Mostrar errores si los hay
+                    if (!isValid) {
+                        $("#message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
+                        // Limpiar los campos del formulario
+                        $("#ServicioServlet")[0].reset();
+                        return;
+                    }
+
                     var formData = new FormData(this);
 
                     $.ajax({
@@ -51,8 +90,7 @@
                 </div>
             </div>
             <center>
-                <h1>AGREGAR SERVICIOS</h1>
-
+                <h1>Agregar Servicios</h1>
             </center>
             <form id="ServicioServlet" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
