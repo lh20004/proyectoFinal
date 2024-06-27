@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,8 +22,10 @@ public class Servicio {
     private String descripcion;
     private double precio;
     private String estado;
+    private InputStream imagen;
     private int totalServicios;
     private double totalganancias;
+    
     private ArrayList<Reserva> listaReserva;
     private ArrayList<Pago> listaPago;
     
@@ -34,57 +37,39 @@ public class Servicio {
         this.totalganancias = totalganancias;
     }
 
-    public double getTotalganancias() {
-        return totalganancias;
-    }
-
-    public void setTotalganancias(double totalganancias) {
-        this.totalganancias = totalganancias;
-    }
-    
-
-    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, InputStream  imagen, ArrayList<Reserva> listaReserva, ArrayList<Pago> listaPago) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
         this.estado = estado;
+        this.imagen = imagen;
         this.listaReserva = listaReserva;
         this.listaPago = listaPago;
     }
 
-    public Servicio(String servicio, String descripcion, double precio, String estado) {
+    public Servicio(String servicio, String descripcion, double precio, String estado, InputStream  imagen) {
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
         this.estado = estado;
+        this.imagen = imagen;
     }
 
-    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado) {
+    public Servicio(int idServicio, String servicio, String descripcion, double precio, String estado, InputStream  imagen) {
         this.idServicio = idServicio;
         this.servicio = servicio;
         this.descripcion = descripcion;
         this.precio = precio;
         this.estado = estado;
+        this.imagen = imagen;
     }
 
     public Servicio(String servicio, int totalServicios) {
         this.servicio = servicio;
         this.totalServicios = totalServicios;
     }
-
-    public int getTotalServicios() {
-        return totalServicios;
-    }
-
-    public void setTotalServicios(int totalServicios) {
-        this.totalServicios = totalServicios;
-    }
-    
-    
-    
-    
-
+ 
     public int getIdServicio() {
         return idServicio;
     }
@@ -125,6 +110,15 @@ public class Servicio {
         this.estado = estado;
     }
 
+    public InputStream  getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(InputStream  imagen) {
+        this.imagen = imagen;
+    }
+
+    
     public ArrayList<Reserva> getListaReserva() {
         return listaReserva;
     }
@@ -141,4 +135,19 @@ public class Servicio {
         this.listaPago = listaPago;
     }
     
+     public double getTotalganancias() {
+        return totalganancias;
+    }
+
+    public void setTotalganancias(double totalganancias) {
+        this.totalganancias = totalganancias;
+    }
+    
+     public int getTotalServicios() {
+        return totalServicios;
+    }
+
+    public void setTotalServicios(int totalServicios) {
+        this.totalServicios = totalServicios;
+    }
 }

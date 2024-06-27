@@ -12,15 +12,19 @@ dao\ClienteDao.class
 ControllersCrud\RegEmpleado.class
 ControllersConsultas\HistorialReservaServlet.class
 dao\HistorialReservaDAO.class
+ControllerReservaCliente\ServicioImagenServlet.class
 ControllersConsultas\GananciasDia.class
 dao\ServicioComboDao.class
 dao\EmpleadoRegistradosDao.class
+ControllerReservaCliente\ServicioGetImganServlet.class
 ControllersConsultas\ServiciosTotales.class
 dao\ServiciosDAO.class
 conexion\Conexion.class
 dao\ServicioMasSolicitadoDAO.class
 dao\daoEmpleadoSecion.class
+dao\ServicioImagenDao.class
 ControllersCrud\RegServicios.class
+ControllersCrud\ServiciosDisponiblesServlet.class
 ControllerReservaCliente\ReservaServlet.class
 ControllersCrud\controladorInicioDeSecion.class
 dao\EmpleadosServiciosDAO.class
@@ -40,4 +44,5 @@ ControllersConsultas\ReservasServlet.class
 modelo\Reserva.class
 dao\CargoDao.class
 dao\ReservacionesPagadasDAO.class
+ControllerReservaCliente\ServicioServlet.class
 ControllersConsultas\ReservasEmpleados.class

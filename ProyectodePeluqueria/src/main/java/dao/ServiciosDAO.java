@@ -40,7 +40,7 @@ public class ServiciosDAO {
 
     private static final String SELECT_SERVICIO_BY_ID = "SELECT * FROM servicio WHERE idservicio =?";
 
-    private static final String SELECT_ALL_SERVICIOS = "SELECT * FROM servicio";
+    private static final String SELECT_ALL_SERVICIOS = "SELECT idservicio, servicio, descripcion, precio, estado FROM servicio ORDER BY idservicio ASC;";
     
    private static final String SERVICIOS_REALIZADOS = 
          "SELECT s.servicio AS nombre_servicio, " +
@@ -124,6 +124,33 @@ public class ServiciosDAO {
     }
 
     public ArrayList<Servicio> selectAllServicios(Integer estado, String quien) throws SQLException, ClassNotFoundException {
+
+        this.serviciosList = new ArrayList();
+
+        try {
+            this.accesoDB = this.conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(SELECT_ALL_SERVICIOS);
+            this.rs = ps.executeQuery();
+
+            Servicio obj = null;
+            while (this.rs.next()) {
+                obj = new Servicio();
+               obj.setIdServicio(rs.getInt("idservicio"));
+                obj.setServicio(rs.getString("servicio"));
+                obj.setDescripcion(rs.getString("descripcion"));
+                obj.setPrecio(rs.getDouble("precio"));
+                obj.setEstado(rs.getString("estado"));
+                this.serviciosList.add(obj);
+            }
+            this.conexion.cerrarConexiones();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this.serviciosList;
+    }
+    
+    public ArrayList<Servicio> selecttodosServicios() throws SQLException, ClassNotFoundException {
 
         this.serviciosList = new ArrayList();
 
