@@ -38,7 +38,7 @@ function mostrarResultados(data, totalGanancias) {
         fila.append('<td>' + item.cliente + '</td>');
         fila.append('<td>' + item.fecha + '</td>');
         fila.append('<td>' + item.servicio + '</td>');
-        fila.append('<td>' + item.total.toFixed(2) + '</td>');
+        fila.append('<td>' +"$" + item.total.toFixed(2) + '</td>');
         tablaBody.append(fila);
     });
 }
