@@ -150,4 +150,6 @@ public class Servicio {
     public void setTotalServicios(int totalServicios) {
         this.totalServicios = totalServicios;
     }
+
+    
 }

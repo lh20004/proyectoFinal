@@ -1,6 +1,6 @@
 package ControllersCrud;
 
-import dao.PagosDao;
+/*
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -121,4 +121,4 @@ public class ControladorPagos extends HttpServlet {
         jsonResponse.put("resultado", resultado);
         response.getWriter().write(jsonResponse.toString());
     }
-}
+}*/
