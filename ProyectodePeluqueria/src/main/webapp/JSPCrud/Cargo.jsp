@@ -193,13 +193,13 @@
                     <div class="page-content-wrapper">
                         <div class="container-fluid">
                             <!-- Botón de regreso -->
-            <div class="row pt-3">
-                <div class="col-12">
-                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
-                    
-                </div>
-                
-            </div>
+                            <div class="row pt-3">
+                                <div class="col-12">
+                                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+
+                                </div>
+
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-6">
                                     <div class="mini-stat clearfix bg-white">
@@ -266,9 +266,11 @@
                                         <div class="form-group">
                                             <label>Nombre Cargo</label>
                                             <input type="text" autocomplete="off" name="cargo" maxlength="60"
-                                                   data-parsley-error-message="Campo requerido" id="cargo"
-                                                   class="form-control"
-                                                   required placeholder="Ingrese el Nombre"/>
+                                                   data-parsley-error-message="Solo letras" id="cargo"
+                                                   class="form-control" required placeholder="Ingrese el Nombre"
+                                                   pattern="[A-Za-zÁÉÍÓÚáéíóúñÑ ]+" 
+                                                   title="El campo solo puede contener letras"
+                                                   oninput="validateCargo(this)" />
                                         </div>
                                     </div>
 
@@ -282,13 +284,23 @@
                     </div>
                 </div>
             </div>
-            
+
     </body>
     <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-        </script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <script>
+        function validateCargo(input) {
+            const regex = /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]*$/;
+            if (!regex.test(input.value)) {
+                input.setCustomValidity("El campo solo puede contener letras");
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+    </script>
     <script src="../JsCrud/Cargo.js"></script>
 
 
