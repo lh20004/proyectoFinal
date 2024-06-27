@@ -27,12 +27,9 @@ public class GananciasDao {
     private Connection accesoDB;
     private Pago pago;
     
-    public static final String Gananciaspordia = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE p.fechapago = ?;";
-   
-    public static final String Gananciasporsemana = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE p.fechapago BETWEEN DATE_TRUNC('week', CAST(? AS DATE)) AND (DATE_TRUNC('week', CAST(? AS DATE)) + INTERVAL '6 days');";
-    
-    public static final String Gananciaspormes = "SELECT c.nombre AS cliente, p.fechapago AS fecha, s.servicio AS servicio, p.total AS total FROM pago p JOIN cliente c ON p.idcliente = c.idcliente JOIN detallepago dp ON p.idpago = dp.idpago JOIN servicio s ON dp.idservicio = s.idservicio WHERE TO_CHAR(p.fechapago, 'YYYY-MM') = ?";
-
+    public static final String Gananciaspordia = "SELECT c.nombre AS cliente, r.fechareserva AS fecha, s.servicio AS servicio, s.precio AS total FROM cliente c JOIN reserva r ON c.idcliente = r.idcliente JOIN detallereserva d ON r.idreserva = d.idreserva JOIN servicio s ON d.idservicio = s.idservicio WHERE r.estado = 'Pagado' AND r.fechareserva = ?";
+    public static final String Gananciasporsemana = "SELECT c.nombre AS cliente, r.fechareserva AS fecha, s.servicio AS servicio, s.precio AS total FROM cliente c JOIN reserva r ON c.idcliente = r.idcliente JOIN detallereserva d ON r.idreserva = d.idreserva JOIN servicio s ON d.idservicio = s.idservicio WHERE r.estado = 'Pagado' AND r.fechareserva BETWEEN DATE_TRUNC('week', CAST(? AS DATE)) AND (DATE_TRUNC('week', CAST(? AS DATE)) + INTERVAL '6 days')";
+    public static final String Gananciaspormes = "SELECT c.nombre AS cliente, r.fechareserva AS fecha, s.servicio AS servicio, s.precio AS total FROM cliente c JOIN reserva r ON c.idcliente = r.idcliente JOIN detallereserva d ON r.idreserva = d.idreserva JOIN servicio s ON d.idservicio = s.idservicio WHERE TO_CHAR(r.fechareserva, 'YYYY-MM') = ? AND r.estado = 'Pagado'";
     public GananciasDao() {
         this.conexion = new Conexion();
     }
