@@ -55,7 +55,7 @@ public class EmpleadosServiciosServlet extends HttpServlet {
                             + "<thead>\n"
                             + "<th>Nombre</th>\n"
                             + "<th>Servicio</th>\n"                  
-                            + "<th>Cantidad Servicios</th>\n"                          
+                            + "<th>Cantidad Total</th>\n"                          
                             + "</tr>\n"
                             + "</thead>\n"
                             + "<tbody>";

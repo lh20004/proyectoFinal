@@ -138,3 +138,12 @@ $(document).ready(function () {
         });
     }
 });
+
+$(document).ready(function() {
+    $('#regresar').click(function(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+        // Regresa a la página anterior en el historial del navegador
+        window.history.back();
+    });
+});
