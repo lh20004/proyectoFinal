@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    <!-- Inicio para que funcione class='dropdown m-b-10' -->
+        <title>Ganancias del Día</title>
+        <!-- Inicio para que funcione class='dropdown m-b-10' -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
         crossorigin="anonymous"></script>
@@ -37,120 +37,75 @@
             integrity="sha384-
             kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" 
         crossorigin="anonymous"></script>
-
+        <style>
+            body {
+                background-color: #eaf6f6;
+                color: black; /* Texto en color negro */
+            }
+            header {
+                background-color: #b2d8d8;
+                color: black;
+                padding: 1rem 0;
+                margin-bottom: 1rem;
+            }
+            header h1 {
+                margin: 0;
+            }
+            table thead {
+                background-color: #b2d8d8;
+                color: black;
+            }
+            table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            table tbody tr:hover {
+                background-color: #d9f2f2;
+            }
+            .table-responsive {
+                background-color: #fff;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            .imagen{
+                background-image: url("../imagenes/Fondo.jpg");
+            }
+        </style>
     </head>
-    <body class="fixed-left">
 
-        <!-- Begin page -->
-        <div id="wrapper">
-
-            <!-- Start right Content here -->
-            <div class="content-page">
-                <!-- Start content -->
-                <div class="content">
-                    <!-- Top Bar Start -->
-
-                    <!-- Top Bar End -->
-                    <!-- ==================
-                    PAGE CONTENT START
-                    ================== -->
-                    <div class="page-content-wrapper">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-6 col-xl-6">
-                                    <div class="mini-stat clearfix bg-white">
-                                        <span class="mini-stat-icon bg-blue-grey mr-0 float-right"><i class="mdi mdi-black-mesa"></i></span>
-                                        <div class="mini-stat-info">
-                                            <span id="Servicios_registrados" class="counter text-blue-grey">0</span>
-                                          
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-xl-6" id="registrar_servicio" style="cursor: pointer;">
-                                    <div class="mini-stat clearfix bg-white">
-                                        <span class="mini-stat-icon bg-teal mr-0 float-right"><i class="mdi mdi-account"></i></span>
-                                        <div class="mini-stat-info">                                            
-                                           
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="card m-b-20">
-                                        <div class="card-body">
-                                            <div id="aqui_tabla"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- container -->
-                    </div> <!-- Page content Wrapper -->
-                </div> <!-- content -->
-
-            </div>
-            <!-- End Right content here -->
-
-            <div class="modal fade" id="md_registrar_servicio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <sub>Campos marcados con * son obligatorios</sub>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form name="formulario_registro" id="formulario_registro">
-                                <input type="hidden" id="llave_persona" name="llave_persona" value="">
-                                <input type="hidden" id="consultar_datos" name="consultar_datos" value="si_registro">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group" hidden>
-                                            <input type="text" autocomplete="off" name="idservicio" maxlength="100" id="idservicio" class="form-control" placeholder="Ingrese el servicio"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Servicio *</label>
-                                            <input type="text" autocomplete="off" name="servicio" maxlength="100" data-parsley-error-message="Campo requerido" id="servicio" class="form-control" required placeholder="Ingrese el servicio"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Descripción</label>
-                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripción"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Precio *</label>
-                                            <input type="text" autocomplete="off" name="precio" data-parsley-error-message="Campo requerido" id="precio" class="form-control" required placeholder="Ingrese el precio"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Estado *</label>
-                                            <input type="text" autocomplete="off" name="estado" maxlength="255" id="estado" class="form-control" placeholder="Ingrese El estado del servicio"/>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="btn_cerrar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </form>
+    <body class="imagen">
+        <div class="container">
+            <center><h2>GANANCIAS DEL DÍA</h2>
+            </center>
+            <div class="row pt-2">
+                <div class="col-12">
+                    <div class="card m-b-20">
+                        <div class="card-body">
+                            <div id="aqui_tabla"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!-- wrapper -->
-       
+
+            <!-- Botón de regreso -->
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+        <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+        </script>
     </body>
-      <script src="../JsdeConsultas/GanaciasDiaJS.js" type="text/javascript"></script>
-   
+    <script src="../JsdeConsultas/GanaciasDiaJS.js" type="text/javascript"></script>
+
 </html>

@@ -41,7 +41,7 @@
                 <div class="card-body" style="">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Ganancias del Día</h6>
-                    <a href="../ConsultasJSP/ConsultaGanaciasDia.html" class="card-link">Ir a</a>
+                    <a href="../ConsultasJSP/GananciasHoy.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
@@ -52,6 +52,8 @@
                     <a href="../ConsultasJSP/Ganancias.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
+        </div>
+        <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
                 <img src="../imagenes/cliente.jpg" />
                 <div class="card-body">
@@ -60,13 +62,11 @@
                     <a href="../ConsultasJSP/PagosRealizados.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
-        </div>
-        <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
                 <img src="../imagenes/empleados.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Reservaciones Empleados</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Reservaciones que tiene el Empleado</h6>
                     <a href="../ConsultasJSP/ReservaEmpleado.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
@@ -78,6 +78,8 @@
                     <a href="../ConsultasJSP/ReservacionesPagadas.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
+        </div>
+        <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
                 <img src="../imagenes/servicios_solicitados2.jpg" />
                 <div class="card-body">
@@ -98,34 +100,14 @@
                 <img src="../imagenes/servicios_solicitados2.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Listado de Servicios Disponibles</h6>
-                    <a href="../ConsultasJSP/ServiciosDisponibles.jsp" class="card-link">Ir a</a>
-                </div>
-            </div>
-            <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
-                <div class="card-body">
-                    <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicios Realizados al Dia</h6>
-                    <a href="../ConsultasJSP/Reservas.jsp" class="card-link">Ir a</a>
-                </div>
-            </div>
-            <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/OIG1.jpg" />
-                <div class="card-body">
-                    <h5 class="card-title">Consulta</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Pagos Realizados por cliente</h6>
-                    <a href="../ConsultasJSP/PagosRealizados.jsp" class="card-link">Ir a</a>
+                    <a href="../ConsultasJSP/ServiciosRealizadosDia.jsp" class="card-link">Ir a</a>
                 </div>
             </div>
         </div>
-        
     </center>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
-    
-
-    
 </body>
 </html>

@@ -121,7 +121,7 @@
 </head>
 <body class="image">
     <div class="container">
-        <h1 class="text-center">Ganancias</h1>
+        <h1 class="text-center">GANANCIAS POR DÍA, SEMANA Y MES</h1>
         <div class="tools-left">
             <a href="../MenuAdmin.html" class="back-button">←</a>
         </div>
