@@ -89,7 +89,7 @@
                                             <label>Servicios seleccionados</label>
                                             <div class="form-control bg-light listaServicios">
                                                 <ul id="listaForm">
-                                                    
+
                                                 </ul>
                                             </div>
                                             <input type="button" value="Quitar" id="btnQuitar" class="btn btn-primary">
@@ -105,7 +105,11 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
         </div>
 
         <!-- Scripts -->
@@ -115,10 +119,14 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">
-        
+
         <!-- Archivo JavaScript externo -->
         <script src="../JSReservaCliente/Reservas.js" type="text/javascript"></script>
 
-
+        <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+        </script>
     </body> 
 </html>

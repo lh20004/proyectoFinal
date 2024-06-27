@@ -31,6 +31,11 @@
     </script>
     </head>
     <body>
+        <div class="row mb-3">
+                                <div class="col-12">
+                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                </div>
+                            </div>
         <h1>Agregar Servicios</h1>
     <form id="ServicioServlet" method="post" enctype="multipart/form-data">
         <label for="servicio">Nombre:</label>
