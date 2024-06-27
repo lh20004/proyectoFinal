@@ -26,7 +26,6 @@ $(document).ready(function() {
             clave: clave
         };
 
-        // Hacer una solicitud AJAX para enviar los datos al servidor
         $.ajax({
             type: 'POST',
             url: '../RegistrarUsuarioServlet', // Ajustar la URL según la ruta de tu proyecto
@@ -34,14 +33,23 @@ $(document).ready(function() {
             success: function(response) {
                 // Manejar la respuesta del servidor aquí
                 console.log(response);
-                alert('Usuario registrado con éxito.');
-                limpiarCampos();
-                window.location.href = '../Menu_Cliente.html';
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    text: 'Se ha registrado correctamente'
+                }).then(function() {
+                    limpiarCampos();
+                    window.location.href = '../Menu_Cliente.html';
+                });
             },
             error: function(xhr, status, error) {
                 // Manejar errores de la solicitud AJAX aquí
                 console.error(xhr.responseText);
-                alert('Error al registrar el usuario. Por favor, inténtalo de nuevo.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al registrar',
+                    text: 'Error al registrarse. Por favor, inténtelo de nuevo.'
+                });
             }
         });
     });
@@ -55,29 +63,99 @@ $(document).ready(function() {
         var clave = $('#clave').val().trim();
 
         // Validar que todos los campos estén completos
-        if (nombre === '' || apellido === '' || telefono === '' || correo === '' || clave === '') {
-            alert('Todos los campos son obligatorios');
+        if (nombre === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Nombre',
+                text: 'El nombre es obligatorio'
+            });
+            return false; // Evita que el formulario se envíe
+        }
+
+        if (apellido === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Apellido',
+                text: 'El apellido es obligatorio'
+            });
+            return false; // Evita que el formulario se envíe
+        }
+
+        if (telefono === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Teléfono',
+                text: 'El teléfono es obligatorio'
+            });
             return false; // Evita que el formulario se envíe
         }
 
         // Validar formato de correo electrónico
-        var correoPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!correoPattern.test(correo)) {
-            alert('Ingrese un correo electrónico válido');
+        if (correo === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Correo electrónico',
+                text: 'El correo electrónico es obligatorio'
+            });
+            return false; // Evita que el formulario se envíe
+        }
+
+        // Validar que nombre y apellido no contengan caracteres incorrectos
+        var letrasPattern = /^[A-Za-z\s]{3,}$/;
+        if (!letrasPattern.test(nombre)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Nombre',
+                text: 'Ingrese un nombre válido (mínimo 3 caracteres)'
+            });
+            return false;
+        }
+        
+            if (!letrasPattern.test(apellido)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Apellido',
+                text: 'Ingrese un apellido válido (mínimo 3 caracteres)'
+            });
+            return false;
+        }
+        
+        
+            // Validar longitud del teléfono (exactamente 8 dígitos numéricos)
+        var telefonoPattern = /^\d{8}$/;
+        if (!telefonoPattern.test(telefono)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Teléfono',
+                text: 'El teléfono debe tener exactamente 8 dígitos numéricos'
+            });
             return false;
         }
 
-        // Validar longitud del teléfono (exactamente 8 dígitos)
-        if (telefono.length !== 8 || isNaN(telefono)) {
-            alert('El teléfono debe tener exactamente 8 dígitos numéricos');
+
+        var correoPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!correoPattern.test(correo)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Correo electrónico',
+                text: 'Ingrese un correo electrónico válido'
+            });
             return false;
         }
+
+    
 
         // Validar longitud mínima de la clave (mínimo 4 caracteres)
         if (clave.length < 4) {
-            alert('La clave debe tener al menos 4 caracteres');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el campo Clave',
+                text: 'La clave debe tener al menos 4 caracteres'
+            });
             return false;
         }
+
+    
 
         return true; // Permite que el formulario se envíe
     }
