@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
-var tabla = new DataTable('#taEmpledo');// de esta manera se crea la tabla
+var tabla = new DataTable('#taEmpledo'); // de esta manera se crea la tabla
 var empleados = [];
 var selecionado;
 
@@ -82,6 +82,15 @@ function evtActualizarEmpleado(evt) {
                     document.querySelector('#cCargo').selectedIndex = i;
                 }
             }
+            
+            if (select.getCargo().getCargo() == 'Admin') {
+                var objetos = document.querySelector('#cCargo');
+                for (var object of objetos) {
+                    if (object.label != 'Admin') {
+                        object.disabled = true;
+                    }
+                }
+            }
             document.querySelector('#tNombre').value = select.getNombre();
             document.querySelector('#tApellido').value = select.getApellido();
             document.querySelector('#tTelefono').value = select.getTelefono();
@@ -99,6 +108,10 @@ function evetCerrarFormulario(evt) {
     formularioVisibiliti(false);
     document.querySelector('#fEmpleado').reset();
     document.querySelector('#bGuardar').value = 'Guardar';
+    var objetos = document.querySelector('#cCargo');
+    for (var object of objetos) {
+        object.disabled = false;
+    }
 }
 
 function eventGuardar(evt) {
@@ -210,7 +223,8 @@ function cargarTabla() {
             datos.getDui(),
             datos.getEstado(),
             datos.getCorreo(),
-            datos.getClave(),
+//            datos.getClave(),
+            '********',
             datos.getCargo().getCargo()
         ]);
     });
