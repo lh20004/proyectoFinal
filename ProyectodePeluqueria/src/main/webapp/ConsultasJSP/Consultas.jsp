@@ -81,7 +81,7 @@
         </div>
         <div class="gallery">
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/Reservas.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Reservaciones</h6>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/servicios.png" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicio Mas Solicitado</h6>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="card" style="background-color: #fbd5e5">
-                <img src="../imagenes/servicios_solicitados2.jpg" />
+                <img src="../imagenes/servicos_realizados.jpg" />
                 <div class="card-body">
                     <h5 class="card-title">Consulta</h5>
                     <h6 class="card-subtitle mb-2 text-muted">Servicios Realizados al Dia</h6>
