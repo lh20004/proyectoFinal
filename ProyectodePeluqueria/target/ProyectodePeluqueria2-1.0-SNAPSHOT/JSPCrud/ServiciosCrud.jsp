@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-
                 DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
         crossorigin="anonymous"></script>
@@ -101,7 +101,7 @@
                                 <input type="hidden" id="llave_persona" name="llave_persona" value="">
                                 <input type="hidden" id="consultar_datos" name="consultar_datos" value="si_registro">
                                 <div class="row">
-                                 
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label id="serviciolbl">Servicio *</label>
@@ -110,25 +110,31 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Descripcion *</label>
-                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripciÃ³n"/>
+                                            <label>Descripción  *</label>
+                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripción"/>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Precio *</label>
-                                            <input type="text" autocomplete="off" name="precio" data-parsley-error-message="Campo requerido" id="precio" class="form-control" required placeholder="Ingrese el precio"/>
+                                            <input type="text" autocomplete="off" name="precio" id="precio" class="form-control"
+                                                   pattern="^\d+(\.\d{1,2})?$"
+                                                   title="Ingrese un número válido (puede incluir hasta dos decimales)" 
+                                                   data-parsley-error-message="Ingrese un número válido (puede incluir hasta dos decimales)"
+                                                   required 
+                                                   placeholder="Ingrese el precio"/>
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Estado *</label>
-                                            <input type="text" autocomplete="off" name="estado" maxlength="255" id="estado" class="form-control" placeholder="Ingrese El estado del servicio"/>
-
+                                            <input type="text" autocomplete="off" name="estado" maxlength="255" id="estado" class="form-control" required placeholder="Ingrese el estado del servicio:disponible/inactivo" pattern="disponible|inactivo" title="Por favor ingrese 'activo' o 'inactivo'"/>
                                         </div>
                                     </div>
-                                    
-                                       <div class="col-md-6">
+
+
+                                    <div class="col-md-6">
                                         <div class="form-group" hidden>
                                             <input type="text" autocomplete="off" name="idservicio" maxlength="100" id="idservicio" class="form-control" placeholder="Ingrese el servicio"/>
                                         </div>

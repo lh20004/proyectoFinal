@@ -28,6 +28,7 @@ public class ServiciosDAO {
      private  ArrayList<Servicio> resultados;
       private  ArrayList<Pago> resultadosp;
       private Pago pag;
+      private Servicio serv;
 
     private static final String INSERT_SERVICIO = "INSERT INTO servicio(servicio,"
             + " descripcion, precio, estado) VALUES (?,?,?,?)";
@@ -51,6 +52,17 @@ public class ServiciosDAO {
              "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
              "WHERE r.fechareserva = '2024-06-01' " + 
              "GROUP BY s.servicio;";
+   
+   private static final String TOTAL_REALIZADOS = "SELECT COUNT(*) AS total_realizaciones " +
+                       "FROM servicio s " +
+                       "JOIN detallereserva dr ON s.idservicio = dr.idservicio " +
+                       "JOIN reserva r ON dr.idreserva = r.idreserva " +
+                       "JOIN pago p ON r.idcliente = p.idcliente " +
+                       "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
+                       "WHERE r.fechareserva = '2024-06-01';";
+         
+   
+   
    
    private static final String GANANCIAS_DEL_DIA = "SELECT "
                 + "p.fechapago AS fecha, "
@@ -333,6 +345,33 @@ public class ServiciosDAO {
             e.printStackTrace();
         }
         return pag;
+        
+       
+    }
+    
+    public Servicio TotalServiciosHoy(Integer estado, String quien) throws SQLException {
+     this.serv=new Servicio();
+     
+        
+        try {
+            this.accesoDB = this.conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(TOTAL_REALIZADOS);
+            this.rs = ps.executeQuery();
+
+            
+            while (rs.next()) {
+                
+                
+                int total=rs.getInt("total_realizaciones");
+               serv.setTotalServicios(total);
+                }
+             
+            this.conexion.cerrarConexiones();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this.serv;
         
        
     }
