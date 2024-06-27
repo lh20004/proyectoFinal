@@ -52,7 +52,7 @@
     </style>
     <body class="imagen">
         <div class="container">
-            <center><h2>Empleados y sus servicios</h2>
+            <center><h2>EMPLEADOS Y SUS SERVICIOS</h2>
             </center>
             <div class="row pt-2">
                 <div class="col-12">

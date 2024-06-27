@@ -85,12 +85,7 @@ public class GananciasDia extends HttpServlet{
                         html += "<td>" + objAutor.getFechaPago() + "</td>";
                          html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
                           html += "<td>" + objAutor.getServicio().getPrecio() + "</td>";
-                        
-                       
 
-                        html += "<td>";
-                        
-                        html += "</td>";
                         html += "</tr>";
                     }
                     html += "</tbody\n>"
