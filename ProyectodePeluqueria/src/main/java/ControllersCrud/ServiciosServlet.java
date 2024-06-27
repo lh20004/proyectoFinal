@@ -56,7 +56,8 @@ public class ServiciosServlet extends HttpServlet {
                     servicio.setServicio(req.getParameter("servicio"));
                     servicio.setDescripcion(req.getParameter("descripcion"));
                     servicio.setPrecio(Double.parseDouble(req.getParameter("precio")));
-                    servicio.setEstado(req.getParameter("estado"));
+                    String estado= req.getParameter("estado");
+                    servicio.setEstado(estado);
                     System.out.println("autor filtro entró" + servicio.getIdServicio());
 
                     resultado_insert = oa.insertServicio(servicio);

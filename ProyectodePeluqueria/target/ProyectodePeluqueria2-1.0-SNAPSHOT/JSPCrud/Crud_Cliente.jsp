@@ -40,8 +40,8 @@
                     <div class="page-content-wrapper">
                         <div class="container-fluid">
                             <div class="row mb-3">
-                                <div class="col-12">
-                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                <div class="col-12"class="btn btn-secondary">
+                                    <a id="regresar"  class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -106,50 +106,70 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nombre</label>
-                                            <input type="text" autocomplete="off" name="nombrecliente" maxlength="60"
-                                                   data-parsley-error-message="Campo requerido" id="nombrecliente"
+                                            <label for="nombrecliente">Nombre</label>
+                                            <input type="text" autocomplete="off" name="nombrecliente" maxlength="50"
+                                                   pattern="[A-Za-z\s]{3,50}" 
+                                                   data-parsley-error-message="El nombre debe contener solo letras y un minimo de 3 caracteres" 
+                                                   id="nombrecliente"
                                                    class="form-control"
-                                                   required placeholder="Ingrese el nombre"/>
+                                                   required placeholder="Ingrese el nombre" 
+                                                   title="El nombre debe contener solo letras y un minimo de 3 caracteres"/>
                                         </div>
+
+
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Apellidos</label>
-                                            <input type="text" autocomplete="off" name="apellidocliente" maxlength="35"
-                                                   data-parsley-error-message="Campo requerido" id="apellidocliente"
+                                            <label for="apellidocliente">Apellidos</label>
+                                            <input type="text" autocomplete="off" name="apellidocliente" maxlength="50"
+                                                   pattern="[A-Za-z\s]{3,50}" 
+                                                   data-parsley-error-message="El apellido debe contener solo letras y un minimo de 3 caracteres." 
+                                                   id="apellidocliente"
                                                    class="form-control"
-                                                   required placeholder="Ingrese el apellido "/>
+                                                   required placeholder="Ingrese el apellido" 
+                                                   title="El apellido debe contener solo letras y un minimo de 3 caracteres."/>
                                         </div>
+
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Telefono</label>
-                                            <input type="text" autocomplete="off" name="telefono" maxlength="40"
-                                                   data-parsley-error-message="Campo requerido" id="telefono"
+                                            <label for="telefono">Teléfono</label>
+                                            <input type="text" autocomplete="off" name="telefono" maxlength="8"
+                                                   pattern="[0-9]{8}"
+                                                   data-parsley-error-message="El teléfono debe contener exactamente 8 dígitos." 
+                                                   id="telefono"
                                                    class="form-control"
-                                                   required placeholder="Ingrese un telefono "/>
+                                                   required placeholder="Ingrese un teléfono de 8 dígitos" 
+                                                   title="El teléfono debe contener exactamente 8 dígitos."/>
                                         </div>
+
                                     </div> 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Correo</label>
-                                            <input type="email" autocomplete="off" name="correo" maxlength="40"
-                                                   data-parsley-error-message="Campo requerido" id="correo"
+                                            <label for="correo">Correo</label>
+                                            <input type="email" autocomplete="off" name="correo" maxlength="50"
+                                                   data-parsley-error-message="Ingrese un correo válido." 
+                                                   id="correo"
                                                    class="form-control"
-                                                   required placeholder="Ingrese un correo"/>
+                                                   required placeholder="Ingrese un correo válido" 
+                                                   title="Ingrese un correo válido."/>
                                         </div>
+
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Contraseña</label>
-                                            <input type="password"  autocomplete="off" name="contrasenia" maxlength="40"
-                                                   data-parsley-error-message="Campo requerido" id="contrasenia"
+                                            <label for="contrasenia">Contraseña</label>
+                                            <input type="password" autocomplete="off" name="contrasenia" maxlength="50"
+                                                   pattern=".{4,50}" 
+                                                   data-parsley-error-message="La contraseña debe tener entre 4 y 50 caracteres." 
+                                                   id="contrasenia"
                                                    class="form-control"
-                                                   required placeholder="Ingrese una contraseña"/>
+                                                   required placeholder="Ingrese una contraseña" 
+                                                   title="La contraseña debe tener entre 4 y 50 caracteres."/>
                                         </div>
+
                                     </div>
 
                                 </div>
