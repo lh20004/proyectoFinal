@@ -65,3 +65,12 @@ function mostrarError(mensaje) {
         document.getElementById('consultar_datos').value = 'por_mes';
     }
 }
+
+$(document).ready(function() {
+    $('#regresar').click(function(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+        // Regresa a la página anterior en el historial del navegador
+        window.history.back();
+    });
+});
