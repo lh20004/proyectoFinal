@@ -3,10 +3,11 @@ Document : Registro
 Created on : 15 mar. 2024, 18:47:38
 Author : Jonathan Flores
 --%>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <link rel="stylesheet" href="../css/registro.css" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@ Author : Jonathan Flores
     <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
 </head>
 <body>
-    <!-- Botón de "Volver al menú" con una flecha -->
+    <!-- BotÃ³n de "Volver al menÃº" con una flecha -->
     <div class="tools-left">
         <a href="../Menu_Cliente.html" class="back-button">Regresar</a>
     </div>
@@ -34,18 +35,18 @@ Author : Jonathan Flores
                         <form id="form1" onsubmit="return validarFormulario()" style="background-color: #b2d8d8">
                             <div class="form-group">
                                 <label for="nombre" style="color: black">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[A-Za-z\s]{3,}" title="Ingrese un nombre válido (mínimo 3 caracteres)">
+                                <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[A-Za-z\s]{3,}" title="Ingrese un nombre vÃ¡lido (mÃ­nimo 3 caracteres)">
                             </div>
                             <div class="form-group">
                                 <label for="apellido" style="color: black">Apellido:</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required pattern="[A-Za-z\s]{3,}" title="Ingrese un apellido válido (mínimo 3 caracteres)">
+                                <input type="text" class="form-control" id="apellido" name="apellido" required pattern="[A-Za-z\s]{3,}" title="Ingrese un apellido vÃ¡lido (mÃ­nimo 3 caracteres)">
                             </div>
                             <div class="form-group">
-                                <label for="telefono" style="color: black">Teléfono:</label>
-                                <input type="text" class="form-control" id="telefono" name="telefono" maxlength="8" required pattern="\d{8}" title="El teléfono debe tener exactamente 8 dígitos numéricos">
+                                <label for="telefono" style="color: black">TelÃ©fono:</label>
+                                <input type="text" class="form-control" id="telefono" name="telefono" maxlength="8" required pattern="\d{8}" title="El telÃ©fono debe tener exactamente 8 dÃ­gitos numÃ©ricos">
                             </div>
                             <div class="form-group">
-                                <label for="correo" style="color: black">Correo electrónico:</label>
+                                <label for="correo" style="color: black">Correo electrÃ³nico:</label>
                                 <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
                             <div class="form-group">
