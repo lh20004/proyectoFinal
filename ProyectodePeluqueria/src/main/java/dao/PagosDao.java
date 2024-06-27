@@ -1,4 +1,3 @@
-
 package dao;
 
 import conexion.Conexion;
@@ -12,7 +11,7 @@ import modelo.Reserva;
 import modelo.Servicio;
 
 public class PagosDao {
-    
+
     Conexion conexion = null;
     private ArrayList<Pago> listpago;
     private ResultSet rs = null;
@@ -22,6 +21,11 @@ public class PagosDao {
     private Servicio servi;
     private Cliente cliente;
     private Reserva reserva;
-    
-    
+
+    private static final String MOSTRAR_CLIENTES = "SELECT CONCAT(c.nombre, ' ', c.apellido) AS Cliente \n"
+            + "FROM cliente AS c\n"
+            + "INNER JOIN reserva AS r ON c.idcliente = r.idcliente\n"
+            + "WHERE r.estado = 'confirmada' AND r.fechareserva = CURRENT_DATE;";
+
+    private static final String MOSTRAR_RESERVAS_CONFIRMADAS = "";
 }
