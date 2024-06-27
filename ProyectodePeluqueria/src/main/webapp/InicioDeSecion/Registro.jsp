@@ -7,7 +7,7 @@ Author : Jonathan Flores
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <link rel="stylesheet" href="../css/registro.css" type="text/css"/>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Registro de Cliente</title>
@@ -17,6 +17,7 @@ Author : Jonathan Flores
               rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
               crossorigin="anonymous">
         <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../css/registro.css" type="text/css"/>
     </head>
     <body>
         <!-- Botón de "Volver al menú" con una flecha -->
