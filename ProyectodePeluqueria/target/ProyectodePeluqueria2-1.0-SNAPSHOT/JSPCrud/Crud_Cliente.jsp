@@ -42,7 +42,7 @@
                         <div class="container-fluid">
                             <div class="row mb-3">
                                 <div class="col-12">
-                                    <a href="../Menu.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
                                 </div>
                             </div>
                             <div class="row">

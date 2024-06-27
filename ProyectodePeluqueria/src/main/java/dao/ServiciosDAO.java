@@ -18,6 +18,7 @@ import java.sql.Date;
 import java.util.List;
 import modelo.Pago;
 import modelo.Servicio;
+
 public class ServiciosDAO {
 
     Conexion conexion = null;
@@ -25,10 +26,10 @@ public class ServiciosDAO {
     private ResultSet rs = null;
     private PreparedStatement ps;
     private Connection accesoDB;
-     private  ArrayList<Servicio> resultados;
-      private  ArrayList<Pago> resultadosp;
-      private Pago pag;
-      private Servicio serv;
+    private ArrayList<Servicio> resultados;
+    private ArrayList<Pago> resultadosp;
+    private Pago pag;
+    private Servicio serv;
 
     private static final String INSERT_SERVICIO = "INSERT INTO servicio(servicio,"
             + " descripcion, precio, estado) VALUES (?,?,?,?)";
@@ -41,54 +42,47 @@ public class ServiciosDAO {
     private static final String SELECT_SERVICIO_BY_ID = "SELECT * FROM servicio WHERE idservicio =?";
 
     private static final String SELECT_ALL_SERVICIOS = "SELECT idservicio, servicio, descripcion, precio, estado FROM servicio ORDER BY idservicio ASC;";
-    
-   private static final String SERVICIOS_REALIZADOS = 
-         "SELECT s.servicio AS nombre_servicio, " +
-             "COUNT(*) AS cantidad_realizaciones " +
-             "FROM servicio s " +
-             "JOIN detallereserva dr ON s.idservicio = dr.idservicio " +
-             "JOIN reserva r ON dr.idreserva = r.idreserva " +
-             "JOIN pago p ON r.idcliente = p.idcliente " +
-             "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
-             "WHERE r.fechareserva = '2024-06-01' " + 
-             "GROUP BY s.servicio;";
-   
-   private static final String TOTAL_REALIZADOS = "SELECT COUNT(*) AS total_realizaciones " +
-                       "FROM servicio s " +
-                       "JOIN detallereserva dr ON s.idservicio = dr.idservicio " +
-                       "JOIN reserva r ON dr.idreserva = r.idreserva " +
-                       "JOIN pago p ON r.idcliente = p.idcliente " +
-                       "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio " +
-                       "WHERE r.fechareserva = '2024-06-01';";
-         
-   
-   
-   
-   private static final String GANANCIAS_DEL_DIA = "SELECT "
-                + "p.fechapago AS fecha, "
-                + "s.servicio AS servicio, "
-                + "s.precio AS precio_servicio "
-               
-                + "FROM "
-                + "servicio s "
-                + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
-                + "JOIN pago p ON dp.idpago = p.idpago "
-                + "WHERE "
-                + "p.fechapago = '2024-06-01' "
-                + "GROUP BY "
-                + "p.fechapago,s.precio, s.servicio;";
-   
-   private static final String TOTAL="SELECT "
-                
-                + "SUM(s.precio) AS total_ganancias "
-                + "FROM "
-                + "servicio s "
-                + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
-                + "JOIN pago p ON dp.idpago = p.idpago "
-                + "WHERE "
-                + "p.fechapago = '2024-06-01' "
-                + "GROUP BY "
-                + "p.fechapago;";
+
+    private static final String SERVICIOS_REALIZADOS = "SELECT s.servicio AS nombre_servicio,\n"
+            + "             COUNT(*) AS cantidad_realizaciones \n"
+            + "             FROM servicio s\n"
+            + "             JOIN detallereserva dr ON s.idservicio = dr.idservicio\n"
+            + "             JOIN reserva r ON dr.idreserva = r.idreserva\n"
+            + "             WHERE r.fechareserva = '2024-06-01' AND r.estado = 'cancelado'\n"
+            + "             GROUP BY s.servicio;";
+
+    private static final String TOTAL_REALIZADOS = "SELECT COUNT(*) AS total_realizaciones "
+            + "FROM servicio s "
+            + "JOIN detallereserva dr ON s.idservicio = dr.idservicio "
+            + "JOIN reserva r ON dr.idreserva = r.idreserva "
+            + "JOIN pago p ON r.idcliente = p.idcliente "
+            + "LEFT JOIN detallepago dp ON p.idpago = dp.idpago AND dr.idservicio = dp.idservicio "
+            + "WHERE r.fechareserva = '2024-06-01';";
+
+    private static final String GANANCIAS_DEL_DIA = "SELECT "
+            + "p.fechapago AS fecha, "
+            + "s.servicio AS servicio, "
+            + "s.precio AS precio_servicio "
+            + "FROM "
+            + "servicio s "
+            + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
+            + "JOIN pago p ON dp.idpago = p.idpago "
+            + "WHERE "
+            + "p.fechapago = '2024-06-01' "
+            + "GROUP BY "
+            + "p.fechapago,s.precio, s.servicio;";
+
+    private static final String TOTAL = "SELECT "
+            + "SUM(s.precio) AS total_ganancias "
+            + "FROM "
+            + "servicio s "
+            + "JOIN detallepago dp ON s.idservicio = dp.idservicio "
+            + "JOIN pago p ON dp.idpago = p.idpago "
+            + "WHERE "
+            + "p.fechapago = '2024-06-01' "
+            + "GROUP BY "
+            + "p.fechapago;";
+
     public ServiciosDAO() {
         this.conexion = new Conexion();
     }
@@ -102,7 +96,7 @@ public class ServiciosDAO {
             this.conexion.getConexion();
             this.accesoDB = conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(INSERT_SERVICIO);
-           
+
             this.ps.setString(1, servicio.getServicio());
             this.ps.setString(2, servicio.getDescripcion());
             this.ps.setDouble(3, servicio.getPrecio());
@@ -135,7 +129,7 @@ public class ServiciosDAO {
             Servicio obj = null;
             while (this.rs.next()) {
                 obj = new Servicio();
-               obj.setIdServicio(rs.getInt("idservicio"));
+                obj.setIdServicio(rs.getInt("idservicio"));
                 obj.setServicio(rs.getString("servicio"));
                 obj.setDescripcion(rs.getString("descripcion"));
                 obj.setPrecio(rs.getDouble("precio"));
@@ -149,7 +143,7 @@ public class ServiciosDAO {
         }
         return this.serviciosList;
     }
-    
+
     public ArrayList<Servicio> selecttodosServicios() throws SQLException, ClassNotFoundException {
 
         this.serviciosList = new ArrayList();
@@ -162,7 +156,7 @@ public class ServiciosDAO {
             Servicio obj = null;
             while (this.rs.next()) {
                 obj = new Servicio();
-               obj.setIdServicio(rs.getInt("idservicio"));
+                obj.setIdServicio(rs.getInt("idservicio"));
                 obj.setServicio(rs.getString("servicio"));
                 obj.setDescripcion(rs.getString("descripcion"));
                 obj.setPrecio(rs.getDouble("precio"));
@@ -184,7 +178,7 @@ public class ServiciosDAO {
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(UPDATE_SERVICIO);
-           
+
             this.ps.setString(1, servicio.getDescripcion());
             this.ps.setDouble(2, servicio.getPrecio());
             this.ps.setString(3, servicio.getEstado());
@@ -252,134 +246,107 @@ public class ServiciosDAO {
         return resultado;
 
     }
-    
+
     public ArrayList<Servicio> obtenerTotalServiciosHoy(Integer estado, String quien) throws SQLException {
-     this.resultados=new ArrayList();
-     
-        
+        this.resultados = new ArrayList();
+
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(SERVICIOS_REALIZADOS);
             this.rs = ps.executeQuery();
 
-            Servicio obj= null;
+            Servicio obj = null;
             while (rs.next()) {
-                obj= new Servicio();
+                obj = new Servicio();
                 obj.setServicio(rs.getString("nombre_servicio"));
                 obj.setTotalServicios(rs.getInt("cantidad_realizaciones"));
                 resultados.add(obj);
-                }
-             
+            }
+
             this.conexion.cerrarConexiones();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return this.resultados;
-        
-       
+
     }
-    
-    
-    
-        
-    
+
     public ArrayList<Pago> obtenerGananciasDia(Integer estado, String quien) throws SQLException {
-     this.resultadosp=new ArrayList();
-     
+        this.resultadosp = new ArrayList();
 
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(GANANCIAS_DEL_DIA);
             this.rs = ps.executeQuery();
 
-            Servicio obj2= null;
-            Pago obj=null;
+            Servicio obj2 = null;
+            Pago obj = null;
             while (rs.next()) {
-                obj=new Pago();
-                obj2=new Servicio();
-                
+                obj = new Pago();
+                obj2 = new Servicio();
+
                 obj.setFechaPago(rs.getDate("fecha"));
                 obj2.setServicio(rs.getString("servicio"));
                 obj2.setPrecio(rs.getDouble("precio_servicio"));
                 obj.setServicio(obj2);
                 //obj.setTotal(rs.getDouble("ganancia_generada"));
                 resultadosp.add(obj);
-                }
-             
+            }
+
             this.conexion.cerrarConexiones();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return this.resultadosp;
-        
-       
+
     }
-    
+
     public Pago obtenerTotalDia(Integer estado, String quien) throws SQLException {
-     this.pag=new Pago();
-     
+        this.pag = new Pago();
 
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(TOTAL);
             this.rs = ps.executeQuery();
 
-           
-            
             while (rs.next()) {
-               
-               
-                
-                
-               
-                
-               Double tot=rs.getDouble("total_ganancias");
+
+                Double tot = rs.getDouble("total_ganancias");
                 pag.setTotal(tot);
-                }
-             
+            }
+
             this.conexion.cerrarConexiones();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return pag;
-        
-       
+
     }
-    
+
     public Servicio TotalServiciosHoy(Integer estado, String quien) throws SQLException {
-     this.serv=new Servicio();
-     
-        
+        this.serv = new Servicio();
+
         try {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(TOTAL_REALIZADOS);
             this.rs = ps.executeQuery();
 
-            
             while (rs.next()) {
-                
-                
-                int total=rs.getInt("total_realizaciones");
-               serv.setTotalServicios(total);
-                }
-             
+
+                int total = rs.getInt("total_realizaciones");
+                serv.setTotalServicios(total);
+            }
+
             this.conexion.cerrarConexiones();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return this.serv;
-        
-       
-    }
-    
-    
-    }
-    
-    
-    
 
+    }
 
+}

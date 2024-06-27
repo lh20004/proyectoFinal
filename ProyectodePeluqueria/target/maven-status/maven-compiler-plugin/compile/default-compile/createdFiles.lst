@@ -19,6 +19,7 @@ modelo\Empleado.class
 ControllersConsultas\GananciasController.class
 ControllersConsultas\ServicioMasSolicitadoServlet.class
 ControllersConsultas\ReservasServlet.class
+ControllersCrud\ControladorPagos.class
 modelo\Reserva.class
 ControllerReservaCliente\ServicioServlet.class
 ControllersConsultas\EmpleadosServiciosServlet.class

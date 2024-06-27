@@ -31,7 +31,4 @@ public class Reserva {
    private Empleado empleado;
    private Servicio servicio;
    private ArrayList<Servicio> listaServicio;
-   
-   
-   
 }

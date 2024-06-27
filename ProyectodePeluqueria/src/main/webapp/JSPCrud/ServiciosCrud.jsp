@@ -55,6 +55,11 @@
                     ================== -->
                     <div class="page-content-wrapper">
                         <div class="container-fluid">
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6 col-xl-6">
                                     <div class="mini-stat clearfix bg-white">
