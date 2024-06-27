@@ -153,7 +153,6 @@ public class ReservaServlet extends HttpServlet {
 
                     // Conversión de parámetros a tipos correctos
                     int empleadoId = Integer.parseInt(empleadoParam);
-                    //int servicioId = Integer.parseInt(servicioParam);
 
                     // Conversión de String a Date
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -168,6 +167,16 @@ public class ReservaServlet extends HttpServlet {
                         jsonResponse.put("mensaje", "La fecha de la reserva no puede ser anterior a la fecha actual.");
                         response.getWriter().write(jsonResponse.toString());
                         System.out.println("Error: La fecha de la reserva no puede ser anterior a la fecha actual.");
+                        break;
+                    }
+
+                    // Verificar si el cliente ya tiene una reserva para el mismo día
+                    ReservaDao_1 dao = new ReservaDao_1();
+                    if (dao.existeReservaClienteEnFecha(clienteId, fechaReserva)) {
+                        jsonResponse.put("resultado", "error");
+                        jsonResponse.put("mensaje", "Ya existe una reserva para el cliente en la misma fecha.");
+                        response.getWriter().write(jsonResponse.toString());
+                        System.out.println("Error: Ya existe una reserva para el cliente en la misma fecha.");
                         break;
                     }
 
@@ -203,7 +212,7 @@ public class ReservaServlet extends HttpServlet {
                         response.getWriter().write(jsonResponse.toString());
                         System.out.println("Error: El intervalo de tiempo debe ser de al menos 30 minutos.");
                         break;
-                    }else if (diferenciaTiempo > 7200000) { // 7200000 milisegundos = 2 horas
+                    } else if (diferenciaTiempo > 7200000) { // 7200000 milisegundos = 2 horas
                         jsonResponse.put("resultado", "error");
                         jsonResponse.put("mensaje", "El intervalo de tiempo no debe exceder las 2 horas.");
                         response.getWriter().write(jsonResponse.toString());
@@ -229,8 +238,6 @@ public class ReservaServlet extends HttpServlet {
                     reserva.setEstado("Confirmada");
 
                     System.out.println("Datos de la reserva a insertar: " + reserva);
-
-                    ReservaDao_1 dao = new ReservaDao_1();
 
                     if (dao.existeReservaDuplicada(empleadoId, fechaReserva, horaInicio, horaFin)) {
                         jsonResponse.put("resultado", "error");
