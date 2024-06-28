@@ -86,13 +86,13 @@
                     </div>
                 </div>
             </div>
-        </div>
-<!-- Botón de regreso -->
+            <!-- Botón de regreso -->
             <div class="row pt-3">
                 <div class="col-12">
                     <button onclick="goBack()" class="btn btn-primary">Regresar</button>
                 </div>
             </div>
+        </div>
 
 
     </body>
