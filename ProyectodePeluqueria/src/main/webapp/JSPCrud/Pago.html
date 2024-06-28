@@ -7,6 +7,7 @@
         <meta name="author" content="htmlGenerator">
         <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet">
         <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
         
@@ -31,26 +32,27 @@
             <!--<div class=e124_6>
                 <span  class="e124_5">EXTRAS</span>
             </div>-->
-            <select class="e124_5 e124_6">
+            <select class="e124_5 e124_6" id="cServicios">
                 <option>EXTRAS</option>
             </select>
             <span  class="e126_19">Clientes</span>
             <!--<div class=e124_15>
                 <span  class="e124_14">PAGAR</span>
             </div>-->
-            <input type="button" value="PAGAR" class="e124_14 e124_15">
+            <input type="button" value="PAGAR" class="e124_14 e124_15" id="btnPagar">
             <!--<div class=e124_17>
                 <span  class="e124_18">INICIO</span>
             </div>-->
             <input type="button" value="INICIO" class="e124_18 e124_17">
-            <span  class="e124_16">Sub Total: 0$</span>
+            <span  class="e124_16" id="lTotal">Total: 0$</span>
             <div  class="e124_7">
                 <table id="tabla">
                     <thead>
                         <tr>
-                            <th>Data1</th>
-                            <th>Data2</th>
-                            <th>Data3</th>
+                            <th>ID</th>
+                            <th>FECHA</th>
+                            <th>SERVICIO</th>
+                            <th>PRECIO</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,11 +63,14 @@
             <!--<div class=e124_11>
                 <span  class="e124_10">Clientes</span>
             </div>-->
-            <select class="e124_10 e124_11">
+            <select class="e124_10 e124_11" id="cClientes">
                 <option>Clientes</option>
             </select>
             <span  class="e126_20">Extras</span>
         </div>
+        <script src="../entidades/Cliente.js"></script>
+        <script src="../entidades/Servicio.js"></script>
+        <script src="../entidades/Reserva.js"></script>
         <script src="../JsCrud/JSPago.js"></script>
     </body>
 </html>

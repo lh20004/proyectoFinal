@@ -30,21 +30,87 @@ public class PagosDao {
             + "WHERE r.estado = 'confirmada' AND r.fechareserva = CURRENT_DATE;";
 
     private static final String MOSTRAR_RESERVAS_CONFIRMADAS = "SELECT r.idreserva, CONCAT(c.nombre, ' ', c.apellido) AS Cliente,r.fechareserva AS fecha, s.servicio,\n"
-            + "s.precio\n"
+            + "s.precio, s.idservicio\n"
             + "FROM detallereserva dr \n"
             + "JOIN reserva r ON dr.idreserva = r.idreserva\n"
             + "JOIN cliente c ON r.idcliente = c.idcliente\n"
             + "JOIN servicio s ON dr.idservicio = s.idservicio\n"
             + "WHERE r.estado = 'confirmada' AND c.idcliente = ? AND r.fechareserva= CURRENT_DATE;";
 
-    private static final String MOSTRAR_SERVICIOS = "SELECT s.idservicio, s.servicio FROM servicio AS s ORDER BY s.idservicio ASC;";
+    private static final String MOSTRAR_SERVICIOS = "SELECT s.idservicio, s.servicio, s.precio FROM servicio AS s ORDER BY s.idservicio ASC;";
 
     private static final String INSERTAR_EXTRAS = "INSERT INTO detallereserva(idreserva, idservicio) VALUES (?,?);";
 
-    private static final String PAGOS = "INSERT INTO pago(idcliente, fechapago, total) VALUES (?,?,?)";
+    private static final String PAGOS = "INSERT INTO pago(idcliente, fechapago, total) VALUES (?,?,?);";
+    
+    private static final String CAMBIAR_ESTADO = "update reserva set estado = 'cancelado' where idreserva = ?;";
 
+    private static final String ULTIMO_PAGO = "select * from pago where idpago = (select max(idpago) from pago);";
+    
+    private static final String INSERTAR_DETALLE_PAGO = "insert into detallepago (idpago, idservicio) values (?,?);";
+    
     public PagosDao() {
         this.conexion = new Conexion();
+    }
+    
+    public boolean INSERTAR_DETALLE(int idpago, int idservicio){
+        try{
+            this.conexion = new Conexion();
+            this.conexion.getConexion();
+            this.accesoDB = conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(INSERTAR_DETALLE_PAGO);
+            
+            this.ps.setInt(1, idpago);
+            this.ps.setInt(2, idservicio);
+            
+            this.ps.executeUpdate();
+            this.conexion.cerrarConexiones();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
+    
+    public Pago ULTIMO_PAGO(){
+        Pago pago = null;
+        try{
+            this.conexion = new Conexion();
+            this.conexion.getConexion();
+            this.accesoDB = conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(ULTIMO_PAGO);
+            
+            this.rs = this.ps.executeQuery();
+            while(this.rs.next()){
+                pago = new Pago();
+                pago.setIdPago(rs.getInt("idpago"));
+                Cliente c = new Cliente();
+                c.setIdCliente(rs.getInt("idcliente"));
+                pago.setCliente(c);
+                pago.setFechaPago(rs.getDate("fechapago"));
+                pago.setTotal(rs.getDouble("total"));
+            }
+            this.conexion.cerrarConexiones();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return pago;
+    }
+    
+    public boolean CAMBIAR_ESTADO_RESERVA(Reserva r){
+        try{
+            this.conexion = new Conexion();
+            this.conexion.getConexion();
+            this.accesoDB = conexion.getConexion();
+            this.ps = this.accesoDB.prepareStatement(CAMBIAR_ESTADO);
+            
+            this.ps.setInt(1, r.getIdReserva());
+            this.ps.executeUpdate();
+            
+            this.conexion.cerrarConexiones();
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     public String insertPago(Pago pagito) throws SQLException, ClassNotFoundException {
@@ -53,11 +119,10 @@ public class PagosDao {
         int resultado_insertar;
         try {
             this.conexion = new Conexion();
-            this.conexion.getConexion();
             this.accesoDB = conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(PAGOS);
 
-            this.ps.setObject(1, pagito.getCliente());
+            this.ps.setInt(1, pagito.getCliente().getIdCliente());
             this.ps.setDate(2, pagito.getFechaPago());
             this.ps.setDouble(3, pagito.getTotal());
 
@@ -117,7 +182,7 @@ public class PagosDao {
                 ob = new Cliente();
                 ob.setIdCliente(rs.getInt("idcliente"));
                 ob.setNombre(rs.getString("Cliente"));
-
+                
                 this.listCliente.add(ob);
             }
             this.conexion.cerrarConexiones();
@@ -147,6 +212,7 @@ public class PagosDao {
                 resev.setCliente(cliente);
                 resev.setFechaReserva(rs.getDate("fecha"));
                 detalle.setReserva(resev);
+                servi.setIdServicio(rs.getInt("idservicio"));
                 servi.setServicio(rs.getString("servicio"));
                 servi.setPrecio(rs.getDouble("precio"));
                 detalle.setServicio(servi);
@@ -167,11 +233,12 @@ public class PagosDao {
             this.accesoDB = this.conexion.getConexion();
             this.ps = this.accesoDB.prepareStatement(MOSTRAR_SERVICIOS);
             this.rs = ps.executeQuery();
-
-            Servicio servi = new Servicio();
+            
             while (this.rs.next()) {
+                Servicio servi = new Servicio();
                 servi.setIdServicio(rs.getInt("idservicio"));
                 servi.setServicio(rs.getString("servicio"));
+                servi.setPrecio(rs.getDouble("precio"));
 
                 this.listservi.add(servi);
             }
