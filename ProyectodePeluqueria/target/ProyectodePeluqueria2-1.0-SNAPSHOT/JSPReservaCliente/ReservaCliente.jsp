@@ -7,11 +7,11 @@
         <!-- Incluye los estilos de DataTables y SweetAlert2 -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="./css/cssReservasCliente.css" rel="stylesheet">
+        <link href="../css/mantenimiento.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <h1>Lista de Reservas</h1>
+            <center><h1>LISTA RESERVAS</h1></center>
 
             <!-- Botón para agregar reservación -->
             <div class="d-flex justify-content-end my-3">
@@ -37,7 +37,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Agregar Reservación</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                         </div>
                         <div class="modal-body">
                             <form name="formulario_reservacion" id="formulario_reservacion">

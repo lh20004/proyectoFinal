@@ -121,13 +121,13 @@
 </head>
 <body class="image">
     <div class="container">
-        <h1 class="text-center">Ganancias</h1>
+        <h1 class="text-center">GANANCIAS POR DÍA, SEMANA Y MES</h1>
         <div class="tools-left">
-            <a href="../MenuAdmin.html" class="back-button">←</a>
+            <a id="regresar" class="back-button">←</a>
         </div>
        
         <div class="tools-right">
-            <span>User</span>
+            <span></span>
         </div>
         
         <div class="filter-buttons">
