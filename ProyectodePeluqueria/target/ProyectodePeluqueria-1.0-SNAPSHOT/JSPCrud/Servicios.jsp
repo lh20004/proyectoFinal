@@ -29,9 +29,9 @@
 
                     // Validación del nombre
                     var nombre = $("#servicio").val();
-                    if (nombre.length < 10) {
+                    if (nombre.length < 8) {
                         isValid = false;
-                        errorMessage += "El nombre debe tener al menos 10 caracteres.<br>";
+                        errorMessage += "El nombre debe tener al menos 8 caracteres.<br>";
                     } else if (/\d/.test(nombre)) {
                         isValid = false;
                         errorMessage += "El nombre no puede contener números.<br>";
@@ -39,9 +39,9 @@
 
                     // Validación de la descripción
                     var descripcion = $("#descripcion").val();
-                    if (descripcion.length < 25) {
+                    if (descripcion.length < 15) {
                         isValid = false;
-                        errorMessage += "La descripción debe tener al menos 25 caracteres.<br>";
+                        errorMessage += "La descripción debe tener al menos 15 caracteres.<br>";
                     } else if (/\d/.test(descripcion)) {
                         isValid = false;
                         errorMessage += "La descripción no puede contener números.<br>";
@@ -49,9 +49,9 @@
 
                     // Validación del precio
                     var precio = $("#precio").val();
-                    if (!$.isNumeric(precio) || precio < 5) {
+                    if (!$.isNumeric(precio) || precio < 5 || precio >50) {
                         isValid = false;
-                        errorMessage += "El precio debe ser un número y no puede ser menor de 5.<br>";
+                        errorMessage += "El precio debe ser un número y no puede ser menor de 5 y mayor de 50.<br>";
                     }
 
                     // Validación del estado
