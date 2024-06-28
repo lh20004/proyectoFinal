@@ -48,9 +48,17 @@
         </style>
     </head>
     <body class="imagen">
+
         <header class="text-center">
             <h1>Servicios Disponibles</h1>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary" style="background-color: #00796b">Regresar</button>
+                </div>
+            </div>
         </header>
+
+
         <main class="container mt-4">
             <div class="table-responsive">
                 <table id="tabla" class="table table-bordered table-striped">
@@ -69,4 +77,9 @@
             </div>
         </main>
     </body>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </html>
