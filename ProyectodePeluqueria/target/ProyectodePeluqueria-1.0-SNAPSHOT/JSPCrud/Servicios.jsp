@@ -80,13 +80,22 @@
                     });
                 });
             });
+            
+            $(document).ready(function() {
+            $('#regresar').click(function(event) {
+             event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+            // Regresa a la página anterior en el historial del navegador
+            window.history.back();
+            });
+         });
         </script>
     </head>
     <body>
         <div class="container">
             <div class="row mb-3">
                 <div class="col-12">
-                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                     <a id="regresar" class="btn btn-secondary"style="background-color: #b2d8d8; color: black">Regresar</a>
                 </div>
             </div>
             <center>
