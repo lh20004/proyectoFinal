@@ -81,8 +81,8 @@ public class controladorInicioDeSecion extends HttpServlet {
 //        processRequest(request, response);
 
         String empleado[] = {"Admin","Gerente","Empleado","Cajero"};
-        String url[] = {"../MenuAdmin.html","../Menu_Gerente.html","../Menu_Empleado.html","../MenuCajero.html"};
-        String urlCliente = "../Menu_Cliente.html";
+        String url[] = {"./MenuAdmin.html","./Menu_Gerente.html","./Menu_Empleado.html","./MenuCajero.html"};
+        String urlCliente = "./Menu_Cliente.html";
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
