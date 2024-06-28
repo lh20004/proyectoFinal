@@ -29,7 +29,7 @@ public class EmpleadoComboDao {
         String query = "SELECT e.idempleado, e.nombre, e.telefono, e.dui, e.estado, e.correo, e.clave, c.cargo "
                 + "FROM empleado e "
                 + "JOIN cargo c ON e.idcargo = c.idcargo "
-                + "WHERE c.cargo = 'Empleado' AND c.estado = 'disponible'";
+                + "WHERE c.cargo = 'Empleado' AND e.estado = 'disponible'";
 
         try ( Connection conn = conexion.getConexion();  PreparedStatement ps = conn.prepareStatement(query);  ResultSet rs = ps.executeQuery()) {
 
