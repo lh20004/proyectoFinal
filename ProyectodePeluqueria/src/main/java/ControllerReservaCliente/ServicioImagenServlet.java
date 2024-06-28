@@ -49,7 +49,7 @@ public class ServicioImagenServlet extends HttpServlet {
             jsonimage.put("id", serv.getIdServicio());
             jsonimage.put("servicio", serv.getServicio());
             jsonimage.put("descripcion", serv.getDescripcion());
-            jsonimage.put("precio", serv.getPrecio());
+            jsonimage.put("precio",  "$" + serv.getPrecio());
             jsonimage.put("estado", serv.getEstado());
          
             array.add(jsonimage);

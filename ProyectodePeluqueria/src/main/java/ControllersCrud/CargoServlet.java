@@ -49,41 +49,42 @@ public class CargoServlet extends HttpServlet {
         }
 
         switch (filtro) {
-            case "si_registro":
-                JSONArray array_autores = new JSONArray();
-                JSONObject json_autores = new JSONObject();
-                String resultado_insert = "";
-                Cargo cargo = new Cargo();
-                try {
-                    CargoDao oa = new CargoDao();
-//                    cargo.setIdcargo(req.getIntHeader("idcargo"));
-                    cargo.setCargo(req.getParameter("cargo"));
+    case "si_registro":
+    JSONArray array_autores = new JSONArray();
+    JSONObject json_autores = new JSONObject();
+    String resultado_insert = "";
+    Cargo cargo = new Cargo();
+    try {
+        CargoDao oa = new CargoDao();
+        cargo.setCargo(req.getParameter("cargo"));
 
-//                    System.out.println("autor filtro entró" + autor.getCodigoAutor());
-                    resultado_insert = oa.insertAutor(cargo);
-                    if (resultado_insert == "exito") {
+        if (oa.existeCargo(cargo.getCargo())) {
+            json_autores.put("resultado", "error");
+            json_autores.put("mensaje", "El cargo ya existe");
+        } else {
+            resultado_insert = oa.insertAutor(cargo);
+            if (resultado_insert.equals("exito")) {
+                json_autores.put("resultado", "exito");
+                json_autores.put("cargo", cargo.getCargo());
+            } else {
+                json_autores.put("resultado", "error");
+                json_autores.put("resultado_insertar", resultado_insert);
+            }
+        }
+    } catch (SQLException e) {
+        json_autores.put("resultado", "error_sql");
+        json_autores.put("error_mostrado", e.getMessage());
+        System.out.println("Error Code error:" + e.getErrorCode());
+        throw new RuntimeException();
+    } catch (ClassNotFoundException e) {
+        json_autores.put("resultado", "error_class");
+        json_autores.put("error_mostrado", e.getMessage());
+        throw new RuntimeException();
+    }
+    array_autores.put(json_autores);
+    resp.getWriter().write(array_autores.toString());
+    break;
 
-                        json_autores.put("resultado", "exito");
-//                        json_autores.put("idcargo", cargo.getIdcargo());
-                        json_autores.put("cargo", cargo.getCargo());
-                    } else {
-                        json_autores.put("resultado", "error");
-                        json_autores.put("resultado_insertar", resultado_insert);
-                    }
-
-                } catch (SQLException e) {
-                    json_autores.put("resultado", "error_sql");
-                    json_autores.put("error_mostrado", e.getMessage());
-                    System.out.println("Error Code error:" + e.getErrorCode());
-                    throw new RuntimeException();
-                } catch (ClassNotFoundException e) {
-                    json_autores.put("resultado", "error_class");
-                    json_autores.put("error_mostrado", e.getMessage());
-                    throw new RuntimeException();
-                }
-                array_autores.put(json_autores);
-                resp.getWriter().write(array_autores.toString());
-                break;
 
             case "si_consulta":
                 JSONArray array_autor = new JSONArray();

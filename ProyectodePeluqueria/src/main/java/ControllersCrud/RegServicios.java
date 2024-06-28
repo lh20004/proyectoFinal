@@ -140,7 +140,7 @@ public class RegServicios extends HttpServlet{
                          html += "<td>" + objAutor.getIdServicio() + "</td>";
                         html += "<td>" + objAutor.getServicio() + "</td>";
                         html += "<td>" + objAutor.getDescripcion() + "</td>";
-                        html += "<td>" + objAutor.getPrecio() + "</td>";
+                        html += "<td>" + "$" + objAutor.getPrecio() + "</td>";
                         html += "<td>" + objAutor.getEstado() + "</td>";
 
                         html += "<td>";

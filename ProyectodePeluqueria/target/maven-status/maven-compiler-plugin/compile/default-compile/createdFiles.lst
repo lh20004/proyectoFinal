@@ -35,7 +35,6 @@ ControllerReservaCliente\ServicioGetImganServlet.class
 dao\ServiciosDAO.class
 conexion\Conexion.class
 dao\ServicioMasSolicitadoDAO.class
-conexion\test.class
 dao\ServicioImagenDao.class
 ControllersCrud\ServiciosPago.class
 ControllerReservaCliente\ReservaServlet.class

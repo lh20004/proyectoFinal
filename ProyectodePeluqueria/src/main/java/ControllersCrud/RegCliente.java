@@ -156,7 +156,7 @@ public class RegCliente extends HttpServlet {
                         html += "<td>" + obj.getApellido() + "</td>";
                         html += "<td>" + obj.getTelefono() + "</td>";
                         html += "<td>" + obj.getCorreo() + "</td>";
-                        html += "<td>" + obj.getClave() + "</td>";
+                        html += "<td>" + "*********"+ "</td>";
                         html += "<td>";
                         html += "<div class='dropdown m-b-10'>";
                         html += "<button class='btn btn-secondary dropdown-toggle'" + "type='button' id ='dropdownMenuButton'"

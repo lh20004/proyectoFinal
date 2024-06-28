@@ -21,10 +21,11 @@ public class ReservacionesPagadasDAO {
     private Conexion conexion;
     private ArrayList<Reserva> ReservacionesPagadas;
 
-    private static final String SQL_CONSULTA = "SELECT cl.nombre AS nombre_cliente,re.estado AS estado_reserva\n" +
-"FROM  reserva re\n" +
-"INNER JOIN cliente cl ON re.idcliente = cl.idcliente\n" +
-"ORDER BY re.estado = 'confirmada' DESC";
+    private static final String SQL_CONSULTA = "SELECT cl.nombre AS nombre_cliente,re.estado AS estado_reserva\n"
+            + "FROM  reserva re\n"
+            + "INNER JOIN cliente cl ON re.idcliente = cl.idcliente\n"
+            + "WHERE re.estado = 'pagado'\n"
+            + "ORDER BY nombre_cliente DESC";
 
     public ReservacionesPagadasDAO() throws SQLException, ClassNotFoundException {
         this.conexion = new Conexion();
@@ -41,10 +42,10 @@ public class ReservacionesPagadasDAO {
 
             while (rs.next()) {
                 obj = new Reserva();
-            Cliente cl = new Cliente();
-               cl.setNombre(rs.getString("nombre_cliente"));
-               obj.setCliente(cl);
-               obj.setEstado(rs.getString("estado_reserva"));
+                Cliente cl = new Cliente();
+                cl.setNombre(rs.getString("nombre_cliente"));
+                obj.setCliente(cl);
+                obj.setEstado(rs.getString("estado_reserva"));
 
                 ReservacionesPagadas.add(obj);
             }

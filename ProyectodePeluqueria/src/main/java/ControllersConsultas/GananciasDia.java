@@ -27,14 +27,15 @@ import org.json.JSONObject;
  * @author MINEDUCYT
  */
 @WebServlet(name = "GananciasDiaServlet", urlPatterns = {"/GananciasDiaServlet"})
-public class GananciasDia extends HttpServlet{
+public class GananciasDia extends HttpServlet {
+
     ArrayList<Pago> listaServicio;
-    Servicio au=null;
-    Pago ae=null;
+    Servicio au = null;
+    Pago ae = null;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-         resp.setContentType("aplication/json;charset=utf-8");
+        resp.setContentType("aplication/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
         String filtro = req.getParameter("consultar_datos");
 
@@ -44,7 +45,6 @@ public class GananciasDia extends HttpServlet{
         }
 
         switch (filtro) {
-            
 
             case "si_consulta":
                 JSONArray array_autor = new JSONArray();
@@ -59,20 +59,18 @@ public class GananciasDia extends HttpServlet{
                     this.listaServicio = obaut.obtenerGananciasDia(Integer.valueOf(el_estado), "todo");
 
                     System.out.println("Esta en resultado en RegAutor");
-                    this.ae=new Pago();
-                    this.ae=obaut.obtenerTotalDia(Integer.valueOf(el_estado), "todo");
-                    
-                   html += "<label>"+"Total de Ganancias:"+this.ae.getTotal()+"</label>";
+                    this.ae = new Pago();
+                    this.ae = obaut.obtenerTotalDia(Integer.valueOf(el_estado), "todo");
+
+                    html += "<label>" + "Total de Ganancias:" + " $" + this.ae.getTotal() + "</label>";
                     html += "<table id=\"tabla_ganancias\""
                             + "class=\"table table-bordered dt-resposive nowrap\""
                             + "cellspacing=\"0\" width=\"100%\">\n"
                             + "<thead>\n"
                             + "<tr>\n"
-                            
                             + "<th>Fecha </th>\n"
-                             + "<th>Servicio</th>\n"
+                            + "<th>Servicio</th>\n"
                             + "<th>Precio </th>\n"
-                           
                             + "</tr>\n"
                             + "</thead>\n"
                             + "</tbody>";
@@ -81,16 +79,11 @@ public class GananciasDia extends HttpServlet{
                     for (Pago objAutor : this.listaServicio) {
                         cont++;
                         html += "<tr>";
-                        
-                        html += "<td>" + objAutor.getFechaPago() + "</td>";
-                         html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
-                          html += "<td>" + objAutor.getServicio().getPrecio() + "</td>";
-                        
-                       
 
-                        html += "<td>";
-                        
-                        html += "</td>";
+                        html += "<td>" + objAutor.getFechaPago() + "</td>";
+                        html += "<td>" + objAutor.getServicio().getServicio() + "</td>";
+                        html += "<td>" + "$" + objAutor.getServicio().getPrecio() + "</td>";
+
                         html += "</tr>";
                     }
                     html += "</tbody\n>"
@@ -112,16 +105,12 @@ public class GananciasDia extends HttpServlet{
                 resp.getWriter().write(array_autor.toString());
                 break;
 
-            
-
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
+
     }
-    
-    
-    
+
 }
