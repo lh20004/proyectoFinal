@@ -39,7 +39,7 @@ $(document).ready(function() {
                     text: 'Se ha registrado correctamente'
                 }).then(function() {
                     limpiarCampos();
-                    window.location.href = '../Menu_Cliente.html';
+                    window.location.href = '../index.html';
                 });
             },
             error: function(xhr, status, error) {
