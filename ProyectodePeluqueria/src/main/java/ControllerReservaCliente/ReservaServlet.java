@@ -235,7 +235,7 @@ public class ReservaServlet extends HttpServlet {
                     reserva.setFechaReserva(fechaReserva);
                     reserva.setHoraInicio(horaInicio);
                     reserva.setHoraFin(horaFin);
-                    reserva.setEstado("confirmado");
+                    reserva.setEstado("confirmada");
 
                     System.out.println("Datos de la reserva a insertar: " + reserva);
 
