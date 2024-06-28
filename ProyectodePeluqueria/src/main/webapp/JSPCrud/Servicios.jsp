@@ -29,7 +29,7 @@
 
                     // Validación del nombre
                     var nombre = $("#servicio").val();
-                    if (nombre.length < 8) {
+                    if (nombre.length < 6) {
                         isValid = false;
                         errorMessage += "El nombre debe tener al menos 8 caracteres.<br>";
                     } else if (/\d/.test(nombre)) {
@@ -110,11 +110,11 @@
             <form id="ServicioServlet" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="servicio" class="form-label">Nombre:</label>
-                    <input type="text" class="form-control" name="servicio" id="servicio" required>
+                    <input type="text" class="form-control" name="servicio" id="servicio" required  maxlength="50">
                 </div>
                 <div class="mb-3">
                     <label for="descripcion" class="form-label">Descripción:</label>
-                    <input type="text" class="form-control" name="descripcion" id="descripcion" required>
+                    <input type="text" class="form-control" name="descripcion" id="descripcion" required maxlength="250">
                 </div>
                 <div class="mb-3">
                     <label for="precio" class="form-label">Precio:</label>
@@ -122,7 +122,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="estado" class="form-label">Estado:</label>
-                    <input type="text" class="form-control" name="estado" id="estado" required>
+                    <input type="text" class="form-control" name="estado" id="estado" required maxlength="11">
                 </div>
                 <div class="mb-3">
                     <label for="file" class="form-label">Imagen:</label>
