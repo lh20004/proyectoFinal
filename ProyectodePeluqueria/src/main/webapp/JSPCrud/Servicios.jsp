@@ -32,20 +32,26 @@
                     if (nombre.length < 8) {
                         isValid = false;
                         errorMessage += "El nombre debe tener al menos 8 caracteres.<br>";
+                    } else if (/\d/.test(nombre)) {
+                        isValid = false;
+                        errorMessage += "El nombre no puede contener números.<br>";
                     }
 
                     // Validación de la descripción
                     var descripcion = $("#descripcion").val();
                     if (descripcion.length < 15) {
                         isValid = false;
-                        errorMessage += "La descripción debe tener al menos 20 caracteres.<br>";
+                        errorMessage += "La descripción debe tener al menos 15 caracteres.<br>";
+                    } else if (/\d/.test(descripcion)) {
+                        isValid = false;
+                        errorMessage += "La descripción no puede contener números.<br>";
                     }
 
                     // Validación del precio
                     var precio = $("#precio").val();
-                    if (!$.isNumeric(precio) || precio < 5 || precio > 50) {
+                    if (!$.isNumeric(precio) || precio < 5 || precio >50) {
                         isValid = false;
-                        errorMessage += "El precio debe ser un valor y no puede ser menor de $5 o mayor de $25.<br>";
+                        errorMessage += "El precio debe ser un número y no puede ser menor de 5 y mayor de 50.<br>";
                     }
 
                     // Validación del estado
@@ -53,13 +59,14 @@
                     if (estado.toLowerCase() !== "disponible") {
                         isValid = false;
                         errorMessage += "El estado debe ser 'disponible'.<br>";
+                    } else if (/\d/.test(estado)) {
+                        isValid = false;
+                        errorMessage += "El estado no puede contener números.<br>";
                     }
 
                     // Mostrar errores si los hay
                     if (!isValid) {
                         $("#message").html('<div class="alert alert-danger">' + errorMessage + '</div>');
-                        // Limpiar los campos del formulario
-                        $("#ServicioServlet")[0].reset();
                         return;
                     }
 
@@ -80,22 +87,21 @@
                     });
                 });
             });
-            
-            $(document).ready(function() {
-            $('#regresar').click(function(event) {
-             event.preventDefault(); // Evita el comportamiento por defecto del enlace
 
-            // Regresa a la página anterior en el historial del navegador
-            window.history.back();
+            $(document).ready(function() {
+                $('#regresar').click(function(event) {
+                    event.preventDefault(); // Evita el comportamiento por defecto del enlace
+                    // Regresa a la página anterior en el historial del navegador
+                    window.history.back();
+                });
             });
-         });
         </script>
     </head>
     <body>
         <div class="container">
             <div class="row mb-3">
                 <div class="col-12">
-                     <a id="regresar" class="btn btn-secondary"style="background-color: #b2d8d8; color: black">Regresar</a>
+                    <a id="regresar" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
                 </div>
             </div>
             <center>
