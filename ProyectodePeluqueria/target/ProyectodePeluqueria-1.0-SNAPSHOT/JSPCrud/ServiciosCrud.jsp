@@ -123,23 +123,24 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Descripción  *</label>
-                                            <input type="text" autocomplete="off" name="descripcion" maxlength="255" id="descripcion" class="form-control" placeholder="Ingrese la descripción"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Precio *</label>
-                                            <input type="number" autocomplete="off" name="precio" id="precio" class="form-control"
-                                                   min="5" step="0.01"
-                                                   pattern="^\d+(\.\d{1,2})?$"
-                                                   title="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)" 
-                                                   data-parsley-error-message="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)"
-                                                   required 
-                                                   placeholder="Ingrese el precio"/>
-                                        </div>
-                                    </div>
+    <div class="form-group">
+        <label>Descripción *</label>
+        <input type="text" autocomplete="off" name="descripcion" maxlength="15" id="descripcion" class="form-control" placeholder="Ingrese la descripción" required>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="form-group">
+        <label>Precio *</label>
+        <input type="number" autocomplete="off" name="precio" id="precio" class="form-control"
+               min="5" max="25" step="0.01"
+               pattern="^\d+(\.\d{1,2})?$"
+               title="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)" 
+               data-parsley-error-message="Ingrese un número válido (mayor o igual a 5 y máximo dos decimales)"
+               required 
+               placeholder="Ingrese el precio">
+    </div>
+</div>
 
 
                                     <div class="col-md-6">
