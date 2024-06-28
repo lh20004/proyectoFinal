@@ -54,12 +54,6 @@
                         </a>
                     </li>
                 </ul>
-                <div class="sidebar-footer">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-exit"></i>
-                        <span>Cerrar Sesión</span>
-                    </a>
-                </div>
             </aside>
 
             <div class="main p-3">
@@ -69,7 +63,7 @@
                             <a class="nav-link"  href="ConsultasJSP/ServiciosDisponibles.jsp">Catalogo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="InicioDeSecion/index.html">Iniciar Sesion</a>
+                            <a class="nav-link" href="" onclick="cerrarSesion()">Cerrar Sesíon</a>
                         </li>
                     </ul>
                 </center>
@@ -84,6 +78,22 @@
                         function goBack() {
                             window.history.back();
                         }
+        </script>
+        <script>
+            function cerrarSesion() {
+                // Reemplazar la entrada actual en el historial y redirigir a la página de inicio de sesión
+                history.replaceState(null, null, 'index.html');
+                window.location.href = 'index.html';
+
+                // Prevenir la navegación hacia atrás
+                setTimeout(function () {
+                    history.pushState(null, null, 'index.html');
+                }, 100);
+
+                window.addEventListener('popstate', function (event) {
+                    history.pushState(null, null, 'index.html');
+                });
+            }
         </script>
         <script src="JsdeConsultas/Menu.js"></script>
     </body>
