@@ -68,7 +68,7 @@ public class EmpleadosServiciosServlet extends HttpServlet {
                         html += "<tr>";
                         html += "<td>" + objReservacion.getReserva().getEmpleado().getNombre()+ "</td>";
                         html += "<td>" + objReservacion.getServicio().getServicio()+ "</td>";                   
-                        html += "<td>" + objReservacion.getServicio().getPrecio()+ "</td>";
+                        html += "<td>"+ "$" + objReservacion.getServicio().getPrecio()+ "</td>";
                        
                         html += "</tr>";
                     }
