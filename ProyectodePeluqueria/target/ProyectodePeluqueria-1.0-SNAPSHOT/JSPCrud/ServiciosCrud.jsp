@@ -57,8 +57,9 @@
                     <div class="page-content-wrapper">
                         <div class="container-fluid">
                             <div class="row mb-3">
-                                <div class="col-12">
-                                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                                    <div class="col-12">
+                                        <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
@@ -171,11 +172,7 @@
             </div>
         </div> <!-- wrapper -->
         <!-- Botón de regreso -->
-            <div class="row pt-3">
-                <div class="col-12">
-                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
-                </div>
-            </div>
+            
     </body>
     <script>
                         function goBack() {

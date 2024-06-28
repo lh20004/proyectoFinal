@@ -29,23 +29,23 @@
 
                     // Validación del nombre
                     var nombre = $("#servicio").val();
-                    if (nombre.length < 10) {
+                    if (nombre.length < 8) {
                         isValid = false;
-                        errorMessage += "El nombre debe tener al menos 10 caracteres.<br>";
+                        errorMessage += "El nombre debe tener al menos 8 caracteres.<br>";
                     }
 
                     // Validación de la descripción
                     var descripcion = $("#descripcion").val();
-                    if (descripcion.length < 25) {
+                    if (descripcion.length < 15) {
                         isValid = false;
-                        errorMessage += "La descripción debe tener al menos 25 caracteres.<br>";
+                        errorMessage += "La descripción debe tener al menos 20 caracteres.<br>";
                     }
 
                     // Validación del precio
                     var precio = $("#precio").val();
-                    if (precio < 5) {
+                    if (!$.isNumeric(precio) || precio < 5 || precio > 50) {
                         isValid = false;
-                        errorMessage += "El precio no puede ser menor de 5.<br>";
+                        errorMessage += "El precio debe ser un valor y no puede ser menor de $5 o mayor de $25.<br>";
                     }
 
                     // Validación del estado
@@ -80,13 +80,22 @@
                     });
                 });
             });
+            
+            $(document).ready(function() {
+            $('#regresar').click(function(event) {
+             event.preventDefault(); // Evita el comportamiento por defecto del enlace
+
+            // Regresa a la página anterior en el historial del navegador
+            window.history.back();
+            });
+         });
         </script>
     </head>
     <body>
         <div class="container">
             <div class="row mb-3">
                 <div class="col-12">
-                    <a href="../MenuAdmin.html" class="btn btn-secondary" style="background-color: #b2d8d8; color: black">Regresar</a>
+                     <a id="regresar" class="btn btn-secondary"style="background-color: #b2d8d8; color: black">Regresar</a>
                 </div>
             </div>
             <center>
@@ -119,4 +128,3 @@
         </div>
     </body>
 </html>
-

@@ -71,14 +71,17 @@
                 <th>Servicio</th>
                 </thead>
                 <tbody id="list_table_json"></tbody>
+              
             </table>
-        </div>
-        <script src="../JsdeConsultas/ReservasEmpleados.js" type="text/javascript"></script>
-        <div class="row pt-3">
-            <div class="col-12">
-                <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+              <!-- Botón de regreso -->
+            <div class="row pt-3">
+                <div class="col-12">
+                    <button onclick="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
             </div>
         </div>
+        <script src="../JsdeConsultas/ReservasEmpleados.js" type="text/javascript"></script>
+        
     </div>  
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css" rel="stylesheet">

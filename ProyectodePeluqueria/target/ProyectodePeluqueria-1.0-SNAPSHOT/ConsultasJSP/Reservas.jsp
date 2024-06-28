@@ -63,14 +63,14 @@
                 <tbody id="list_table_json"></tbody>
             </table>
             
-                
-        </div>
-    <!-- Botón de regreso -->
+                  <!-- Botón de regreso -->
             <div class="row pt-3">
                 <div class="col-12">
                     <button onclick="goBack()" class="btn btn-primary">Regresar</button>
                 </div>
             </div>
+        </div>
+   
         <script src="../JsdeConsultas/Reservas.js" type="text/javascript"></script>
     </body>
     <script>
