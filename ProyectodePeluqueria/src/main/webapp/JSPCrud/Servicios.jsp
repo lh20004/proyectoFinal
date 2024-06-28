@@ -43,9 +43,9 @@
 
                     // Validación del precio
                     var precio = $("#precio").val();
-                    if (precio < 5) {
+                    if (!$.isNumeric(precio) || precio < 5) {
                         isValid = false;
-                        errorMessage += "El precio no puede ser menor de 5.<br>";
+                        errorMessage += "El precio debe ser un número y no puede ser menor de 5.<br>";
                     }
 
                     // Validación del estado
@@ -119,4 +119,3 @@
         </div>
     </body>
 </html>
-
