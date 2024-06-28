@@ -101,7 +101,7 @@ $(document).ready(function() {
         }
 
         // Validar que nombre y apellido no contengan caracteres incorrectos
-        var letrasPattern = /^[A-Za-z\s]{3,}$/;
+        var letrasPattern = /^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]{3,}$/;
         if (!letrasPattern.test(nombre)) {
             Swal.fire({
                 icon: 'error',

@@ -35,11 +35,11 @@ Author : Jonathan Flores
                         <form id="form1" onsubmit="return validarFormulario()" style="background-color: #b2d8d8">
                             <div class="form-group">
                                 <label for="nombre" style="color: black">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required pattern="[A-Za-z\s]{3,}" title="Ingrese un nombre válido (mínimo 3 caracteres)">
+                                <input type="text" class="form-control" id="nombre" name="nombre" required   pattern="[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]{3,50}"  title="Ingrese un nombre válido (mínimo 3 caracteres)">
                             </div>
                             <div class="form-group">
                                 <label for="apellido" style="color: black">Apellido:</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido" required pattern="[A-Za-z\s]{3,}" title="Ingrese un apellido válido (mínimo 3 caracteres)">
+                                <input type="text" class="form-control" id="apellido" name="apellido" required   pattern="[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]{3,50}"  title="Ingrese un apellido válido (mínimo 3 caracteres)">
                             </div>
                             <div class="form-group">
                                 <label for="telefono" style="color: black">Teléfono:</label>
