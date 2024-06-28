@@ -108,7 +108,7 @@
                                         <div class="form-group">
                                             <label for="nombrecliente">Nombre</label>
                                             <input type="text" autocomplete="off" name="nombrecliente" maxlength="50"
-                                                   pattern="[A-Za-z\s]{3,50}" 
+                                                   pattern="[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]{3,50}" 
                                                    data-parsley-error-message="El nombre debe contener solo letras y un minimo de 3 caracteres" 
                                                    id="nombrecliente"
                                                    class="form-control"
@@ -122,7 +122,7 @@
                                         <div class="form-group">
                                             <label for="apellidocliente">Apellidos</label>
                                             <input type="text" autocomplete="off" name="apellidocliente" maxlength="50"
-                                                   pattern="[A-Za-z\s]{3,50}" 
+                                                   pattern="[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]{3,50}" 
                                                    data-parsley-error-message="El apellido debe contener solo letras y un minimo de 3 caracteres." 
                                                    id="apellidocliente"
                                                    class="form-control"
