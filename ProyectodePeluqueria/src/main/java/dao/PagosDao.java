@@ -43,7 +43,7 @@ public class PagosDao {
 
     private static final String PAGOS = "INSERT INTO pago(idcliente, fechapago, total) VALUES (?,?,?);";
     
-    private static final String CAMBIAR_ESTADO = "update reserva set estado = 'cancelado' where idreserva = ?;";
+    private static final String CAMBIAR_ESTADO = "update reserva set estado = 'pagado' where idreserva = ?;";
 
     private static final String ULTIMO_PAGO = "select * from pago where idpago = (select max(idpago) from pago);";
     
