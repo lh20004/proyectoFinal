@@ -17,7 +17,12 @@ $(function () {
     document.querySelector('#cClientes').addEventListener('change', evtComboCliente, false);
     document.querySelector('#cServicios').addEventListener('change', evtComboServicio, false);
     document.querySelector('#btnPagar').addEventListener('click', evtBtnPagar, false);
+    document.querySelector('#btnBack').addEventListener('click',evtbtnBack,false);
 });
+
+function evtbtnBack(evt){
+    history.back();
+}
 
 function evtBtnPagar(evt) {
     var fecha = new Date();
