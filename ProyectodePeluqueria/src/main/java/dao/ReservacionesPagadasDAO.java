@@ -21,7 +21,7 @@ public class ReservacionesPagadasDAO {
     private Conexion conexion;
     private ArrayList<Reserva> ReservacionesPagadas;
 
-    private static final String SQL_CONSULTA = "SELECT cl.nombre AS nombre_cliente,re.estado AS estado_reserva\n"
+    private static final String SQL_CONSULTA = "SELECT concat(cl.nombre, ' ', cl.apellido) AS nombre_cliente,re.estado AS estado_reserva\n"
             + "FROM  reserva re\n"
             + "INNER JOIN cliente cl ON re.idcliente = cl.idcliente\n"
             + "WHERE re.estado = 'pagado'\n"

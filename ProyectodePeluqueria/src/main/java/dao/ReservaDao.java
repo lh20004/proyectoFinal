@@ -31,11 +31,11 @@ public class ReservaDao {
     private static final String MOSTRAR_CONFIRMADOS = "SELECT cl.nombre, cl.correo, re.estado\n"
             + "FROM cliente Cl\n"
             + "INNER JOIN reserva re ON cl.idcliente = re.fk_cliente\n"
-            + "WHERE re.estado = 'confirmado';";
+            + "WHERE re.estado = 'confirmada';";
     
       private static final String SELECT_ALL = "SELECT r.fechareserva As Fecha,r.horainicio,r.horafin,r.estado,CONCAT(c.nombre, ' ', c.apellido) AS Cliente, CONCAT(e.nombre, ' ', e.apellido) AS Empleado,s.servicio AS Servicio FROM detallereserva dr  JOIN reserva r ON dr.idreserva = r.idreserva JOIN cliente c ON r.idcliente = c.idcliente JOIN empleado e ON r.idempleado = e.idempleado JOIN servicio s ON dr.idservicio = s.idservicio";
      
-      private static final String Reservaporempleado = "SELECT r.fechareserva As Fecha,r.horainicio,r.horafin,r.estado,CONCAT(c.nombre, ' ', c.apellido) AS Cliente, CONCAT(e.nombre, ' ', e.apellido) AS Empleado,s.servicio AS Servicio FROM detallereserva dr  JOIN reserva r ON dr.idreserva = r.idreserva JOIN cliente c ON r.idcliente = c.idcliente JOIN empleado e ON r.idempleado = e.idempleado JOIN servicio s ON dr.idservicio = s.idservicio WHERE  r.estado='confirmado' AND e.idempleado= ?";
+      private static final String Reservaporempleado = "SELECT r.fechareserva As Fecha,r.horainicio,r.horafin,r.estado,CONCAT(c.nombre, ' ', c.apellido) AS Cliente, CONCAT(e.nombre, ' ', e.apellido) AS Empleado,s.servicio AS Servicio FROM detallereserva dr  JOIN reserva r ON dr.idreserva = r.idreserva JOIN cliente c ON r.idcliente = c.idcliente JOIN empleado e ON r.idempleado = e.idempleado JOIN servicio s ON dr.idservicio = s.idservicio WHERE  r.estado='confirmada' AND e.idempleado= ?";
       
       public  ReservaDao () throws SQLException, ClassNotFoundException{
         this.conexion = new Conexion();

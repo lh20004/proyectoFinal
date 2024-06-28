@@ -52,6 +52,11 @@ function evtBtnPagar(evt) {
         if (json.result) {
             cargarServiciosReservados();
             cargarComboCliente();
+            Swal.fire({
+                    icon: 'success',
+                    title: 'Pagado',
+                    text: 'Se ha efectuado el pago exitosamente'
+                });
         } else {
             swal.fire('Error', 'Ocurrio un error en el proceso de pago', 'error');
         }
@@ -77,10 +82,10 @@ function evtComboServicio(evt) {
         id,
         fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + (fecha.getYear() + 1900),
         servicio.getServicio(),
-        servicio.getPrecio()
+        "$" + servicio.getPrecio()
     ]).draw();
     totalPagar += servicio.getPrecio();
-    document.querySelector('#lTotal').innerHTML = 'Total: ' + totalPagar;
+    document.querySelector('#lTotal').innerHTML = 'Total: ' + "$" + totalPagar;
 }
 
 function cargarComboServicio() {
@@ -180,10 +185,10 @@ function cargarTabla() {
                 reserva.getIdReserva(),
                 reserva.getFecha().getDate() + "/" + (reserva.getFecha().getMonth() + 1) + "/" + (reserva.getFecha().getYear() + 1900),
                 servicio.getServicio(),
-                servicio.getPrecio()
+                "$" + servicio.getPrecio()
             ]).draw();
             totalPagar += servicio.getPrecio();
         });
     });
-    document.querySelector('#lTotal').innerHTML = 'Total: ' + totalPagar;
+    document.querySelector('#lTotal').innerHTML = 'Total: ' + "$" + totalPagar;
 }
