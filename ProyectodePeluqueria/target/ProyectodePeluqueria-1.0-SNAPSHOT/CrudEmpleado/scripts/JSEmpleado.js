@@ -1,8 +1,4 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
-var tabla = new DataTable('#taEmpledo'); // de esta manera se crea la tabla
+var tabla = new DataTable('#taEmpledo'); // Instancia de la tabla DataTable
 var empleados = [];
 var selecionado;
 
@@ -10,46 +6,41 @@ $(function () {
     cargarDatos();
     cargarComboCargo();
     formularioVisibiliti(false);
-    document.querySelector('#bAgregar').addEventListener('click', evetAgregarEmpledo, false);
-    document.querySelector('#bCerrar').addEventListener('click', evetCerrarFormulario, false);
-    document.querySelector('#bEditar').addEventListener('click', evtActualizarEmpleado, false);
-    document.querySelector('#bGuardar').addEventListener('click', eventGuardar, false);
-    document.querySelector('#tTelefono').addEventListener('keyup', eventTelKeyup, false);
-    document.querySelector('#tDui').addEventListener('keyup', eventDuiKeyup, false);
+    $('#bAgregar').click(evetAgregarEmpledo);
+    $('#bCerrar').click(evetCerrarFormulario);
+    $('#bEditar').click(evtActualizarEmpleado);
+    $('#bGuardar').click(eventGuardar);
+    $('#tTelefono').keyup(eventTelKeyup);
+    $('#tDui').keyup(eventDuiKeyup);
+
+    tabla.on('click', 'tbody tr', (e) => {
+        let classList = e.currentTarget.classList;
+        if (classList.contains('selected')) {
+            classList.remove('selected');
+        } else {
+            tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
+            classList.add('selected');
+        }
+    });
 });
 
 function eventTelKeyup(evt) {
     var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', 'Backspace'];
-    //a.find(a=>a=='4');
-    if (numeros.find(numeros => numeros == evt.key) == null) {
-        var lenght = evt.target.value.length;
+    if (!numeros.includes(evt.key)) {
+        var length = evt.target.value.length;
         var value = evt.target.value;
-        evt.target.value = value.substr(0, lenght - 1);
+        evt.target.value = value.substr(0, length - 1);
     }
 }
 
 function eventDuiKeyup(evt) {
     var numeros = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', 'Backspace'];
-    //a.find(a=>a=='4');
-    if (numeros.find(numeros => numeros == evt.key) == null) {
-        var lenght = evt.target.value.length;
+    if (!numeros.includes(evt.key)) {
+        var length = evt.target.value.length;
         var value = evt.target.value;
-        evt.target.value = value.substr(0, lenght - 1);
+        evt.target.value = value.substr(0, length - 1);
     }
 }
-
-tabla.on('click', 'tbody tr', (e) => {
-    let classList = e.currentTarget.classList;
-
-    if (classList.contains('selected')) {
-        classList.remove('selected');
-    } else {
-        tabla.rows('.selected').nodes().each((row) => row.classList.remove('selected'));
-        classList.add('selected');
-    }
-});//esta funcio realiza el marcado de la seleccion de la tabla
-
-//tabla.row('.selected').data(); //esto me debuelbe los datos de la tabla seleccionada
 
 function evetAgregarEmpledo(evt) {
     formularioVisibiliti(true);
@@ -57,94 +48,57 @@ function evetAgregarEmpledo(evt) {
 
 function evtActualizarEmpleado(evt) {
     var selectTable = tabla.row('.selected').data();
-    var select;
     if (selectTable != null) {
-        document.querySelector('#bGuardar').value = 'Actualizar';
-        empleados.forEach(function (data) {
-            if (data.getCorreo() == selectTable[5]) {
-                select = data;
-            }
-        });
-        selecionado = select;
-        $.ajax({
-            url: '../RegEmpleado',
-            dataType: 'json',
-            type: "POST",
-            data: {"opcion": 5, "password": select.getClave()}
-        }).done(function (json) {
-            for (var i = 0; i < document.querySelector('#cEstado').length; i++) {
-                if (document.querySelector('#cEstado').item(i).value == select.getEstado()) {
-                    document.querySelector('#cEstado').selectedIndex = i;
+        $('#bGuardar').val('Actualizar');
+        selecionado = empleados.find(data => data.getCorreo() === selectTable[5]);
+        if (selecionado) {
+            $.ajax({
+                url: '../RegEmpleado',
+                dataType: 'json',
+                type: 'POST',
+                data: {"opcion": 5, "password": selecionado.getClave()}
+            }).done(function (json) {
+                $('#cEstado').val(selecionado.getEstado());
+                $('#cCargo').val(selecionado.getCargo().getIdcargo());
+                if (selecionado.getCargo().getCargo() === 'Admin') {
+                    $('#cCargo').prop('disabled', true);
                 }
-            }
-            for (var i = 0; i < document.querySelector('#cCargo').length; i++) {
-                if (document.querySelector('#cCargo').item(i).value == select.getCargo().getIdcargo()) {
-                    document.querySelector('#cCargo').selectedIndex = i;
-                }
-            }
-            
-            if (select.getCargo().getCargo() == 'Admin') {
-                var objetos = document.querySelector('#cCargo');
-                for (var object of objetos) {
-                    if (object.label != 'Admin') {
-                        object.disabled = true;
-                    }
-                }
-            }
-            document.querySelector('#tNombre').value = select.getNombre();
-            document.querySelector('#tApellido').value = select.getApellido();
-            document.querySelector('#tTelefono').value = select.getTelefono();
-            document.querySelector('#tDui').value = select.getDui();
-            document.querySelector('#eCorreo').value = select.getCorreo();
-            document.querySelector('#pPassword').value = json.password;
-            formularioVisibiliti(true);
-        }).fail(function () {
-            swal.fire('Error', 'Ocurrio un error al intentar actualizar los datos');
-        });
+                $('#tNombre').val(selecionado.getNombre());
+                $('#tApellido').val(selecionado.getApellido());
+                $('#tTelefono').val(selecionado.getTelefono());
+                $('#tDui').val(selecionado.getDui());
+                $('#eCorreo').val(selecionado.getCorreo());
+                $('#pPassword').val(json.password);
+                formularioVisibiliti(true);
+            }).fail(function () {
+                swal.fire('Error', 'Ocurrió un error al intentar actualizar los datos', 'error');
+            });
+        }
     }
 }
 
 function evetCerrarFormulario(evt) {
     formularioVisibiliti(false);
-    document.querySelector('#fEmpleado').reset();
-    document.querySelector('#bGuardar').value = 'Guardar';
-    var objetos = document.querySelector('#cCargo');
-    for (var object of objetos) {
-        object.disabled = false;
-    }
+    $('#fEmpleado')[0].reset();
+    $('#bGuardar').val('Guardar');
+    $('#cCargo').prop('disabled', false);
 }
 
 function eventGuardar(evt) {
-    if (document.querySelector('#fEmpleado').checkValidity()) {
-        evt.preventDefault();
-        if (document.querySelector('#bGuardar').value == 'Guardar') {
-            var datos = {
-                "opcion": 3,
-                "nombre": document.querySelector('#tNombre').value,
-                "apellido": document.querySelector('#tApellido').value,
-                "telefono": document.querySelector('#tTelefono').value,
-                "dui": document.querySelector('#tDui').value,
-                "estado": document.querySelector('#cEstado').value,
-                "correo": document.querySelector('#eCorreo').value,
-                "clave": document.querySelector('#pPassword').value,
-                "cargo": document.querySelector('#cCargo').value
-
-            };
-        } else {
-            var datos = {
-                "opcion": 4,
-                "idempleado": selecionado.getIdempleado(),
-                "nombre": document.querySelector('#tNombre').value,
-                "apellido": document.querySelector('#tApellido').value,
-                "telefono": document.querySelector('#tTelefono').value,
-                "dui": document.querySelector('#tDui').value,
-                "estado": document.querySelector('#cEstado').value,
-                "correo": document.querySelector('#eCorreo').value,
-                "clave": document.querySelector('#pPassword').value,
-                "cargo": document.querySelector('#cCargo').value
-
-            };
-        }
+    evt.preventDefault();
+    if (validarFormulario()) {
+        var datos = {
+            "opcion": $('#bGuardar').val() === 'Guardar' ? 3 : 4,
+            "idempleado": selecionado ? selecionado.getIdempleado() : null,
+            "nombre": $('#tNombre').val(),
+            "apellido": $('#tApellido').val(),
+            "telefono": $('#tTelefono').val(),
+            "dui": $('#tDui').val(),
+            "estado": $('#cEstado').val(),
+            "correo": $('#eCorreo').val(),
+            "clave": $('#pPassword').val(),
+            "cargo": $('#cCargo').val()
+        };
         $.ajax({
             url: "../RegEmpleado",
             dataType: "json",
@@ -152,16 +106,16 @@ function eventGuardar(evt) {
             data: datos
         }).done(function (json) {
             if (json.result) {
-                swal.fire('Exito', 'Se guardaron los datos correctamente', 'info');
+                swal.fire('Éxito', 'Se guardaron los datos correctamente', 'info');
                 cargarDatos();
                 formularioVisibiliti(false);
-                document.querySelector('#fEmpleado').reset();
-                document.querySelector('#bGuardar').value = 'Guardar';
+                $('#fEmpleado')[0].reset();
+                $('#bGuardar').val('Guardar');
             } else {
                 swal.fire('Error', 'No se pudieron guardar los datos', 'error');
             }
         }).fail(function () {
-            swal.fire('Error', 'Ocurrio un error al intentar guardar los datos', 'error');
+            swal.fire('Error', 'Ocurrió un error al intentar guardar los datos', 'error');
         });
     }
 }
@@ -173,8 +127,7 @@ function cargarDatos() {
         type: "POST",
         data: {"opcion": 1}
     }).done(function (json) {
-        empleados = [];
-        json.forEach(function (datos) {
+        empleados = json.map(datos => {
             var e = new Empleado();
             e.setIdempleado(datos.idempleado);
             e.setNombre(datos.nombre);
@@ -188,11 +141,11 @@ function cargarDatos() {
             c.setIdcargo(datos.cargo.idcargo);
             c.setCargo(datos.cargo.cargo);
             e.setCargo(c);
-            empleados.push(e);
+            return e;
         });
         cargarTabla();
     }).fail(function () {
-        swal.fire('Error', 'Ocurrio un error al extraer los empleados', 'error');
+        swal.fire('Error', 'Ocurrió un error al extraer los empleados', 'error');
     });
 }
 
@@ -203,13 +156,10 @@ function cargarComboCargo() {
         type: "POST",
         data: {"opcion": 2}
     }).done(function (json) {
-        var html = '';
-        json.forEach(function (datos) {
-            html += `<option value="${datos.idcargo}">${datos.cargo}</option>`;
-        });
-        document.querySelector('#cCargo').innerHTML = html;
+        var html = json.map(datos => `<option value="${datos.idcargo}">${datos.cargo}</option>`).join('');
+        $('#cCargo').html(html);
     }).fail(function () {
-        swal.fire('Error', 'Ocurrio un error al intentar cargar los cargos');
+        swal.fire('Error', 'Ocurrió un error al intentar cargar los cargos', 'error');
     });
 }
 
@@ -223,20 +173,87 @@ function cargarTabla() {
             datos.getDui(),
             datos.getEstado(),
             datos.getCorreo(),
-//            datos.getClave(),
             '********',
             datos.getCargo().getCargo()
-        ]);
+        ]).draw(false);
     });
-    tabla.draw();
 }
 
 function formularioVisibiliti(opcion) {
     if (opcion) {
-        document.querySelector('.a1_1').style.setProperty('z-index', '-1');
-        document.querySelector('.a2_1').style.removeProperty('display');
+        $('.a1_1').css('z-index', '-1');
+        $('.a2_1').css('display', 'block');
     } else {
-        document.querySelector('.a1_1').style.setProperty('z-index', '1');
-        document.querySelector('.a2_1').style.setProperty('display', 'none');
+        $('.a1_1').css('z-index', '1');
+        $('.a2_1').css('display', 'none');
     }
 }
+
+function validarFormulario() {
+    var nombre = $('#tNombre').val().trim();
+    var apellido = $('#tApellido').val().trim();
+    var telefono = $('#tTelefono').val().trim();
+    var dui = $('#tDui').val().trim();
+    var correo = $('#eCorreo').val().trim();
+    var clave = $('#pPassword').val().trim();
+    var estado = $('#cEstado').val().trim();
+    var cargo = $('#cCargo').val().trim();
+
+    if (nombre === '' || apellido === '' || telefono === '' || dui === '' || correo === '' || clave === '' || estado === '' || cargo === '') {
+        swal.fire('Error', 'Todos los campos son obligatorios', 'error');
+        return false;
+    }
+
+    // Validación del nombre
+    if (nombre.length < 3 || nombre.length > 50 || !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+        swal.fire('Error', 'El nombre debe tener entre 3 y 50 caracteres y solo letras', 'error');
+        return false;
+    }
+
+    // Validación del apellido
+    if (apellido.length < 3 || apellido.length > 50 || !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(apellido)) {
+        swal.fire('Error', 'El apellido debe tener entre 3 y 50 caracteres y solo letras', 'error');
+        return false;
+    }
+
+    // Validación del teléfono
+    var telefonoPattern = /^\d{8,15}$/;
+    if (!telefonoPattern.test(telefono)) {
+        swal.fire('Error', 'Teléfono no válido (debe tener entre 8 y 15 dígitos)', 'error');
+        return false;
+    }
+
+    // Validación del DUI
+    var duiPattern = /^\d{8}-\d{1}$/;
+    if (!duiPattern.test(dui)) {
+        swal.fire('Error', 'DUI no válido (formato esperado: xxxxxxxx-x)', 'error');
+        return false;
+    }
+
+    // Validación del correo electrónico
+    var correoPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!correoPattern.test(correo)) {
+        swal.fire('Error', 'Correo electrónico no válido', 'error');
+        return false;
+    }
+
+    // Validación de la clave
+    if (clave.length < 4 || clave.length > 50) {
+        swal.fire('Error', 'La clave debe tener entre 4 y 50 caracteres', 'error');
+        return false;
+    }
+
+    // Validación del estado y cargo seleccionados
+    if (!estado) {
+        swal.fire('Error', 'Debe seleccionar un estado', 'error');
+        return false;
+    }
+
+    if (!cargo) {
+        swal.fire('Error', 'Debe seleccionar un cargo', 'error');
+        return false;
+    }
+
+    return true;
+}
+
